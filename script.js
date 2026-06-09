@@ -1,4 +1,4 @@
-let usuario = JSON.parse(localStorage.getItem('medcontrol_usuario'));
+let usuario = null;
 let historico = JSON.parse(localStorage.getItem('medcontrol_historico')) || [];
 let medicamentos = JSON.parse(localStorage.getItem('meus_remedios')) || [
     {
@@ -43,7 +43,6 @@ function fazerLogin() {
         email: email
     };
 
-    localStorage.setItem('medcontrol_usuario', JSON.stringify(usuario));
     iniciarApp();
 }
 
