@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDControl - Gerenciador de Medicamentos</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="login-screen" class="login-screen">
+    <div class="login-card">
+        <p class="app-brand">MEDControl</p>
+        <h1>Bem-vindo</h1>
+        <p>Informe seus dados para acessar o controle de medicamentos.</p>
+
+        <input type="text" id="login-nome" placeholder="Seu nome">
+        <input type="email" id="login-email" placeholder="Seu e-mail">
+
+        <button class="btn btn-salvar" onclick="fazerLogin()">
+            Entrar
+        </button>
+    </div>
+</section>
+
+<main id="app-screen" class="app-screen app-hidden">
+    <section id="aba-home" class="section active">
+        <header class="app-header">
+            <p class="app-brand">MEDControl</p>
+            <h1>Gerenciador Inteligente de Medicamentos</h1>
+            <p id="mensagem-usuario" class="app-subtitle">Controle seus remedios, horarios e estoque em um so lugar.</p>
+        </header>
+
+        <div id="lista-remedios" class="conteudo"></div>
+    </section>
+
+    <section id="aba-cadastro" class="section">
+        <header>
+            <h2>Novo Medicamento</h2>
+        </header>
+
+        <div class="form-container">
+            <input type="text" id="nome" placeholder="Nome do medicamento">
+            <input type="text" id="dose" placeholder="Dosagem. Ex: 1 comprimido, 20 gotas">
+            <input type="number" id="qtd" placeholder="Quantidade em estoque">
+            <input type="text" id="horarios" placeholder="Horarios. Ex: 08:00, 14:00, 20:00">
+            <input type="number" id="freq" placeholder="Frequencia em horas. Ex: 8">
+
+            <button class="btn btn-salvar" onclick="adicionar()">
+                Salvar Medicamento
+            </button>
+        </div>
+    </section>
+
+    <section id="aba-progresso" class="section">
+        <header>
+            <h2>Status do Tratamento</h2>
+        </header>
+
+        <div id="status-content" class="conteudo"></div>
+
+        <div class="project-info">
+            <h3>Sobre o Projeto</h3>
+            <p>
+                O MEDControl é um aplicativo deselvolvido por estudades de engenharia de software e tem como objetico auxiliar  as pessoas que precisam tomar medicamentos nos horarios corretos,
+                especialmente idosos e pacientes com tratamentos continuos.
+                Para fazer isso, o nosso aplicativo tem funcionalidades como notificações nos horários de tomar os remédios, histórico de dose, lembretes de recopra de remédios, além de ter um controle da quiantidade de remédios restantes.
+            </p>
+
+            <h3>Equipe</h3>
+
+            <ul>
+                <li>Arthur Fonseca Victor da Silva</li>
+                <li>Gabriell Levy Santos Oliveira</li>
+                <li>Italo Gabriel Sobreira Silva</li>
+                <li>Jõao Gabriel Beligoli</li>
+                <li>Leandro Severino da Silva</li>
+                <li>Pedro Henrique Alves Teixeira</li>
+                <li>Pedro Henrique Noleto Milagres</li>
+                <li>Vinicius Diniz Viana Moreira</li>
+            </ul>
+
+        </div>
+    </section>
+
+    <section id="aba-historico" class="section">
+        <header>
+            <h2>Historico de Medicamentos</h2>
+        </header>
+
+        <div id="historico-content" class="historico-lista"></div>
+    </section>
+
+    <nav>
+        <span onclick="mudarAba('aba-home')" id="nav-home" class="nav-active">INICIO</span>
+        <span onclick="mudarAba('aba-cadastro')" id="nav-cadastro">ADICIONAR</span>
+        <span onclick="mudarAba('aba-progresso')" id="nav-progresso">STATUS</span>
+        <span onclick="mudarAba('aba-historico')" id="nav-historico">HISTORICO</span>
+    </nav>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
