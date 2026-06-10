@@ -1,5 +1,5 @@
 import type { AppState } from '../types/medication'
-import { generateVariedSampleHistory } from './adherence'
+import { generateVariedSampleHistory, stripTodaySampleRecords } from './adherence'
 import { normalizeMedicationStock } from './stock'
 
 const STORAGE_KEY = 'medcontrol_app_state'
@@ -27,7 +27,7 @@ export const DEFAULT_MEDICATIONS = [
   },
 ]
 
-const SAMPLE_HISTORY = generateVariedSampleHistory()
+const SAMPLE_HISTORY = stripTodaySampleRecords(generateVariedSampleHistory())
 
 export const defaultState: AppState = {
   user: null,
@@ -42,8 +42,9 @@ export const defaultState: AppState = {
 
 function normalizeState(state: Partial<AppState>): AppState {
   const medications = (state.medications ?? defaultState.medications).map(normalizeMedicationStock)
-  const history =
+  const rawHistory =
     state.history && state.history.length > 0 ? state.history : SAMPLE_HISTORY
+  const history = stripTodaySampleRecords(rawHistory)
 
   return {
     ...defaultState,

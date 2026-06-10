@@ -93,7 +93,6 @@ export function generateVariedSampleHistory(): DoseRecord[] {
     { offset: 3, dosesToTake: 0 },
     { offset: 2, dosesToTake: 4 },
     { offset: 1, dosesToTake: 6 },
-    { offset: 0, dosesToTake: 2 },
   ]
 
   dayPatterns.forEach(({ offset, dosesToTake }) => {
@@ -119,4 +118,11 @@ export function generateVariedSampleHistory(): DoseRecord[] {
   })
 
   return records
+}
+
+export function stripTodaySampleRecords(records: DoseRecord[]): DoseRecord[] {
+  const today = formatDate(new Date())
+  return records.filter(
+    (record) => !(record.date === today && record.id.startsWith('sample-'))
+  )
 }
