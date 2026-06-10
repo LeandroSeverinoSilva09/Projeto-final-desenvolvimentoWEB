@@ -225,7 +225,7 @@ function tomar(index) {
 }
 
 function repor(index) {
-    medicamentos[index].atual = medicamentos[index].total;
+    medicamentos[index].atual += medicamentos[index].total;
     salvarDados();
     renderizar();
 
