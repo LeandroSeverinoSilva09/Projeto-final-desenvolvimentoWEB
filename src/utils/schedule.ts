@@ -107,6 +107,16 @@ export function getTakenTodayCount(slots: TodayDoseSlot[]): number {
   return slots.filter((s) => s.taken).length
 }
 
+export function getNextPendingSlot(slots: TodayDoseSlot[]): TodayDoseSlot | null {
+  const pending = slots.filter((s) => !s.taken)
+  if (pending.length === 0) return null
+
+  const dueNow = pending.find(isSlotDueNow)
+  if (dueNow) return dueNow
+
+  return pending.sort((a, b) => timeToMinutes(a.scheduleTime) - timeToMinutes(b.scheduleTime))[0]
+}
+
 export function groupHistoryByDate(
   history: DoseRecord[]
 ): { date: string; records: DoseRecord[] }[] {

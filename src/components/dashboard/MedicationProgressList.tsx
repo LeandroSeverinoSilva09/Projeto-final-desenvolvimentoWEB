@@ -3,7 +3,6 @@ import {
   Calendar,
   CheckCircle2,
   Package,
-  Pill,
 } from 'lucide-react'
 import { useMemo } from 'react'
 import { useMedications } from '../../contexts/MedicationContext'
@@ -33,11 +32,6 @@ export function MedicationProgressList() {
 
   return (
     <Card>
-      <div className="mb-4 flex items-center gap-2">
-        <Pill size={22} className="text-primary-600" />
-        <h3 className="text-lg font-bold text-slate-800">Seus remédios</h3>
-      </div>
-
       <div className="space-y-3">
         {medProgress.map(({ med, weekTaken, weekExpected, needsRestock }) => {
           const displayStock = getDisplayStock(med)

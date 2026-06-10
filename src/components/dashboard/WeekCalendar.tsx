@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Calendar, CheckCircle2, MinusCircle, XCircle } from 'lucide-react'
+import { CheckCircle2, MinusCircle, XCircle } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useMedications } from '../../contexts/MedicationContext'
 import type { AdherenceStatus } from '../../types/medication'
@@ -40,15 +40,7 @@ export function WeekCalendar() {
 
   return (
     <Card>
-      <div className="mb-1 flex items-center gap-3">
-        <Calendar size={22} className="text-primary-600" />
-        <div>
-          <h3 className="text-lg font-bold text-slate-800">Calendário da semana</h3>
-          <p className="text-sm text-slate-500">Toque em um dia para ver o que foi tomado</p>
-        </div>
-      </div>
-
-      <div className="mt-4 grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-2">
         {days.map((day, index) => {
           const config = statusConfig[day.status]
           const StatusIcon = config.Icon

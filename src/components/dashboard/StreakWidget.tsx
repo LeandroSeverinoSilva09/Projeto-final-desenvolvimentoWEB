@@ -9,9 +9,6 @@ export function StreakWidget() {
 
   return (
     <Card>
-      <p className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-400">
-        Sequência de dias
-      </p>
       <div className="flex items-center gap-4">
         <motion.div
           animate={streak > 0 ? { scale: [1, 1.08, 1] } : {}}

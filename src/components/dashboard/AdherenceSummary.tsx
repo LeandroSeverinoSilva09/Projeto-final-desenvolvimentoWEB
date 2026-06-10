@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { BarChart3, CheckCircle2, MinusCircle, XCircle } from 'lucide-react'
+import { CheckCircle2, MinusCircle, XCircle } from 'lucide-react'
 import { useMemo } from 'react'
 import { useMedications } from '../../contexts/MedicationContext'
 import { ADHERENCE_LABELS, getWeeklyAdherence } from '../../utils/adherence'
@@ -14,15 +14,7 @@ export function AdherenceSummary() {
 
   return (
     <Card className="!p-0 overflow-hidden">
-      <div className="flex items-center gap-3 bg-gradient-to-r from-primary-600 to-primary-700 px-5 py-4">
-        <BarChart3 size={28} className="text-white" />
-        <div>
-          <h2 className="text-xl font-bold text-white">Adesão na semana</h2>
-          <p className="text-sm text-blue-100">Quanto do tratamento foi seguido</p>
-        </div>
-      </div>
-
-      <div className="p-5">
+      <div className="p-5 pt-4">
         <div className="mb-4 text-center">
           <p className="text-5xl font-extrabold text-primary-600">{summary.percentage}%</p>
           <p className="mt-1 text-base font-semibold text-slate-600">
