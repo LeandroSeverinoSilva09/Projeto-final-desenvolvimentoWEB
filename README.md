@@ -51,7 +51,20 @@ src/
 
 ## Equipe
 
-Arthur Fonseca Victor da Silva · Gabriell Levy Santos Oliveira · Italo Gabriel Sobreira Silva · João Gabriel Beligoli · Leandro Severino da Silva · Pedro Henrique Alves Teixeira · Pedro Henrique Noleto Milagres · Vinicius Diniz Viana Moreira
+Projeto desenvolvido pela equipe abaixo como trabalho de **Desenvolvimento Web**.
+
+| Integrante |
+|---|
+| Arthur Fonseca Victor da Silva |
+| Gabriell Levy Santos Oliveira |
+| Italo Gabriel Sobreira Silva |
+| João Gabriel Beligoli |
+| Leandro Severino da Silva |
+| Pedro Henrique Alves Teixeira |
+| Pedro Henrique Noleto Milagres |
+| Vinicius Diniz Viana Moreira |
+
+**Repositório:** [github.com/LeandroSeverinoSilva09/Projeto-final-desenvolvimentoWEB](https://github.com/LeandroSeverinoSilva09/Projeto-final-desenvolvimentoWEB)
 
 ---
 
