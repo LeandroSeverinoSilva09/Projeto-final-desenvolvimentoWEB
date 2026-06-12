@@ -24,7 +24,17 @@ Gerenciador de medicamentos pensado para **facilidade de uso**, especialmente po
 
 ## Tecnologias
 
-React 19 · TypeScript · Vite · Tailwind CSS · React Router · Lucide React · Framer Motion · date-fns · PWA · localStorage · Vercel
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
+- Framer Motion
+- date-fns
+- PWA (vite-plugin-pwa)
+- localStorage
+- Vercel
 
 ## Como rodar
 
