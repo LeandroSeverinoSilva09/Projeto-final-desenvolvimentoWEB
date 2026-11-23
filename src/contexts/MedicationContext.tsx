@@ -137,7 +137,7 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
     if (isDemo) setState(s => ({ ...s, medications: s.medications.filter(m => m.id !== id) }))
     else { const { error } = await supabase!.from('medications').update({ archived_at: new Date().toISOString() }).eq('id', id); if (error) throw error }
   }, 'Medicamento arquivado. As doses registradas continuam no histórico.')
-  useScheduleReminders(state.medications, !isDemo && dataOwner === userId ? userId : undefined, state.history)
+  useScheduleReminders(state.medications, dataOwner === userId ? userId : undefined, state.history, isDemo)
   useEffect(() => {
     if (!userId || isDemo || loading || dataOwner !== userId) return
     const low = state.medications.filter(isLowStock)

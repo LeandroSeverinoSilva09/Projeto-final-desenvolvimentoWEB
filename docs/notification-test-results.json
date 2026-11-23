@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-11-23T16:51:40.784Z",
+  "origin": "http://127.0.0.1:5173",
+  "browser": "Chrome/158.0.8127.36",
+  "permissionGrantedInDisposableContext": true,
+  "api": "native Notification with real show events",
+  "scheduledTime": "13:51",
+  "events": [
+    {
+      "type": "created",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test",
+      "time": "2026-11-23T16:50:53.342Z"
+    },
+    {
+      "type": "show",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test",
+      "time": "2026-11-23T16:50:53.345Z"
+    },
+    {
+      "type": "created",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:23/11/2026:23/11/2026-ecc-native-notification-13:51",
+      "time": "2026-11-23T16:51:08.088Z"
+    },
+    {
+      "type": "show",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:23/11/2026:23/11/2026-ecc-native-notification-13:51",
+      "time": "2026-11-23T16:51:08.097Z"
+    }
+  ],
+  "duplicateCheck": "passed",
+  "disabledCheck": "passed",
+  "pushSubscriptionRequests": [],
+  "osBannerVisuallyConfirmed": false
+}

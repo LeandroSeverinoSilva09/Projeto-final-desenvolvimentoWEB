@@ -29,16 +29,16 @@ export function MedicationSearch({ onSelect, currentValue }: MedicationSearchPro
     const currentRequest = ++request.current
     setSelected(null)
     if (normalizeDrugText(term).length < MIN_DRUG_QUERY_LENGTH) {
-      setStatus('idle'); setResult({ items: [], total: 0 }); setMessage('Digite pelo menos 2 letras do nome ou do princípio ativo.'); return
+      setStatus('idle'); setResult({ items: [], total: 0 }); setMessage('Escreva pelo menos 2 letras do nome que aparece na caixa.'); return
     }
-    setStatus('loading'); setMessage('Carregando o catálogo da Anvisa…')
+    setStatus('loading'); setMessage('Procurando o nome…')
     try {
       const data = catalog ?? await loadDrugCatalog()
       if (!mounted.current || request.current !== currentRequest) return
       setCatalog(data); setResult(searchDrugCatalog(data, term)); setStatus('results'); setMessage('')
     } catch {
       if (!mounted.current || request.current !== currentRequest) return
-      setStatus('error'); setResult({ items: [], total: 0 }); setMessage('Não foi possível abrir o catálogo. Tente buscar novamente ou preencha o nome manualmente abaixo.')
+      setStatus('error'); setResult({ items: [], total: 0 }); setMessage('Não conseguimos procurar agora. Você pode escrever o nome da caixa no cadastro.')
     }
   }
 
@@ -57,17 +57,17 @@ export function MedicationSearch({ onSelect, currentValue }: MedicationSearchPro
   const sourceDate = catalog && (catalog.sourceLastModified ?? catalog.generatedAt)
 
   return <section className="catalog-search" aria-labelledby={`${id}-title`}>
-    <div className="catalog-heading"><Search size={20} aria-hidden="true"/><div><h3 id={`${id}-title`}>Encontrar na base da Anvisa</h3><p>Busque para conferir o nome na embalagem. Você também pode preencher manualmente abaixo.</p></div></div>
-    <label className="catalog-label" htmlFor={`${id}-query`}>Nome ou princípio ativo</label>
+    <div className="catalog-heading"><Search size={20} aria-hidden="true"/><div><h3 id={`${id}-title`}>Procurar pelo nome da caixa</h3><p>Escreva uma parte do nome e compare as opções com sua embalagem.</p></div></div>
+    <label className="catalog-label" htmlFor={`${id}-query`}>Procurar nome da caixa</label>
     <div className="catalog-controls"><input id={`${id}-query`} className="catalog-input" type="search" autoComplete="off" maxLength={MAX_DRUG_QUERY_LENGTH} value={query} placeholder="Digite o nome da embalagem" aria-describedby={`${id}-privacy ${id}-status`} onKeyDown={onKeyDown} onChange={event => { request.current++; setQuery(event.target.value); setStatus('idle'); setResult({ items: [], total: 0 }); setMessage(''); setSelected(null) }}/><button className="catalog-submit" type="button" disabled={status === 'loading'} onClick={() => void search()}>{status === 'loading' ? <LoaderCircle size={19} className="animate-spin" aria-hidden="true"/> : <Search size={19} aria-hidden="true"/>}{status === 'loading' ? 'Buscando…' : 'Buscar'}</button></div>
     <p className="catalog-privacy" id={`${id}-privacy`}>A busca acontece neste aparelho. O texto digitado não é enviado à Anvisa.</p>
     <div id={`${id}-status`} className={showStatus ? `catalog-status${status === 'error' ? ' catalog-error' : ''}` : undefined} role="status" aria-live="polite" aria-atomic="true">
       {message && <p>{message}</p>}
-      {status === 'results' && <p>{result.total ? `${result.total} ${result.total === 1 ? 'registro encontrado' : 'registros encontrados'}. Confira o nome, o princípio ativo e o detentor do registro antes de escolher.${result.total > result.items.length ? ` Mostrando ${result.items.length}. Digite um nome mais completo para refinar.` : ''}` : 'Nenhum registro encontrado nesta cópia da base. Confira a escrita ou preencha o nome manualmente abaixo.'}</p>}
-      {hasSelection && <p className="catalog-selected"><Check size={18} aria-hidden="true"/>Nome preenchido: {selected.name}. Informe a dose conforme a prescrição.</p>}
+      {status === 'results' && <p>{result.total ? `${result.total} ${result.total === 1 ? 'opção encontrada' : 'opções encontradas'}. Confira qual nome aparece na sua caixa.${result.total > result.items.length ? ` Mostrando ${result.items.length}. Escreva mais uma parte do nome se precisar.` : ''}` : 'Não encontramos esse nome. Você pode copiá-lo da embalagem e continuar o cadastro.'}</p>}
+      {hasSelection && <p className="catalog-selected"><Check size={18} aria-hidden="true"/>Nome colocado no cadastro: {selected.name}. Confira com sua caixa e acrescente o número escrito nela, como 500 mg, se houver.</p>}
     </div>
-    {status === 'results' && result.items.length > 0 && <ul className="catalog-results" aria-label="Medicamentos encontrados">{result.items.map(entry => <li className="catalog-result" key={entry.registration}><div className="catalog-result-info"><strong className="catalog-name">{entry.name}</strong><span className="catalog-ingredient">Princípio ativo: {entry.activeIngredient}</span><span className="catalog-holder">Detentor do registro: {entry.registrationHolder}</span><span className="catalog-registration">Registro Anvisa: {entry.registration}</span></div><button className="catalog-select" type="button" onClick={() => choose(entry)} aria-label={`Usar nome ${entry.name}, de ${entry.registrationHolder}, registro ${entry.registration}`}>Usar este nome</button></li>)}</ul>}
-    <p className="catalog-source">Fonte: <a href={DRUG_CATALOG_DOCUMENTATION_URL} target="_blank" rel="noreferrer">dados abertos da Anvisa</a>. {sourceDate ? `Cópia da base de ${formatDate(sourceDate)}. ` : 'Cópia local da base pública. '}A situação do registro pode mudar; esta busca não é uma consulta em tempo real.</p>
-    <p className="catalog-note">A escolha preenche somente o nome. Dose, horários e uso devem seguir a prescrição do profissional de saúde.</p>
+    {status === 'results' && result.items.length > 0 && <ul className="catalog-results" aria-label="Medicamentos encontrados">{result.items.map(entry => <li className="catalog-result" key={entry.registration}><div className="catalog-result-info"><strong className="catalog-name">{entry.name}</strong><span className="catalog-holder">Empresa responsável: {entry.registrationHolder}</span><details className="catalog-more"><summary>Mais informações</summary><span className="catalog-ingredient">Composição informada: {entry.activeIngredient}</span><span className="catalog-registration">Registro Anvisa: {entry.registration}</span></details></div><button className="catalog-select" type="button" onClick={() => choose(entry)} aria-label={`Usar este nome: ${entry.name}, empresa responsável ${entry.registrationHolder}`}>Usar este nome</button></li>)}</ul>}
+    <details className="catalog-source"><summary>De onde vêm os nomes?</summary><p>Fonte: <a href={DRUG_CATALOG_DOCUMENTATION_URL} target="_blank" rel="noreferrer">dados abertos da Anvisa</a>. {sourceDate ? `Cópia da base de ${formatDate(sourceDate)}. ` : 'Cópia local da base pública. '}Esta busca não consulta a situação do registro em tempo real.</p></details>
+    <p className="catalog-note">A busca ajuda com o nome. A quantidade e os horários serão informados nas próximas etapas, conforme a sua receita.</p>
   </section>
 }

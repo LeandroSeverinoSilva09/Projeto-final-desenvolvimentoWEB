@@ -1,78 +1,65 @@
 # Farmácias próximas
 
-Implementação da rota `/farmacias` para apoiar a consulta de reposição, inclusive quando `getStockStatus()` sinaliza estoque baixo ou vazio. Não consulta medicamentos, preços, estoques das farmácias, SUS ou Farmácia Popular. A disponibilidade deve ser confirmada diretamente com o estabelecimento.
+A rota `/farmacias` apoia a reposição de medicamentos. Google Maps e Waze aparecem como ações principais, pois a pessoa pode usar o mapa que já conhece. A lista dentro do MEDControl é uma alternativa opcional e usa dados públicos do OpenStreetMap. Nenhuma das opções confirma preço, estoque, participação na Farmácia Popular ou disponibilidade de medicamento.
 
-## Arquivos e integração
+## Uso diário
+
+1. Ao abrir a página, a pessoa encontra **Google Maps** e **Waze**, sem precisar liberar localização ao MEDControl. Os links fazem uma busca por “farmácias perto de mim”; a localização fica sob controle do serviço aberto e das permissões concedidas a ele. A página não faz requisições de mapas nem solicita localização automaticamente.
+2. **O que preciso repor?** reúne os medicamentos com estoque baixo ou vazio, conforme `getStockStatus()`, em um resumo recolhido. Os nomes e quantidades permanecem no aplicativo e nunca são colocados nos links externos.
+3. **Ver farmácias nesta página** abre a busca opcional. A pessoa escolhe **Usar minha localização** ou envia cidade, bairro ou CEP. O aviso antes das ações informa o compartilhamento da região aproximada e aponta para mais detalhes de privacidade.
+4. A busca manual ocorre somente ao enviar o formulário. A pessoa escolhe a região dentre os locais encontrados. CEP passa por ViaCEP; somente bairro, cidade e UF seguem para Photon, descartando CEP, logradouro e complemento.
+5. Os resultados mostram nome, endereço quando disponível e distância aproximada. **Ligar** aparece quando há telefone público válido. Os trajetos **Google Maps** e **Waze** usam somente o destino da farmácia, sem enviar a origem da pessoa. Horários brutos ficam em **Horário informado**, com lembrete para confirmar com o estabelecimento.
+6. O raio pode ser ampliado de 2 para 5 e 10 km. Sem resultados, a ação de ampliação aparece diretamente. Falhas têm mensagens próprias; erro de serviço nunca é apresentado como ausência de farmácias.
+7. **Cancelar busca**, **Remover localização**, recolher a busca ou sair da página cancela pedidos pendentes, invalida callbacks atrasados e esvazia o cache em memória. Isso não apaga pedidos já recebidos pelos serviços nem revoga permissões do navegador.
+
+Não há iframe de mapa, opção de abrir OpenStreetMap ou seleção de provedor na interface. A atribuição da fonte OSM permanece visível no rodapé, com os detalhes técnicos e de privacidade recolhidos. A lista interna nunca é apresentada como resultado do Google Maps ou do Waze.
+
+## Localização e requisições
+
+- `getCurrentPosition` é chamado somente por ação explícita, com `enableHighAccuracy: true`, `maximumAge: 0` e timeout de 20 segundos. Não há monitoramento contínuo. Geolocalização exige HTTPS ou localhost.
+- As coordenadas são arredondadas a três casas decimais antes de entrar no estado React ou em requisições, uma grade de aproximadamente 100 metros no Brasil. A validação do aparelho rejeita o ponto nulo `(0, 0)`, inclusive após arredondamento, e precisão inválida ou superior a 2 km. Pontos válidos no equador ou meridiano de Greenwich continuam aceitos.
+- Permissão negada, posição indisponível, timeout ou precisão insuficiente preservam a alternativa de cidade/bairro/CEP. Nenhuma consulta de farmácias é enviada após uma posição rejeitada.
+- A distância usa Haversine em linha reta. Na busca manual, a referência é o centro aproximado da região escolhida, não a posição da pessoa. Não representa trajeto ou tempo de viagem.
+- Cidade/bairro aceita de 3 a 120 caracteres e não admite número residencial. CEP exige 8 dígitos, com hífen opcional. Não há autocomplete nem busca a cada tecla.
+- Overpass recebe somente categoria farmácia, raio e ponto aproximado. Não recebe nomes de medicamentos, conta, e-mail, receitas ou histórico.
+- `fetch` usa `credentials: omit`, `cache: no-store`, referrer limitado à origem, AbortSignal e timeout de cliente de 25 segundos. Há limite local de uma nova requisição por segundo por serviço; HTTP 429, 406 ou 503 bloqueiam esse serviço por 30 segundos, sem retry automático.
+- Cache somente em memória, com validade de 5 minutos e limite de 20 entradas. Coordenadas não são escritas em Supabase, `localStorage`, `sessionStorage` ou URL da aplicação.
+
+## Links externos seguros
+
+As URLs usam hosts HTTPS fixos, consulta codificada e `noopener noreferrer` na interface. Não há SDK, chave, faturamento de mapas, importação de avaliações ou scraping de Google/Waze.
+
+- [Google Maps URLs, documentação oficial](https://developers.google.com/maps/documentation/urls/get-started): busca com `api=1&query=...`; trajeto com `api=1&destination=latitude,longitude`, sem `origin`. Links não exigem chave.
+- [Waze Deep Links, documentação oficial](https://developers.google.com/waze/deeplinks/): `https://waze.com/ul?q=...` para busca; uma região aproximada pode ser enviada em `ll` como referência. Busca não contém `navigate`. Somente o trajeto de uma farmácia conhecida usa `ll=latitude,longitude&navigate=yes`. O link HTTPS pode abrir o aplicativo ou a página do Waze, inclusive quando o aplicativo não está instalado.
+- O serviço aberto recebe a região/destino e dados técnicos da conexão conforme suas políticas. Medicamentos e histórico não fazem parte dos links. Termos e políticas estão vinculados em `/termos` e `/privacidade`, incluindo [termos Waze](https://www.waze.com/legal/tos) e [privacidade Waze](https://www.waze.com/legal/privacy).
+
+## Fontes e normalização
+
+Fontes e documentação consultadas em **23/11/2026**:
+
+- [OpenStreetMap: atribuição e ODbL](https://www.openstreetmap.org/copyright). Cadastros colaborativos podem estar incompletos ou desatualizados.
+- [Overpass Dresel](https://ovp.dresel.systems/), endpoint `https://ovp.dresel.systems/api-sa/interpreter`. A [política do serviço](https://ovp.dresel.systems/impressum.html) informa retenção de IP e consulta por até 14 dias, sem garantia de disponibilidade. Não há troca automática por outro provedor em caso de falha.
+- [Photon/Komoot](https://photon.komoot.io/) e [documentação da API](https://github.com/komoot/photon/blob/master/docs/api-v1.md), para cidade/bairro brasileiros com limite de 5 resultados e camadas `city`, `district`, `locality`. Não recebe a posição do aparelho.
+- [ViaCEP](https://viacep.com.br/), somente para um CEP enviado pela pessoa. Entrada e retorno `erro: true` são validados antes de seguir à busca de região.
+
+A consulta Overpass une `nwr[amenity=pharmacy]` e `nwr[healthcare=pharmacy]`, com filtro `around`, `out center tags`, timeout de servidor de 20 segundos e memória máxima de 16 MiB. Os raios aceitos são exclusivamente 2, 5 e 10 km.
+
+Os itens precisam de categoria farmácia, tipo OSM válido, ID inteiro positivo e coordenadas finitas válidas. A normalização elimina duplicações por tipo/ID, descarta centros fora do raio e ordena por distância. Geometrias de áreas usam seu centro OSM. Nome ausente é identificado como ausente; endereço e contato não são inventados. Telefone numérico plausível vira `tel:`; conteúdo executável e extensões são descartados. `opening_hours` é mostrado como texto, sem inferir “aberto agora”. Payload inválido ou `remark` de falha gera erro, não lista vazia.
+
+## Arquivos e configuração
 
 | Arquivo | Responsabilidade |
 | --- | --- |
-| `src/pages/Pharmacies.tsx` | Tela, consentimento contextual, geolocalização por clique, busca manual e escolha de região, cancelamento, lista, links e mapa opcional |
-| `src/lib/pharmacies.ts` | Tipos, validação, aproximação de coordenadas, requests públicos, timeout, cache efêmero, normalização, Haversine e URLs seguras |
-| `src/lib/pharmacies.test.ts` | Testes Vitest de limites, dados externos, privacidade das requisições, cache, cancelamento e falhas |
+| `src/pages/Pharmacies.tsx` | Fluxo, estados, busca opcional, cancelamento e ações externas |
+| `src/styles/pharmacies.css` | Estilos da página e reflow em telas estreitas, com seletores locais |
+| `src/lib/pharmacies.ts` | Validação, consultas, cache, distâncias e URLs seguras |
+| `src/lib/pharmacies.test.ts` | Regressões de limites, fontes externas, links e cancelamento |
+| `src/pages/PublicInformation.tsx` | Privacidade e condições dos serviços externos |
 
-Export da página: `Pharmacies`. Requer `MedicationProvider`, usa o componente `Header`, classes comuns `panel`, `btn`, `secondary`, `notice` e classes `pharmacy-*` específicas. A contagem de medicamentos com reposição necessária é calculada localmente e só produz um link interno para `/medicamentos`.
-
-## Fluxo e privacidade
-
-1. Ao abrir a página não há geolocalização nem consulta a serviços de mapa; o iframe também não existe ainda.
-2. O texto curto antes do botão explica a transmissão de localização aproximada e que os medicamentos não são enviados. O bloco expansível **Como usamos sua localização**, também antes do botão, detalha os serviços, retenção e cancelamento. A pessoa escolhe **Usar minha localização** ou envia uma cidade/bairro/CEP pelo formulário.
-3. A geolocalização usa `getCurrentPosition`, sem monitoramento contínuo, com `enableHighAccuracy: false`, timeout de 12 segundos e sem reutilizar uma posição antiga. As coordenadas do aparelho são arredondadas a três casas decimais, uma grade de aproximadamente 100 metros no Brasil, antes de entrar no estado React e nas requisições.
-4. A busca manual só ocorre no submit; não há autocomplete, reverse geocoding nem busca automática ao digitar. Cidade/bairro admite texto entre 3 e 120 caracteres, sem número residencial. CEP deve ter 8 dígitos, opcionalmente com hífen. O ViaCEP fornece bairro/cidade/UF; logradouro, CEP e complemento são descartados antes da consulta ao Photon.
-5. A pessoa confere e escolhe um dos locais encontrados. A distância de uma busca manual parte do centro da região escolhida, não da posição da pessoa. A busca pode ser substituída pela localização do aparelho depois.
-6. O Overpass recebe somente a categoria farmácia, raio e ponto aproximado. Nunca recebe nomes de medicamentos, conta, email, receitas ou histórico.
-7. O cache das fontes OSM/Photon/ViaCEP fica apenas em memória, com validade de 5 minutos e até 20 entradas. Cancelar, remover localização ou sair da página aborta requests, invalida callbacks de geolocalização e esvazia o cache. Nenhuma coordenada é escrita em Supabase, `localStorage`, `sessionStorage` ou URL da aplicação.
-8. A remoção apaga o estado desta página; não revoga a permissão do navegador nem apaga registros já recebidos pelos serviços externos. A política do Overpass Dresel informa retenção de IP e consulta por até 14 dias; isso é explicado antes do clique e a política está vinculada na página.
-9. A lista funciona sem mapa. Na fonte OpenStreetMap, o iframe do OpenStreetMap só é montado depois da escolha da região **e** do clique em **Mostrar mapa da região**. Mostra um marcador de referência no centro da busca; não representa individualmente todas as farmácias.
-10. Links externos usam hosts fixos HTTPS, texto de consulta codificado e `noopener noreferrer`. O trajeto no Google Maps contém somente o destino da farmácia; a origem é escolhida dentro do Maps. Links de busca recebem apenas a região escolhida, sem medicamento. `fetch` usa `credentials: omit`, `cache: no-store` e referrer limitado à origem do app.
-
-## Fontes públicas e políticas verificadas
-
-Verificação em **23/11/2026**, com documentação primária:
-
-- [Photon/Komoot: API e termos](https://photon.komoot.io/) permite uso em projetos com volume moderado, sem garantia de disponibilidade. Uso excessivo pode ser bloqueado. [Documentação oficial da API](https://github.com/komoot/photon/blob/master/docs/api-v1.md): busca com `q`, `countrycode=BR`, `limit=5` e camadas `city`, `district`, `locality`. Retorno GeoJSON validado e deduplicado. Não são enviadas coordenadas do aparelho ao Photon.
-- [Overpass Dresel: serviço e uso justo](https://ovp.dresel.systems/) disponibiliza gratuitamente um endpoint de América do Sul, incluindo Brasil, sem cadastro/chave, CORS aberto e limite de 4 consultas simultâneas por IP/região. [Política de privacidade e condições](https://ovp.dresel.systems/impressum.html) informa atualização dos extratos, ausência de garantia de disponibilidade e retenção de logs por 14 dias. A aplicação faz somente uma consulta por interação, em POST, sem retries automáticos nem envio de dados médicos.
-- [ViaCEP: documentação oficial](https://viacep.com.br/) aceita CEP de 8 dígitos e retorna `erro: true` quando inexistente. A validação acontece antes da requisição. O serviço alerta contra uso massivo; o app consulta apenas um CEP enviado pela pessoa.
-- [OpenStreetMap: atribuição e ODbL](https://www.openstreetmap.org/copyright) é vinculada no rodapé da tela. Cadastros colaborativos podem estar incompletos ou desatualizados.
-- A [política atual da instância pública Nominatim](https://operations.osmfoundation.org/policies/nominatim/) exige identificação, limite agregado por aplicação e decisão informada do responsável, proíbe autocomplete e apresenta restrições a plataformas genéricas. Por isso essa instância não foi incorporada: a busca manual usa Photon.
-
-O endpoint principal de Overpass e Private.coffee não foram adotados como fallback automático. Estavam indisponíveis no ambiente da verificação; fazer rodízio silencioso de provedores enviaria a localização a novos destinatários que a pessoa não escolheu. A tela informa indisponibilidade, mantém busca manual e permite abrir mapas externos.
-
-## Consulta, dados e limites
-
-- Endpoint padrão: `https://ovp.dresel.systems/api-sa/interpreter`.
-- Query: união de `nwr[amenity=pharmacy]` e `nwr[healthcare=pharmacy]`, filtro `around`, `out center tags`, timeout de servidor de 20 segundos e memória máxima de 16 MiB. Os raios permitidos são exclusivamente 2, 5 e 10 km.
-- Requests são abortáveis e têm timeout de cliente de 25 segundos. O cliente limita novas requisições a no máximo uma por segundo por serviço nesta sessão. Após HTTP 429, 406 ou 503, pausa esse serviço por 30 segundos. Não há sondagem, polling, busca em lote nem retry automático.
-- Itens só entram na lista se têm categoria de farmácia, tipo OSM válido, ID inteiro positivo e coordenadas finitas válidas. A lista usa distância Haversine em linha reta, elimina duplicações por tipo/ID e descarta centros fora do raio. Geometria de prédios/áreas usa seu centro OSM, o que pode causar pequenas diferenças de distância.
-- Nome ausente aparece como “Farmácia sem nome no mapa”; endereço e telefone ausentes não são inventados. Telefones públicos são aceitos apenas em formato numérico plausível e convertidos a `tel:` sem extensões executáveis. Horário é exibido no formato bruto `opening_hours`, rotulado como cadastro OSM e sem inferir “aberto agora”.
-- Respostas com `remark` de falha, erro HTTP ou payload inválido não são apresentadas como “nenhuma farmácia”. Mensagens distinguem falha de localização, permissão negada, timeout, falta de conexão, CEP inexistente e ausência de resultados.
-
-## Configuração para outro provedor
-
-`VITE_PHOTON_URL` e `VITE_OVERPASS_URL` podem substituir os endpoints em builds administrados pelo responsável. O primeiro deve falar a API Photon, o segundo a API Overpass. Sem configuração, o app funciona com os endpoints públicos acima.
-
-Ao trocar o provedor, o responsável deve conferir sua política e cobertura, e atualizar os nomes, links e aviso de privacidade da tela. Não colocar chaves privadas nessas variáveis Vite: são públicas no navegador. Para uma operação com muitos usuários, usar infraestrutura própria ou um provedor com capacidade contratada, limite global e política de privacidade adequada; o limite em memória só controla esta sessão do navegador.
+A página requer `MedicationProvider` e usa `Header` e componentes visuais comuns. `VITE_PHOTON_URL` e `VITE_OVERPASS_URL` permitem substituir endpoints em builds administrados. São variáveis públicas: não usar chaves privadas. Ao trocar provedor, conferir cobertura e políticas e atualizar avisos/links. Para volume elevado, contratar capacidade ou hospedar os serviços; o limite em memória vale apenas para esta sessão.
 
 ## Validação
 
-- `npx vitest run src/lib/pharmacies.test.ts`: **36 testes passaram**. Cobrem arredondamento, coordenadas inválidas, Haversine conhecido/antípodas, validação de query/CEP/raio, normalização de nodes/ways, ordenação, filtro de raio, duplicações, telefones, dados ausentes, retorno parcial, countrycode, URLs, ausência de origem no trajeto, request sem credenciais, cache, remoção, CEP sem logradouro no geocoder, abort, timeout e pausa após 429.
-- `npx tsc -b --pretty false`: passou durante a implementação.
-- Consulta real de referência, sem GPS pessoal: Photon `Campinas, SP` retornou HTTP 200, CORS `*` e locais brasileiros; ViaCEP `01001000` (Praça da Sé, São Paulo, endereço público) retornou HTTP 200 e CORS `*`.
-- Consulta real **com a mesma query do app**, ponto público de referência do centro de São Paulo `-23.55,-46.633`, raio 2 km: Overpass Dresel respondeu HTTP 200, CORS `*`, **57 elementos**, sem `remark`, em cerca de **2,2 segundos**.
-- Validação real adicional usando a própria lib carregada com Vite `ssrLoadModule`: `searchPlaces('Campinas, SP')` retornou locais brasileiros; `searchPharmacies({latitude:-23.55,longitude:-46.633}, 2000, signal)` retornou **57 farmácias**, com ordenação crescente conferida. Os primeiros resultados foram Onofre, Droga Raia e Drogasil, com distâncias aproximadas de 114, 134 e 183 metros. Não é uma confirmação de disponibilidade comercial.
-- Limitação observada: Private.coffee não respondeu no tempo disponível; main Overpass apresentou timeout/TLS e a instância VK respondeu 504. Isso confirma a necessidade de estados de erro e alternativa externa; os resultados nunca são preenchidos com dados fictícios quando o serviço falha.
+`npm test -- src/lib/pharmacies.test.ts` cobre coordenadas e precisão, CEP/cidade, Haversine, normalização, telefones, queries limitadas, links Google Maps/Waze, região sem navegação indevida, ausência de origem e dados médicos, requests sem credenciais, cache, cancelamento, timeout e pausa após limitação do serviço.
 
-Para verificar a interface: abrir `/farmacias`, conferir que não há requests antes de uma escolha; buscar cidade/CEP e escolher região; conferir lista crescente em distância e atribuição; ampliar raio; abrir/ocultar mapa; testar negar localização, cancelar durante a espera, remover localização, alternar de busca manual para aparelho e simular offline. O app exige HTTPS ou localhost para geolocalização.
-
-## Google Maps sem chave
-
-A busca funciona inteiramente com fontes públicas sem cadastro ou chave de mapas. OpenStreetMap/Overpass fornece os estabelecimentos; Photon localiza a região e ViaCEP resolve o CEP. O app calcula distância e apresenta os estabelecimentos ordenados a partir da região escolhida.
-
-**Abrir Google Maps** usa links públicos oficiais [Maps URLs](https://developers.google.com/maps/documentation/urls/get-started), que não exigem chave. Com uma região selecionada, o link envia somente a região aproximada; sem região, busca “farmácias perto de mim”. Cada estabelecimento oferece trajeto para suas coordenadas. O próprio Google Maps apresenta os resultados, avaliações e informações disponíveis ao abrir o site ou aplicativo; esses dados não são importados para a lista do MEDControl.
-
-Não há SDK Google, credencial de mapas, cadastro de faturamento ou escolha de provedor na interface. Esta é a configuração definitiva solicitada pelo responsável. Serviços públicos continuam sujeitos a disponibilidade e limites; os erros são tratados e o link Google permanece disponível. A localização continua opcional e só é solicitada após a ação da pessoa.
-
-## Correção de localização do aparelho
-
-Na tela com falha foi observado o ponto `(0, 0)`, com precisão declarada de 1 m, resultando em consulta vazia fora da região do usuário. O fluxo agora valida a posição antes de enviar qualquer consulta: recusa o ponto nulo (incluindo coordenadas arredondadas para ele) e precisão inválida ou superior a 2 km. Esse limite é uma escolha do produto para não apresentar proximidade enganosa no menor raio de busca. A validação genérica de coordenadas continua permitindo pontos no equador e meridiano de Greenwich.
-
-O navegador recebe `enableHighAccuracy: true`, `maximumAge: 0` e timeout de 20 segundos. Isso solicita uma posição mais precisa, mas não garante que navegador/aparelho a forneçam. Em falha, a tela permite nova tentativa ou cidade/bairro/CEP, sem apresentar zero estabelecimentos como conclusão. Quando uma consulta válida volta vazia, há ação direta para ampliar de 2 para 5 e 10 km.
+A conferência de interface deve incluir desktop, mobile estreito e texto grande: estado inicial sem pedidos de rede, abertura das duas opções externas, busca manual, escolha de região, negação de localização, cancelamento durante espera, callback tardio após recolher, ampliação do raio, chamada telefônica e destinos das duas rotas. Confirmar atribuição visível e ausência de nomes de medicamentos nos links.

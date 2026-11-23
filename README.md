@@ -6,12 +6,12 @@
 
 - Cadastro, entrada, confirmação de e-mail e recuperação de senha pelo **Supabase Auth**.
 - Medicamentos e registros separados por conta, com **Row Level Security** no PostgreSQL.
-- Cadastro em três etapas; edição; estoque por unidades, gotas ou mL, com até três casas decimais.
+- Cadastro visual em quatro perguntas (nome, quantidade por vez, horários e quantidade em casa), sem valores de uso ou horários predefinidos; figuras, escolha em cartões grandes e botão “Letras maiores”; edição; estoque por unidades, gotas ou mL, com até três casas decimais.
 - Agenda diária, confirmação de dose e desconto de estoque na mesma transação. Confirmações simultâneas não duplicam a dose.
 - Histórico preservado ao arquivar um medicamento e exportação CSV dos até 5.000 registros mais recentes carregados por paginação.
 - Busca local em uma cópia oficial dos **dados abertos da Anvisa**, com **10.339 registros ativos** na atualização de 23/11/2026. A seleção preenche somente o nome; dose e horários seguem a prescrição.
 - Alerta de estoque para aproximadamente três dias de consumo e acesso a **farmácias próximas**.
-- Localização opcional, busca por cidade/bairro ou CEP, distâncias estimadas e acesso a mapas. Dados públicos do OpenStreetMap, Photon e ViaCEP, sem chave de mapas ou faturamento; botão para abrir a busca e os trajetos no Google Maps.
+- Localização opcional, busca por cidade/bairro ou CEP, distâncias estimadas e acesso a mapas. Dados públicos do OpenStreetMap, Photon e ViaCEP, sem chave de mapas ou faturamento; Google Maps e Waze em destaque para abrir buscas e trajetos. A lista interna é opcional.
 - Notificações solicitadas por um botão, teste de aviso, inscrição Web Push e serviço de envio agendado no Supabase.
 - Interface adaptada ao telefone, navegação fixa, saída da conta em Ajustes, texto ampliado, ajuda “Como usar” e alternativa manual aos recursos opcionais. Formulário mantém campos ao alternar janelas e recusa edição de estoque desatualizado.
 - Demonstração identificada, com dados fictícios separados das contas reais.
@@ -62,7 +62,7 @@ O cadastro de medicamentos utiliza uma **cópia de dados oficiais**, sem API cl�
 
 A busca de farmácias funciona com serviços públicos sem cadastro ou chave de mapas: OpenStreetMap via Overpass Dresel fornece os estabelecimentos. Photon/Komoot localiza cidades e bairros; ViaCEP permite informar CEP. Os pedidos partem apenas da ação do usuário e a posição é aproximada antes do envio. A posição não é gravada na conta. Consulte [fontes, privacidade e limites dos mapas](docs/pharmacies.md).
 
-O botão Google Maps abre uma busca ou trajeto usando os links públicos oficiais (Maps URLs), sem SDK ou API paga. Os resultados listados dentro do MEDControl vêm do OpenStreetMap.
+Google Maps e Waze abrem buscas e trajetos por links públicos oficiais, sem SDK ou API paga. Os resultados listados dentro do MEDControl vêm do OpenStreetMap.
 
 **A localização de uma farmácia não confirma estoque, preço, horário atual ou participação na Farmácia Popular.** A pessoa deve confirmar a disponibilidade com o estabelecimento.
 
@@ -72,7 +72,8 @@ O botão Google Maps abre uma busca ou trajeto usando os links públicos oficiai
 - [Identidade visual e decisões de interface](docs/identity.md)
 - [Revisão de acessibilidade e testes](docs/accessibility-review.md)
 - [Revisão responsiva mobile com ECC](docs/responsive-review.md)
-- [Proposta ECC para simplificar o cadastro de medicamentos](docs/medication-registration/PRODUCT-BRIEF.md)
+- [Revisão implementada do cadastro e uso diário](docs/daily-usability-review.md)
+- [Pesquisa ECC de fotos e identificação de medicamentos](docs/medication-registration/PRODUCT-BRIEF.md)
 - [Revisão ECC da estrutura e correções](docs/structure-review.md)
 - [Evidências de verificação e pendências](docs/verification.md)
 

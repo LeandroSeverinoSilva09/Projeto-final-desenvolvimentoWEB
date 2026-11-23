@@ -187,7 +187,7 @@ function abortError() { return new DOMException('Consulta cancelada.', 'AbortErr
 async function requestJson(url: string, signal: AbortSignal, service: string, init: RequestInit = {}): Promise<unknown> {
   if (signal.aborted) throw abortError()
   const now = Date.now()
-  if ((nextRequest.get(service) || 0) > now) throw new PharmacyError('unavailable', 'Aguarde alguns instantes antes de tentar novamente. Você também pode abrir os mapas abaixo.')
+  if ((nextRequest.get(service) || 0) > now) throw new PharmacyError('unavailable', 'Aguarde alguns instantes antes de tentar novamente. Você também pode abrir Google Maps ou Waze no início da página.')
   nextRequest.set(service, now + 1000)
   const controller = new AbortController()
   const abort = () => controller.abort()
@@ -198,14 +198,14 @@ async function requestJson(url: string, signal: AbortSignal, service: string, in
     const response = await fetch(url, { ...init, headers: { Accept: 'application/json', ...init.headers }, signal: controller.signal, credentials: 'omit', cache: 'no-store', referrerPolicy: 'strict-origin' })
     if (!response.ok) {
       if (response.status === 429 || response.status === 406 || response.status === 503) nextRequest.set(service, Date.now() + 30000)
-      throw new PharmacyError('unavailable', 'O serviço de mapas está indisponível ou ocupado. Aguarde 30 segundos ou use os mapas abaixo.')
+      throw new PharmacyError('unavailable', 'O serviço de mapas está indisponível ou ocupado. Aguarde 30 segundos ou abra Google Maps ou Waze no início da página.')
     }
     return await response.json()
   } catch (error) {
     if (signal.aborted) throw abortError()
-    if (timedOut) throw new PharmacyError('timeout', 'A consulta demorou mais que o esperado. Tente novamente ou use os mapas abaixo.')
+    if (timedOut) throw new PharmacyError('timeout', 'A consulta demorou mais que o esperado. Tente novamente ou abra Google Maps ou Waze no início da página.')
     if (error instanceof PharmacyError) throw error
-    throw new PharmacyError('network', 'Não foi possível consultar os mapas. Confira sua conexão ou use uma das opções abaixo.')
+    throw new PharmacyError('network', 'Não foi possível consultar os mapas. Confira sua conexão ou abra Google Maps ou Waze no início da página.')
   } finally { clearTimeout(timeout); signal.removeEventListener('abort', abort) }
 }
 
@@ -253,25 +253,28 @@ export function googleDirectionsUrl(destination: Coordinates): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${destination.latitude},${destination.longitude}`)}`
 }
 
-export function externalSearchUrls(point: Coordinates | null, place = ''): { google: string; osm: string } {
-  if (point) {
-    const origin = approximateCoordinates(point)
-    return { google: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`farmácias perto de ${origin.latitude},${origin.longitude}`)}`,
-      osm: `https://www.openstreetmap.org/?mlat=${origin.latitude}&mlon=${origin.longitude}#map=15/${origin.latitude}/${origin.longitude}` }
-  }
-  // Only a previously validated city/bairro query is accepted by the UI.
-  return { google: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`farmácias ${place || 'perto de mim'}`)}`,
-    osm: `https://www.openstreetmap.org/search?query=${encodeURIComponent(place || 'farmácia')}` }
+export function wazeDirectionsUrl(destination: Coordinates): string {
+  validateCoordinates(destination)
+  const url = new URL('https://waze.com/ul')
+  url.searchParams.set('ll', `${destination.latitude},${destination.longitude}`)
+  url.searchParams.set('navigate', 'yes')
+  return url.toString()
 }
 
-export function osmEmbedUrl(point: Coordinates, radius: PharmacyRadius): string {
-  const origin = approximateCoordinates(point)
-  if (!PHARMACY_RADII.includes(radius)) throw new PharmacyError('validation', 'Raio inválido.')
-  const latitudeDelta = radius / 111320
-  const longitudeDelta = Math.min(180, radius / (111320 * Math.max(0.01, Math.abs(Math.cos(origin.latitude * Math.PI / 180)))))
-  const bbox = [Math.max(-180, origin.longitude - longitudeDelta), Math.max(-90, origin.latitude - latitudeDelta), Math.min(180, origin.longitude + longitudeDelta), Math.min(90, origin.latitude + latitudeDelta)]
-  const params = new URLSearchParams({ bbox: bbox.join(','), layer: 'mapnik', marker: `${origin.latitude},${origin.longitude}` })
-  return `https://www.openstreetmap.org/export/embed.html?${params}`
+export function externalSearchUrls(point: Coordinates | null, place = ''): { google: string; waze: string } {
+  const waze = new URL('https://waze.com/ul')
+  if (point) {
+    const origin = approximateCoordinates(point)
+    // A region is a search reference, never a pharmacy navigation destination.
+    waze.searchParams.set('q', 'farmácias')
+    waze.searchParams.set('ll', `${origin.latitude},${origin.longitude}`)
+    return { google: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`farmácias perto de ${origin.latitude},${origin.longitude}`)}`,
+      waze: waze.toString() }
+  }
+  const region = place ? normalizeLocationQuery(place).value : 'perto de mim'
+  const query = `farmácias ${region}`
+  waze.searchParams.set('q', query)
+  return { google: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, waze: waze.toString() }
 }
 
 export function geolocationErrorMessage(code: number): string {

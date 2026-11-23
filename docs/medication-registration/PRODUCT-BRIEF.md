@@ -1,6 +1,6 @@
 # Cadastro de medicamentos mais simples — revisão ECC
 
-Data da pesquisa: 23/11/2026. Escopo desta etapa: diagnóstico do cadastro e comparação documental de fornecedores. Não é uma integração já implantada.
+Data da pesquisa: 23/11/2026. Escopo desta etapa: diagnóstico do cadastro e comparação documental de fornecedores. A pesquisa de fornecedores não representa integração implantada. A simplificação visual do cadastro foi implementada depois deste diagnóstico; veja [resultado e testes](../daily-usability-review.md).
 
 ## Decisão recomendada
 

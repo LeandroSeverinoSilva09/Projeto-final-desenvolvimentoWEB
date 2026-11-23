@@ -1,0 +1,478 @@
+{
+  "date": "2026-11-23",
+  "verification": { "testFilesPassed": 13, "testsPassed": 158, "productionBuild": "passed", "diffWhitespace": "passed" },
+  "environment": "Local Vite, ECC Chrome DevTools, isolated demo context; no real patient accounts",
+  "functional": {
+    "requiredNameAndFocus": true,
+    "noDefaultDoseFormatOrTime": true,
+    "requiredTimesAndStock": true,
+    "otherRecipeErrorOpensAndFocuses": true,
+    "decimalSave": {
+      "name": "Teste visual ECC 500 mg",
+      "dose": "2,5 mL",
+      "unitsPerDose": 2.5,
+      "current": 10.5,
+      "stockUnit": "mL",
+      "times": "08:00, 20:00"
+    },
+    "editing": {
+      "oldRecipeInitiallyVisible": true,
+      "unitChangeClearsAmounts": true,
+      "changedQuantityRequiresExplicitRecipeReview": true,
+      "confirmationRemainsChecked": true,
+      "newUnitTotalRecalculated": true
+    },
+    "search": {
+      "catalogRealLocalSearch": "novalgina",
+      "resultNames": [
+        "NOVALGINA",
+        "NOVALGINA FLASH"
+      ],
+      "enterDoesNotAdvance": true,
+      "selectionOnlyNameAndFocusesForConcentration": true,
+      "technicalDetailsCollapsed": true
+    },
+    "mapsInitial": {
+      "external": [
+        "Google Maps",
+        "Waze"
+      ],
+      "noIframe": true,
+      "noAutomaticMapRequest": true,
+      "noAutomaticGeolocationPrompt": true
+    },
+    "mapsFixtures": {
+      "isolatedResponses": true,
+      "deniedPermissionFallback": true,
+      "cancelIgnoresLateGPS": true,
+      "closingIgnoresLateGPS": true,
+      "noRequestWithoutAction": true,
+      "manualCityToCardsAndTwoRoutes": true,
+      "noMedicalDataInRequests": true
+    },
+    "realPublicPharmacies": {
+      "query": "Campinas, SP",
+      "placeOptions": 4,
+      "pharmacyCount": 41,
+      "radiusMeters": 2000,
+      "source": "Photon + Overpass",
+      "requestsMocked": false
+    }
+  },
+  "lighthouse": {
+    "medicationFormatStep": {
+      "mode": "snapshot",
+      "device": "mobile",
+      "accessibility": 100,
+      "bestPractices": 100
+    },
+    "pharmaciesInitial": {
+      "mode": "snapshot",
+      "device": "mobile",
+      "accessibility": 100,
+      "bestPractices": 100
+    },
+    "limitation": "Automatic audits do not establish usability for every audience."
+  },
+  "layout": {
+    "form": [
+      {
+        "width": 320,
+        "large": false,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 320,
+        "large": true,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 320,
+        "large": false,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 320,
+        "large": true,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 320,
+        "large": false,
+        "screen": "Que horas você usa?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 320,
+        "large": true,
+        "screen": "Que horas você usa?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 320,
+        "large": false,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 320,
+        "large": true,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": false,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": true,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": false,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": true,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": false,
+        "screen": "Que horas você usa?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": true,
+        "screen": "Que horas você usa?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": false,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 390,
+        "large": true,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": false,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": true,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": false,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": true,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": false,
+        "screen": "Que horas você usa?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": true,
+        "screen": "Que horas você usa?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": false,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 768,
+        "large": true,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": false,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": true,
+        "screen": "Qual é o remédio?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": false,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": true,
+        "screen": "Quanto você usa por vez?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": false,
+        "screen": "Que horas você usa?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": true,
+        "screen": "Que horas você usa?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": false,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      },
+      {
+        "width": 1440,
+        "large": true,
+        "screen": "Quanto tem em casa?",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": []
+      }
+    ],
+    "pharmacies": [
+      {
+        "width": 320,
+        "large": false,
+        "screen": "farmacias",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 320,
+        "large": true,
+        "screen": "farmacias",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 390,
+        "large": false,
+        "screen": "farmacias",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 390,
+        "large": true,
+        "screen": "farmacias",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 768,
+        "large": false,
+        "screen": "farmacias",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 768,
+        "large": true,
+        "screen": "farmacias",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 1440,
+        "large": false,
+        "screen": "farmacias",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 1440,
+        "large": true,
+        "screen": "farmacias",
+        "documentWidth": 1440,
+        "cuts": [],
+        "small": [],
+        "state": "expanded-real-public-results",
+        "cardCount": 41
+      },
+      {
+        "width": 768,
+        "large": false,
+        "screen": "farmacias",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": [],
+        "state": "internal-list-closed-restock-open"
+      },
+      {
+        "width": 768,
+        "large": true,
+        "screen": "farmacias",
+        "documentWidth": 768,
+        "cuts": [],
+        "small": [],
+        "state": "internal-list-closed-restock-open"
+      },
+      {
+        "width": 390,
+        "large": false,
+        "screen": "farmacias",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": [],
+        "state": "internal-list-closed-restock-open"
+      },
+      {
+        "width": 390,
+        "large": true,
+        "screen": "farmacias",
+        "documentWidth": 390,
+        "cuts": [],
+        "small": [],
+        "state": "internal-list-closed-restock-open"
+      },
+      {
+        "width": 320,
+        "large": false,
+        "screen": "farmacias",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": [],
+        "state": "internal-list-closed-restock-open"
+      },
+      {
+        "width": 320,
+        "large": true,
+        "screen": "farmacias",
+        "documentWidth": 320,
+        "cuts": [],
+        "small": [],
+        "state": "internal-list-closed-restock-open"
+      }
+    ]
+  },
+  "limitations": [
+    "Participant usability sessions have not been conducted.",
+    "Opening Google Maps/Waze native mobile apps was not tested.",
+    "Pictures are generic format illustrations, not identification photos of a medicine."
+  ]
+}

@@ -15,7 +15,7 @@ Essa versão contém **10.339 registros distintos**, em aproximadamente **995 KB
 
 São incluídos apenas `TIPO_PRODUTO=MEDICAMENTO` e `SITUACAO_REGISTRO=Ativo`, com nome, princípio ativo, empresa detentora e número de registro de nove dígitos preenchidos. `Ativo` é a classificação publicada pela fonte na data da cópia: não é uma verificação atual da regularidade, disponibilidade em farmácias ou adequação ao tratamento. Campos incompletos e produtos fora desse filtro podem não aparecer; o preenchimento manual continua disponível.
 
-`EMPRESA_DETENTORA_REGISTRO` identifica o **detentor do registro**, que pode diferir do fabricante. A interface usa esse rótulo. O prefixo de CNPJ é removido somente para legibilidade. A origem e a ordem dos campos permanecem explícitas em `fields` e no script. As informações são apresentadas como texto React; nenhum HTML da fonte é executado.
+`EMPRESA_DETENTORA_REGISTRO` identifica o **detentor do registro**, que pode diferir do fabricante. A interface apresenta “Empresa responsável”, com composição e número do registro em “Mais informações”. Esse dado não é apresentado como fabricante. O prefixo de CNPJ é removido somente para legibilidade. A origem e a ordem dos campos permanecem explícitas em `fields` e no script. As informações são apresentadas como texto React; nenhum HTML da fonte é executado.
 
 ## Atualizar a cópia
 
@@ -47,13 +47,13 @@ import { MedicationSearch } from '../medication/MedicationSearch'
 <MedicationSearch currentValue={name} onSelect={setName} />
 ```
 
-Coloque o componente antes do campo manual. `onSelect` recebe apenas uma `string` com o nome oficial. `currentValue` é opcional e permite ocultar a confirmação se o nome tiver sido alterado manualmente. O componente pode ficar dentro do formulário existente: não cria um `<form>` aninhado e captura Enter do campo de busca para não salvar o medicamento sem querer.
+No cadastro visual, o componente fica depois do campo manual, recolhido em “Me ajude a encontrar o nome”. `onSelect` recebe apenas uma `string` com o nome oficial. `currentValue` é opcional e permite ocultar a confirmação se o nome tiver sido alterado manualmente. O componente pode ficar dentro do formulário existente: não cria um `<form>` aninhado e captura Enter do campo de busca para não salvar o medicamento sem querer.
 
 A busca ocorre apenas ao pressionar **Buscar** ou Enter. Na primeira busca válida, um GET ao arquivo estático no **mesmo host** carrega a base. Essa requisição não contém termos de busca, cookies, identificadores da conta ou referrer. As consultas seguintes usam a mesma cópia em memória. O aplicativo não envia as buscas à Anvisa ou a outro provedor, nem armazena histórico de buscas. Links da fonte abrem sem referrer e sem incluir o termo digitado.
 
 O catálogo só carrega quando necessário e respeita `import.meta.env.BASE_URL`, inclusive em publicação sob subdiretório. O carregamento tem timeout de 15 segundos e permite nova tentativa após falha. O arquivo JSON precisa ser publicado junto do site; não há dependência de CORS da Anvisa em tempo de uso. O service worker atual pode não pré-armazenar JSON: se a primeira consulta ocorrer sem conexão e sem cópia HTTP disponível, a interface orienta o preenchimento manual.
 
-O mecanismo normaliza acentos e pontuação e busca todos os termos no nome ou no princípio ativo. Nomes exatos vêm antes de prefixos e outros trechos; não há aproximação por efeito clínico. São mostrados no máximo oito resultados por busca, com a contagem total e orientação para refinar o nome. Cada resultado contém nome, princípio ativo, detentor e registro para conferência com a embalagem.
+O mecanismo normaliza acentos e pontuação e busca todos os termos no nome ou no princípio ativo. Nomes exatos vêm antes de prefixos e outros trechos; não há aproximação por efeito clínico. São mostrados no máximo oito resultados por busca, com a contagem total e orientação para refinar o nome. Cada resultado destaca nome e empresa responsável; composição e número de registro ficam em “Mais informações”, disponíveis para conferência sem exigir sua leitura para continuar. O nome completo é preservado, sem remover sais ou concentrações por inferência.
 
 Há estados iniciais, consulta curta, carregamento, erro recuperável, nenhum resultado, lista e confirmação da seleção. Todos os botões têm `type="button"`; rótulos e identificadores são exclusivos, mudanças de estado usam `role="status"` e a lista tem semântica de lista. A integração visual deve manter fonte legível, contraste e alvos de toque de pelo menos 44 px.
 

@@ -2,14 +2,18 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 function browser(permission: NotificationPermission = 'default', secure = true) {
   const requestPermission = vi.fn().mockResolvedValue('granted')
-  const NotificationMock = Object.assign(vi.fn(), { permission, requestPermission })
+  const NotificationMock = Object.assign(vi.fn<(...args: unknown[]) => unknown>().mockImplementation(function () {
+    const notice: { close: () => void; onshow: (() => void) | null } = { close: vi.fn(), onshow: null }
+    queueMicrotask(() => notice.onshow?.())
+    return notice
+  }), { permission, requestPermission })
   vi.stubGlobal('Notification', NotificationMock)
   vi.stubGlobal('window', { Notification: NotificationMock, isSecureContext: secure })
   vi.stubGlobal('navigator', {})
   return { NotificationMock, requestPermission }
 }
 
-afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); vi.resetModules() })
+afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); vi.restoreAllMocks(); vi.resetModules() })
 
 describe('notification permission is an explicit user action', () => {
   it('does not request permission when the module is imported or status is read', async () => {
@@ -42,7 +46,7 @@ describe('notification permission is an explicit user action', () => {
 describe('browser notification delivery supports mobile service workers', () => {
   it('uses an active worker instead of constructing a desktop-only notification', async () => {
     const { NotificationMock } = browser('granted')
-    NotificationMock.mockImplementation(() => { throw new TypeError('Constructor unavailable on this mobile browser') })
+    NotificationMock.mockImplementation(function () { throw new TypeError('Constructor unavailable on this mobile browser') })
     const showNotification = vi.fn().mockResolvedValue(undefined)
     vi.stubGlobal('navigator', { serviceWorker: { getRegistration: vi.fn().mockResolvedValue({ active: {}, showNotification }) } })
     const { sendBrowserNotification } = await import('./notifications')
@@ -65,6 +69,40 @@ describe('browser notification delivery supports mobile service workers', () => 
     const { sendBrowserNotification } = await import('./notifications')
     expect(await sendBrowserNotification('Lembrete', 'Abra o aplicativo.')).toBe(false)
     expect(requestPermission).not.toHaveBeenCalled()
+  })
+
+  it('does not report success when the desktop notification fails asynchronously', async () => {
+    const { NotificationMock } = browser('granted')
+    const notice: { close: () => void; onerror: (() => void) | null } = { close: vi.fn(), onerror: null }
+    NotificationMock.mockImplementation(function () { queueMicrotask(() => notice.onerror?.()); return notice })
+    const { sendBrowserNotification } = await import('./notifications')
+    expect(await sendBrowserNotification('Lembrete', 'Abra o aplicativo.')).toBe(false)
+    expect(notice.close).toHaveBeenCalled()
+  })
+
+  it('times out instead of claiming that a silent constructor displayed a notification', async () => {
+    vi.useFakeTimers()
+    const { NotificationMock } = browser('granted')
+    const notice = { close: vi.fn() }
+    NotificationMock.mockImplementation(function () { return notice })
+    const { sendBrowserNotification } = await import('./notifications')
+    const delivery = sendBrowserNotification('Lembrete', 'Abra o aplicativo.')
+    await vi.advanceTimersByTimeAsync(5000)
+    expect(await delivery).toBe(false)
+    expect(notice.close).toHaveBeenCalled()
+  })
+
+  it('does not send after the owning effect was cancelled while waiting for the worker', async () => {
+    const { NotificationMock } = browser('granted')
+    let active = true
+    let release: (value: undefined) => void = () => {}
+    const pending = new Promise<undefined>(resolve => { release = resolve })
+    vi.stubGlobal('navigator', { serviceWorker: { getRegistration: vi.fn().mockReturnValue(pending) } })
+    const { sendBrowserNotification } = await import('./notifications')
+    const delivery = sendBrowserNotification('Lembrete', 'Abra o aplicativo.', 'dose', '/', () => active)
+    active = false; release(undefined)
+    expect(await delivery).toBe(false)
+    expect(NotificationMock).not.toHaveBeenCalled()
   })
 
   it('does not send or prompt when permission was not granted', async () => {

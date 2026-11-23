@@ -14,6 +14,8 @@ export function useNotifications() {
   const [subscribed, setSubscribed] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [testing, setTesting] = useState(false)
+  const [testMessage, setTestMessage] = useState('')
   const refreshVersion = useRef(0)
   const refresh = useCallback(async () => {
     const version = ++refreshVersion.current
@@ -62,8 +64,11 @@ export function useNotifications() {
     finally { setBusy(false); window.dispatchEvent(new Event('medcontrol:notifications')) }
   }
   const test = async () => {
+    setError(''); setTestMessage(''); setTesting(true)
     const sent = await sendBrowserNotification('Teste de aviso local', 'Este teste confirma apenas o aviso neste navegador. O envio em segundo plano precisa de uma verificação separada.', 'medcontrol-test')
-    if (!sent) setError('Não foi possível mostrar o teste. Confira as permissões do navegador e do sistema.')
+    setTesting(false)
+    if (sent) setTestMessage('O navegador aceitou o aviso de teste. Se o banner não aparecer, confira as notificações do navegador nos ajustes do computador e o modo Não Perturbe.')
+    else setError('O navegador não confirmou o aviso. Confira as permissões deste site e as notificações do navegador nos ajustes do computador. Depois, tente novamente.')
   }
-  return { permission, enabled, subscribed, busy, error, enable, disable, test, backgroundAvailable: !!supabase && !isDemo && 'serviceWorker' in navigator && 'PushManager' in window }
+  return { permission, enabled, subscribed, busy, error, testing, testMessage, isDemo, enable, disable, test, backgroundAvailable: !!supabase && !isDemo && 'serviceWorker' in navigator && 'PushManager' in window }
 }

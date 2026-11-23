@@ -19,14 +19,23 @@ export async function requestNotificationPermission(): Promise<boolean> {
   if (Notification.permission === 'granted') return true
   return await Notification.requestPermission() === 'granted'
 }
-export async function sendBrowserNotification(title: string, body: string, tag = 'medcontrol-reminder', url = '/'): Promise<boolean> {
-  if (!notificationsEnabled() || notificationPermission() !== 'granted') return false
+export async function sendBrowserNotification(title: string, body: string, tag = 'medcontrol-reminder', url = '/', isActive = () => true): Promise<boolean> {
+  if (!isActive() || !notificationsEnabled() || notificationPermission() !== 'granted') return false
   try {
     const registration = 'serviceWorker' in navigator ? await navigator.serviceWorker.getRegistration() : undefined
-    if (!notificationsEnabled()) return false
-    if (registration?.active) await registration.showNotification(title, { body, icon: '/icons/icon-192.png', tag, data: { url } })
-    else { const notice = new Notification(title, { body, icon: '/pill.svg', tag }); notice.onclick = () => { window.focus(); window.location.assign(url); notice.close() } }
-    return true
+    if (!isActive() || !notificationsEnabled()) return false
+    if (registration?.active) {
+      await registration.showNotification(title, { body, icon: '/icons/icon-192.png', tag, data: { url } })
+      return true
+    }
+    // The constructor can succeed and report a display error asynchronously.
+    return await new Promise<boolean>(resolve => {
+      const notice = new Notification(title, { body, icon: '/pill.svg', tag })
+      const timeout = setTimeout(() => { notice.close(); resolve(false) }, 5000)
+      notice.onshow = () => { clearTimeout(timeout); resolve(true) }
+      notice.onerror = () => { clearTimeout(timeout); notice.close(); resolve(false) }
+      notice.onclick = () => { window.focus(); window.location.assign(url); notice.close() }
+    })
   } catch { return false }
 }
 export function checkLowStockAlerts(medications: Medication[]) { return medications.filter(isLowStock) }

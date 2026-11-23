@@ -4,7 +4,7 @@
 
 Nenhuma permissão é solicitada no carregamento da página. A pessoa toca em **Ativar meus lembretes** na rotina, ou em **Ativar notificações** nos ajustes. `Notification.requestPermission()` é chamado diretamente desse gesto, antes das operações de rede. Negar a permissão mantém as demais funções disponíveis e mostra como liberar no navegador.
 
-Na conta real, o app obtém a chave pública do dispatcher, espera o service worker do PWA, cria a assinatura Push e a associa ao usuário. A demonstração permite testar o aviso local, mas não inscreve seus medicamentos fictícios no servidor. A chave privada de push e o segredo do cron nunca vão ao frontend.
+Na conta real, o app obtém a chave pública do dispatcher, espera o service worker do PWA, cria a assinatura Push e a associa ao usuário. A demonstração permite testar o aviso local e os horários dos medicamentos enquanto a aba estiver aberta, sem consultar ou cadastrar inscrições no servidor. A chave privada de push e o segredo do cron nunca vão ao frontend.
 
 A confirmação de uma dose não é inferida pela notificação: o usuário precisa registrá-la na agenda.
 
@@ -71,3 +71,32 @@ Os testes executam o mesmo módulo `dispatch.ts` usado pela função, com banco 
 ## Verificação remota desta revisão
 
 Em 23/11/2026, após autorização explícita do responsável, a migração 005 e a nova função foram publicadas no projeto. Às 12:58 (America/Sao_Paulo), o cron estava ativo e as últimas três respostas HTTP eram 200, sem timeout, com `sent=0` e `failed=0`. Havia zero dispositivos reais inscritos. A coluna de token existia e `authenticated` não tinha permissão de executar o RPC de claim. GET público retornou 200 e POST com segredo inválido retornou 401. Esses resultados não confirmam recebimento no telefone.
+
+## Correção do teste local em demonstração — 23/11/2026
+
+O problema informado no computador foi reproduzido com o Chrome DevTools do ECC: havia um medicamento fictício no horário atual e a interface dizia “Lembretes autorizados”, mas o contexto passava `undefined` ao agendador sempre que o modo demonstração estava ativo. Consequentemente, nenhum horário da demonstração solicitava uma notificação, mesmo com permissão concedida. O botão de teste manual era um caminho separado.
+
+Agora o agendador funciona na demonstração em modo exclusivamente local. A permissão, a preferência de desativação, a dose confirmada e a janela de dois minutos continuam sendo respeitadas. Envios simultâneos e novas verificações não duplicam a mesma dose; a identificação inclui o proprietário. A alteração da preferência e o retorno à aba também disparam uma nova conferência. Dados fictícios não precisam de inscrição no Supabase.
+
+O envio pelo construtor de notificações do desktop passa a esperar o evento `show`; erro assíncrono ou ausência de confirmação em cinco segundos retorna falha. O botão de teste informa o resultado e orienta a conferir as permissões do sistema. Quando há service worker ativo, a confirmação continua sendo a resolução de `showNotification()`. Nenhum desses sinais demonstra que uma pessoa leu o aviso ou que o sistema apresentou um banner sobre outras janelas.
+
+### Evidências executadas
+
+| Teste | Resultado |
+| --- | --- |
+| ECC, cenário controlado antes da correção | Zero chamadas de notificação para a dose no horário atual |
+| ECC, mesmo cenário após a correção | Uma chamada para a dose; nenhuma duplicação |
+| Chrome desktop isolado, API nativa sem simulação de `show` | Aviso manual confirmado por `show` às 13:50:53, horário de São Paulo |
+| Horário futuro 13:51, API nativa | Lembrete confirmado por `show` às 13:51:08; verificação usa intervalo de 15 segundos |
+| Nova verificação após o disparo | Nenhum segundo aviso da mesma dose |
+| Desativação pelos Ajustes e recarregamento | Nenhum novo aviso, mesmo com um novo medicamento no horário atual |
+| Tráfego de inscrições push na demonstração | Zero consultas ou gravações |
+| ECC, erro de exibição simulado | Mensagem de falha aparece e a mensagem de sucesso é removida |
+| Testes automatizados | 132 testes em 12 arquivos passaram |
+| Compilação | TypeScript, Vite e geração do service worker passaram |
+
+Os eventos nativos estão em [notification-test-results.json](notification-test-results.json). A permissão foi concedida por automação somente dentro de um contexto descartável de um Chrome de teste. Não foram usadas credenciais, receitas ou medicamentos reais; nenhuma configuração global de notificações do sistema foi alterada. O banner do macOS não foi confirmado visualmente. O teste não valida o caminho de Web Push com conta real e aba fechada.
+
+O roteiro nativo é repetível com `node scripts/test-browser-notifications.mjs --port 9337`, tendo o servidor Vite em `127.0.0.1:5173` e um Chrome dedicado iniciado com `--remote-debugging-port=9337` e um `--user-data-dir` temporário. O script cria e descarta seu próprio contexto, concede permissão nele, usa um horário futuro e verifica duplicação e desativação. Ele observa eventos reais da API e não cria um `show` artificial.
+
+Para repetir pela interface: recarregue o app, entre na demonstração, ative as notificações em Ajustes, use **Testar aviso local** e cadastre um horário de teste um ou dois minutos à frente. Mantenha a aba aberta. A permissão pertence ao endereço usado: `localhost` e `127.0.0.1` são origens diferentes. Verifique também se o navegador está autorizado nos ajustes do computador e se Não Perturbe/Foco está ocultando banners.

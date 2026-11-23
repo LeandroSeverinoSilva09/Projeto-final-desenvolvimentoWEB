@@ -1,0 +1,417 @@
+{
+  "date": "2026-11-23",
+  "verification": { "testsPassed": 158, "testFilesPassed": 13, "productionBuild": "passed", "diffWhitespace": "passed" },
+  "scope": "Additional plain-language and visual accessibility improvements to medication registration",
+  "environment": "Local Vite, ECC Chrome DevTools, isolated demo context",
+  "layout": [
+    {
+      "width": 320,
+      "large": false,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "large": true,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "large": false,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "large": true,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "large": false,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "large": true,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "large": false,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "28px",
+      "inputSize": "22px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 320,
+      "large": true,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 320,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": false,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": true,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": false,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": true,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": false,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": true,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": false,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "28px",
+      "inputSize": "22px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "large": true,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 390,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": false,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": true,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": false,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": true,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": false,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "28px",
+      "inputSize": "20px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": true,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": false,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "28px",
+      "inputSize": "22px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "large": true,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 768,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": false,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "30px",
+      "inputSize": "20px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": true,
+      "step": 1,
+      "title": "Qual é o nome do remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": false,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "30px",
+      "inputSize": "20px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": true,
+      "step": 2,
+      "title": "Como é o seu remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": false,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "30px",
+      "inputSize": "20px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": true,
+      "step": 3,
+      "title": "Que horas você usa o remédio?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": false,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "30px",
+      "inputSize": "22px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "large": true,
+      "step": 4,
+      "title": "Quanto remédio ainda tem em casa?",
+      "titleSize": "32px",
+      "inputSize": "23px",
+      "documentWidth": 1440,
+      "cuts": [],
+      "smallTargets": []
+    }
+  ],
+  "checks": {
+    "largerLetters": {
+      "persistedPreference": true,
+      "normalInputPixels": 20,
+      "largeInputPixels": 23,
+      "normalLabelPixels": 18,
+      "largeLabelPixels": 20,
+      "largeQuestionPixels": 32
+    },
+    "keyboard": {
+      "arrowRightChangesNativeRadio": true,
+      "tabReachesQuantity": true,
+      "visibleFocus": "3px solid rgb(8, 127, 131)",
+      "emptyNameErrorFocus": "med-name",
+      "errorFontPixels": 18,
+      "helperAndErrorReferenced": true
+    },
+    "visual": {
+      "genericPackageGuide": true,
+      "oneColumnChoicesOnMobile": true,
+      "selectedChoiceHasText": true,
+      "timePeriodsHaveTextAndIcon": [
+        "Manhã",
+        "Noite"
+      ],
+      "enteredAmountRepeated": true
+    },
+    "save": {
+      "demoOnly": true,
+      "name": "Exemplo visual ECC 500 mg",
+      "unitsPerDose": 0.5,
+      "stockUnit": "unidades",
+      "current": 0,
+      "emptyStockButtonSetsZero": true,
+      "schedules": "08:00, 20:00",
+      "noDefaultAmountOrTime": true
+    },
+    "lighthouse": {
+      "mode": "snapshot",
+      "device": "mobile",
+      "nameStep": {
+        "accessibility": 100,
+        "bestPractices": 100
+      },
+      "formatStep": {
+        "accessibility": 100,
+        "bestPractices": 100
+      }
+    },
+    "consoleErrorsOrWarnings": 0
+  },
+  "limitations": {
+    "participantSessions": "Not conducted",
+    "screenReaderSession": "Not conducted; accessibility tree and keyboard checked",
+    "visualBaselineComparison": "INCONCLUSIVE: previous screenshots do not represent this layout",
+    "productionDeployment": "Not performed"
+  }
+}
