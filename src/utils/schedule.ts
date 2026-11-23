@@ -20,28 +20,8 @@ function timeToMinutes(time: string): number {
   return h * 60 + m
 }
 
-const DOSE_TIME_TOLERANCE_MINUTES = 60
-
-function isTimeMatch(scheduleTime: string, recordTime: string): boolean {
-  const scheduleMinutes = timeToMinutes(scheduleTime)
-  const recordMinutes = timeToMinutes(recordTime)
-  return Math.abs(scheduleMinutes - recordMinutes) <= DOSE_TIME_TOLERANCE_MINUTES
-}
-
-function findTakenRecord(
-  todayHistory: DoseRecord[],
-  scheduleTime: string,
-  usedIds: Set<string>
-): DoseRecord | undefined {
-  const bySchedule = todayHistory.find(
-    (h) => h.scheduleTime === scheduleTime && !usedIds.has(h.id)
-  )
-  if (bySchedule) return bySchedule
-
-  const exactTime = todayHistory.find((h) => h.time === scheduleTime && !usedIds.has(h.id))
-  if (exactTime) return exactTime
-
-  return todayHistory.find((h) => !usedIds.has(h.id) && isTimeMatch(scheduleTime, h.time))
+function findTakenRecord(todayHistory: DoseRecord[], scheduleTime: string, usedIds: Set<string>): DoseRecord | undefined {
+  return todayHistory.find(h => !usedIds.has(h.id) && (h.scheduleTime ? h.scheduleTime === scheduleTime : h.time === scheduleTime))
 }
 
 export function isSlotDueNow(slot: TodayDoseSlot): boolean {
@@ -84,7 +64,7 @@ export function getTodayDoseSlots(
       const takenRecord = findTakenRecord(todayHistory, scheduleTime, usedRecordIds)
       if (takenRecord) usedRecordIds.add(takenRecord.id)
       slots.push({
-        id: `${med.id}-${scheduleTime}`,
+        id: `${today}-${med.id}-${scheduleTime}`,
         medicationId: med.id,
         name: med.name,
         dose: med.dose,
@@ -111,8 +91,8 @@ export function getNextPendingSlot(slots: TodayDoseSlot[]): TodayDoseSlot | null
   const pending = slots.filter((s) => !s.taken)
   if (pending.length === 0) return null
 
-  const dueNow = pending.find(isSlotDueNow)
-  if (dueNow) return dueNow
+  const upcoming = pending.find(s => !s.isPast)
+  if (upcoming) return upcoming
 
   return pending.sort((a, b) => timeToMinutes(a.scheduleTime) - timeToMinutes(b.scheduleTime))[0]
 }

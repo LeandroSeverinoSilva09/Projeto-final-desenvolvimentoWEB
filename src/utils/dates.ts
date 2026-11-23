@@ -29,7 +29,8 @@ export function parseScheduleTimes(schedules: string): string[] {
   return schedules
     .split(',')
     .map((s) => s.trim())
-    .filter(Boolean)
+    .filter(s => /^([01]\d|2[0-3]):[0-5]\d$/.test(s))
+    .filter((s, i, all) => all.indexOf(s) === i).sort()
 }
 
 export function getExpectedDosesForDay(medications: Medication[]): number {

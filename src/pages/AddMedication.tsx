@@ -1,16 +1,12 @@
+import { useParams, Link } from 'react-router-dom'
 import { Header } from '../components/layout/Header'
 import { MedicationForm } from '../components/forms/MedicationForm'
-
+import { useMedications } from '../contexts/MedicationContext'
 export function AddMedication() {
-  return (
-    <div className="flex flex-1 flex-col overflow-hidden">
-      <Header
-        title="Adicionar remédio"
-        subtitle="Preencha os dados para receber lembretes"
-      />
-      <div className="flex-1 overflow-y-auto px-4 py-6 md:px-6">
-        <MedicationForm />
-      </div>
-    </div>
-  )
+  const { id } = useParams()
+  const { medications, loading } = useMedications()
+  const medication = medications.find(m => m.id === id)
+  if (id && !medication && loading) return <p role="status">Carregando medicamento…</p>
+  if (id && !medication) return <div className="empty-state"><h1>Medicamento não encontrado</h1><Link className="text-link" to="/medicamentos">Voltar para medicamentos</Link></div>
+  return <><Header title={id ? 'Editar medicamento' : 'Adicionar medicamento'} subtitle="Um novo passo para uma rotina de cuidado mais organizada."/><MedicationForm key={id || 'new'} medication={medication}/></>
 }

@@ -3,11 +3,18 @@ export type AdherenceStatus = 'complete' | 'partial' | 'none'
 export type FilterType = 'all' | 'alert' | 'ok'
 
 export interface User {
+  id?: string
+  email?: string
   name: string
   joinDate: string
 }
 
 export interface Medication {
+  stockUnit?: 'unidades' | 'mL' | 'gotas'
+  unitsPerDose?: number
+  createdAt?: string
+  instructions?: string
+  color?: string
   id: string
   name: string
   dose: string

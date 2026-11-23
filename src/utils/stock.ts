@@ -1,8 +1,8 @@
 import type { Medication } from '../types/medication'
 
 export function normalizeMedicationStock(medication: Medication): Medication {
-  const total = Math.max(1, medication.total)
-  const current = Math.min(Math.max(0, medication.current), total)
+  const total = Math.max(0.001, medication.total)
+  const current = Math.round(Math.min(Math.max(0, medication.current), total) * 1000) / 1000
   return { ...medication, total, current }
 }
 

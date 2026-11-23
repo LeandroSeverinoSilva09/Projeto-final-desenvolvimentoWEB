@@ -1,93 +1,13 @@
-import { BarChart3, Calendar, Flame, Pill } from 'lucide-react'
-import { AdherenceSummary } from '../components/dashboard/AdherenceSummary'
-import { MedicationProgressList } from '../components/dashboard/MedicationProgressList'
-import { StreakWidget } from '../components/dashboard/StreakWidget'
-import { WeekCalendar } from '../components/dashboard/WeekCalendar'
+import { Activity, Check, CheckCircle2, Clock3, Pill } from 'lucide-react'
 import { Header } from '../components/layout/Header'
 import { useMedications } from '../contexts/MedicationContext'
-
-function SectionHeader({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: typeof BarChart3
-  title: string
-  description: string
-}) {
-  return (
-    <div className="mb-3 flex items-start gap-3">
-      <div className="rounded-xl bg-primary-50 p-2 text-primary-600">
-        <Icon size={20} />
-      </div>
-      <div>
-        <h2 className="text-lg font-bold text-slate-800">{title}</h2>
-        <p className="text-sm text-slate-500">{description}</p>
-      </div>
-    </div>
-  )
-}
-
+import { getWeeklyAdherence } from '../utils/adherence'
+import { useState } from 'react'
 export function Progress() {
-  const { medications } = useMedications()
-
-  if (medications.length === 0) {
-    return (
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <Header title="Status" subtitle="Acompanhe seu tratamento" />
-        <div className="flex flex-1 items-center justify-center px-6 text-center text-slate-500">
-          Cadastre remédios na tela Início para ver seu progresso aqui.
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="flex flex-1 flex-col overflow-hidden">
-      <Header
-        title="Status do tratamento"
-        subtitle="Relatório da semana, adesão e estoque"
-      />
-
-      <div className="flex-1 overflow-y-auto px-4 py-5 md:px-6">
-        <div className="mx-auto max-w-3xl space-y-8">
-          <section>
-            <SectionHeader
-              icon={BarChart3}
-              title="Resumo geral"
-              description="Percentual de adesão nos últimos 7 dias"
-            />
-            <AdherenceSummary />
-          </section>
-
-          <section>
-            <SectionHeader
-              icon={Calendar}
-              title="Histórico da semana"
-              description="Toque em cada dia para ver o que foi tomado"
-            />
-            <WeekCalendar />
-          </section>
-
-          <section>
-            <SectionHeader
-              icon={Flame}
-              title="Sequência de dias"
-              description="Quantos dias seguidos você tomou tudo"
-            />
-            <StreakWidget />
-          </section>
-
-          <section>
-            <SectionHeader
-              icon={Pill}
-              title="Desempenho por remédio"
-              description="Doses na semana e estoque de cada medicamento"
-            />
-            <MedicationProgressList />
-          </section>
-        </div>
-      </div>
-    </div>
-  )
+  const { medications, history } = useMedications()
+  const summary = getWeeklyAdherence(medications, history)
+  const [selected, setSelected] = useState(6)
+  const day = summary.days[selected]
+  const records = history.filter(r => r.date === day.fullDate)
+  return <><Header title="Seu acompanhamento" subtitle="Veja os registros da sua rotina atual nos últimos 7 dias."/><div className="metrics three"><div className="metric"><div className="metric-icon teal"><Activity size={22}/></div><div><span>Horários confirmados</span><strong>{summary.percentage}%<small>até agora</small></strong></div></div><div className="metric"><div className="metric-icon blue"><CheckCircle2 size={22}/></div><div><span>Doses registradas</span><strong>{summary.totalTaken}<small>na rotina atual</small></strong></div></div><div className="metric"><div className="metric-icon violet"><Clock3 size={22}/></div><div><span>Horários previstos</span><strong>{summary.totalExpected}<small>até este momento</small></strong></div></div></div><section className="panel progress-calendar"><div className="section-heading"><div><h2>Uma semana de cuidados</h2><p>Selecione um dia para consultar as doses registradas.</p></div></div><div className="calendar-grid">{summary.days.map((d, i) => <button key={d.fullDate} aria-pressed={selected === i} onClick={() => setSelected(i)}><span>{d.date.toLocaleDateString('pt-BR', { weekday: 'short' })}</span><strong>{d.date.getDate()}</strong><div className={d.expected > 0 && d.taken >= d.expected ? 'calendar-check complete' : d.taken ? 'calendar-check partial' : 'calendar-check'}>{d.expected > 0 && d.taken >= d.expected ? <Check size={17}/> : <span>{d.taken}</span>}</div><small>{d.expected ? `${d.taken} de ${d.expected}` : 'Sem previsão'}</small></button>)}</div><div className="selected-day"><h3>{day.isToday ? 'Hoje' : day.fullDate}</h3>{records.length ? records.map(r => <div className="history-row" key={r.id}><CheckCircle2 size={18}/><div><h3>{r.name}</h3><p>{r.dose}</p></div><span className="ml-auto muted">{r.time}</span></div>) : <p className="muted mt-3">Nenhuma dose confirmada neste dia.</p>}</div></section><section className="panel mt-6"><div className="section-heading"><h2>Medicamentos da rotina atual</h2></div>{medications.length ? medications.map(m => <div className="history-row" key={m.id}><div className={`med-symbol small ${m.color || 'teal'}`}><Pill size={20}/></div><div><h3>{m.name}</h3><p>{m.schedules}</p></div><span className="ml-auto muted">{history.filter(r => r.medicationId === m.id && r.timestamp >= Date.now() - 7 * 86400000).length} doses na semana</span></div>) : <p className="muted p-6">Cadastre medicamentos para começar o acompanhamento.</p>}</section><p className="report-note">O resumo considera os horários atuais dos medicamentos ativos, desde o cadastro, e exclui horários futuros de hoje. Alterações na rotina podem mudar o cálculo. Registros são confirmações do usuário, sem verificação clínica.</p></>
 }

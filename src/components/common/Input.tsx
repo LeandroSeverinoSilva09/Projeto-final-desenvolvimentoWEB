@@ -17,6 +17,8 @@ export function Input({ label, error, className = '', id, ...props }: InputProps
       )}
       <input
         id={inputId}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${inputId}-error` : undefined}
         className={`
           w-full rounded-xl border border-slate-200 bg-white px-4 py-4
           text-base text-slate-800 outline-none transition-all
@@ -27,7 +29,7 @@ export function Input({ label, error, className = '', id, ...props }: InputProps
         `}
         {...props}
       />
-      {error && <p className="mt-1 text-xs text-danger-500">{error}</p>}
+      {error && <p id={`${inputId}-error`} role="alert" className="mt-1 text-xs text-danger-500">{error}</p>}
     </div>
   )
 }

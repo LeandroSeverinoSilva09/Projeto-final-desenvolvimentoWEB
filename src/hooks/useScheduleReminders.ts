@@ -1,34 +1,38 @@
-import { useEffect, useRef } from 'react'
-import type { Medication } from '../types/medication'
-import { parseScheduleTimes } from '../utils/dates'
-import { sendBrowserNotification } from '../utils/notifications'
-
-export function useScheduleReminders(medications: Medication[], enabled: boolean) {
-  const notifiedRef = useRef<Set<string>>(new Set())
-
+import { useEffect } from 'react'
+import type { DoseRecord, Medication } from '../types/medication'
+import { getTodayDoseSlots } from '../utils/schedule'
+import { sendBrowserNotification, notificationsEnabled } from '../utils/notifications'
+import { hasBackgroundNotifications } from '../lib/pushSubscriptions'
+import { formatDate } from '../utils/dates'
+export function useScheduleReminders(medications: Medication[], userId: string | undefined, history: DoseRecord[] = []) {
   useEffect(() => {
-    if (!enabled) return
-
-    const checkSchedules = () => {
-      const now = new Date()
-      const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
-
-      medications.forEach((med) => {
-        parseScheduleTimes(med.schedules).forEach((time) => {
-          const key = `${med.id}-${time}-${now.toDateString()}`
-          if (time === currentTime && !notifiedRef.current.has(key)) {
-            notifiedRef.current.add(key)
-            sendBrowserNotification(
-              'Hora do medicamento!',
-              `Está na hora de tomar ${med.name} (${med.dose}).`
-            )
-          }
-        })
-      })
+    if (!userId) return
+    let stopped = false
+    let checking = false
+    const check = async () => {
+      if (checking || stopped || !notificationsEnabled()) return
+      checking = true
+      try {
+        const now = new Date()
+        const current = now.getHours() * 60 + now.getMinutes()
+        let background: boolean | undefined
+        for (const slot of getTodayDoseSlots(medications, history)) {
+          const [h, m] = slot.scheduleTime.split(':').map(Number)
+          if (slot.taken || current - (h * 60 + m) < 0 || current - (h * 60 + m) > 2) continue
+          const key = `medcontrol-notified:${formatDate(now)}:${slot.id}`
+          if (sessionStorage.getItem(key)) continue
+          // A subscription uses the server dispatcher; avoid duplicate foreground notices.
+          background ??= await hasBackgroundNotifications(userId)
+          if (background) continue
+          if (stopped) return
+          const sent = await sendBrowserNotification('Seu cuidado tem hora', `Você tem um medicamento agendado para ${slot.scheduleTime}. Abra o MEDControl para conferir.`, key)
+          if (sent) sessionStorage.setItem(key, 'true')
+        }
+      } finally { checking = false }
     }
-
-    checkSchedules()
-    const interval = setInterval(checkSchedules, 30_000)
-    return () => clearInterval(interval)
-  }, [medications, enabled])
+    void check()
+    const interval = setInterval(() => void check(), 15000)
+    document.addEventListener('visibilitychange', check)
+    return () => { stopped = true; clearInterval(interval); document.removeEventListener('visibilitychange', check) }
+  }, [medications, history, userId])
 }

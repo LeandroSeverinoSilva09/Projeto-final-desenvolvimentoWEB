@@ -1,85 +1,38 @@
-import { motion } from 'framer-motion'
-import { Pill } from 'lucide-react'
-import { TodayOverview } from '../components/dashboard/TodayOverview'
-import { TodaySchedule } from '../components/dashboard/TodaySchedule'
-import { LowStockBanner } from '../components/medication/LowStockBanner'
-import { FilterBar } from '../components/medication/FilterBar'
-import { MedicationStockRow } from '../components/medication/MedicationStockRow'
-import { EmptyState } from '../components/common/EmptyState'
-import { WelcomeGuide } from '../components/common/WelcomeGuide'
-import { Header } from '../components/layout/Header'
+import { ArrowRight, ArrowUpRight, Check, CheckCircle2, Clock3, Heart, MapPin, Package, Pill, Plus, Sun } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { useMedications } from '../contexts/MedicationContext'
-import { formatDateLong } from '../utils/dates'
+import { NotificationPanel } from '../components/common/NotificationPanel'
+import { getTodayDoseSlots } from '../utils/schedule'
+import { getStockStatus } from '../utils/calculations'
+import { useNotifications } from '../hooks/useNotifications'
+import { getWeeklyAdherence } from '../utils/adherence'
 
 export function Home() {
-  const { user, medications, filteredMedications, filter } = useMedications()
-  const todayLabel = formatDateLong(new Date())
-
-  const emptyDescription =
-    filter === 'alert'
-      ? 'Nenhum remédio precisa de reposição agora.'
-      : filter === 'ok'
-        ? 'Nenhum remédio com estoque em dia.'
-        : 'Toque em Adicionar para cadastrar seu primeiro remédio.'
-
-  const headerTitle = user ? `Olá, ${user.name}` : 'MEDControl'
-
-  return (
-    <div className="flex flex-1 flex-col overflow-hidden">
-      <Header
-        title={headerTitle}
-        subtitle={`${todayLabel} · Sua rotina de hoje`}
-      />
-
-      <div className="flex-1 overflow-y-auto px-4 py-5 md:px-6">
-        <div className="mx-auto max-w-3xl space-y-6">
-          {medications.length === 0 && <WelcomeGuide />}
-
-          {medications.length > 0 && (
-            <>
-              <LowStockBanner />
-              <TodayOverview />
-              <TodaySchedule />
-
-              <div>
-                <div className="mb-3 flex items-center gap-2">
-                  <Pill size={22} className="text-primary-600" />
-                  <div>
-                    <h2 className="text-lg font-bold text-slate-800">Estoque dos remédios</h2>
-                    <p className="text-sm text-slate-500">
-                      Quantidade na caixa e horários cadastrados
-                    </p>
-                  </div>
-                </div>
-                <FilterBar />
-
-                {filteredMedications.length === 0 ? (
-                  <div className="mt-4">
-                    <EmptyState
-                      medIcon="pill"
-                      title="Nenhum remédio aqui"
-                      description={emptyDescription}
-                    />
-                  </div>
-                ) : (
-                  <motion.div layout className="mt-4 space-y-3">
-                    {filteredMedications.map((med, i) => (
-                      <motion.div
-                        key={med.id}
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.04 }}
-                      >
-                        <MedicationStockRow medication={med} />
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                )}
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
-  )
+  const { user, medications, history, takeMedication, busy, lowStockCount } = useMedications()
+  const notifications = useNotifications()
+  const [show, setShow] = useState('all')
+  const [, tick] = useState(0)
+  useEffect(() => { const timer = setInterval(() => tick(n => n + 1), 30000); return () => clearInterval(timer) }, [])
+  const slots = getTodayDoseSlots(medications, history)
+  const taken = slots.filter(s => s.taken).length
+  const next = slots.find(s => !s.taken && !s.isPast) || slots.find(s => !s.taken)
+  const weekly = getWeeklyAdherence(medications, history)
+  const filtered = slots.filter(s => show === 'all' || (show === 'taken' ? s.taken : !s.taken))
+  const hour = new Date().getHours()
+  return <>
+    <div className="page-heading routine-heading"><div><p className="date-caption">{new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}</p><h1>{hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite'}, {user?.name.split(' ')[0]} <span className="greeting-sun"><Sun size={26}/></span></h1><p>Vamos cuidar de você, uma dose de cada vez.</p></div><Link to="/adicionar" className="btn"><Plus size={19}/><span className="desktop-add-label">Adicionar medicamento</span><span className="mobile-add-label">Adicionar</span></Link></div>
+    <section className="welcome-panel"><div className="mobile-next-care"><span><Clock3 size={14}/>{next ? next.isPast ? 'Horário a conferir' : 'Próximo horário' : 'Cada cuidado conta'}</span><h2 className={next ? 'next-care-time' : 'next-care-empty'}>{next ? next.scheduleTime : 'Sua rotina começa aqui'}</h2><p>{next ? next.name : 'Cadastre seu primeiro medicamento'}</p>{notifications.permission === 'default' ? <button onClick={notifications.enable} disabled={notifications.busy} className="next-care-action"><Clock3 size={15}/><span>{notifications.busy ? 'Ativando…' : 'Ativar meus lembretes'}</span></button> : <Link className="next-care-action" to={next ? '#agenda' : '/adicionar'} onClick={next ? e => { e.preventDefault(); document.getElementById('agenda')?.scrollIntoView({ behavior: 'smooth' }) } : undefined}>{next ? 'Conferir agenda' : 'Começar meu cuidado'}<ArrowRight size={15}/></Link>}</div><div className="welcome-copy"><span className="welcome-chip"><Heart size={15}/> Sua saúde merece atenção</span><h2>Mais cuidado.<br/>Mais tranquilidade.</h2><p>{slots.length ? 'Sua rotina de medicamentos está aqui. Confira os horários e registre cada cuidado do seu dia.' : 'Comece cadastrando seus medicamentos e os horários da sua prescrição. Nós ajudamos a organizar o dia.'}</p><Link to={next ? '#agenda' : '/adicionar'} onClick={next ? e => { e.preventDefault(); document.getElementById('agenda')?.scrollIntoView({ behavior: 'smooth' }) } : undefined} className="welcome-link">{next ? 'Ver minha agenda de hoje' : 'Cadastrar primeiro medicamento'}<ArrowRight size={18}/></Link></div><div className="welcome-illustration" aria-hidden="true"><div className="welcome-halo"/><div className="daily-box"><span className="box-cross">+</span><small>Rotina de cuidado</small><strong>Todo dia<br/>conta.</strong><div className="box-stripes"/></div><div className="small-pill"/><div className="care-check"><Check size={20}/><span>Seu cuidado em dia</span></div></div></section>
+    <div className="metrics"><div className="metric"><div className="metric-icon teal"><Pill size={21}/></div><div><span>Medicamentos ativos</span><strong>{medications.length}<small>na sua rotina</small></strong></div></div><div className="metric"><div className="metric-icon blue"><CheckCircle2 size={21}/></div><div><span>Doses de hoje</span><strong>{taken}<small>de {slots.length} confirmadas</small></strong></div></div><div className="metric"><div className="metric-icon violet"><Clock3 size={21}/></div><div><span>Próximo horário</span><strong>{next?.scheduleTime || '—'}<small>{next?.name || 'Tudo em dia'}</small></strong></div></div><div className="metric"><div className="metric-icon amber"><Package size={21}/></div><div><span>Atenção ao estoque</span><strong>{lowStockCount}<small>{lowStockCount ? 'precisam de reposição' : 'nenhuma reposição'}</small></strong></div></div></div>
+    {lowStockCount > 0 && <Link to="/farmacias" className="stock-pharmacy-callout"><span className="stock-callout-icon"><MapPin size={22}/></span><div><strong>Uma reposição merece atenção</strong><p>Há {lowStockCount} {lowStockCount === 1 ? 'medicamento com poucas unidades' : 'medicamentos com poucas unidades'}. Veja farmácias perto de você.</p></div><span className="stock-callout-link">Encontrar farmácias <span aria-hidden="true">↗</span></span></Link>}
+    <div className="dashboard-columns"><div className="dashboard-main"><section className="panel agenda-panel" id="agenda"><div className="section-heading"><div><h2>Sua agenda de hoje</h2><p>Confirme a dose depois de tomar.</p></div><span className="count-badge">{taken} de {slots.length} doses</span></div><div className="segmented" role="group" aria-label="Filtrar agenda">{[['all', 'Todos'], ['pending', 'Pendentes'], ['taken', 'Tomadas']].map(([value, label]) => <button key={value} aria-pressed={show === value} onClick={() => setShow(value)}>{label}</button>)}</div>
+      {!filtered.length ? <div className="empty-state"><div className="empty-icon"><Pill size={30}/></div><h3>{!slots.length ? 'O primeiro cuidado começa aqui' : 'Tudo certo por aqui'}</h3><p>{!slots.length ? 'Cadastre um medicamento para organizar seus horários.' : 'Nenhuma dose neste filtro. Sua agenda está atualizada.'}</p>{!slots.length && <Link className="btn small" to="/adicionar"><Plus size={17}/>Adicionar medicamento</Link>}</div> : <div className="dose-list">{filtered.map(slot => {
+        const med = medications.find(m => m.id === slot.medicationId)!
+        const empty = med.current < (med.unitsPerDose ?? 1)
+        return <article className={`dose-row ${slot.taken ? 'taken' : ''}`} key={slot.id}><div className="dose-time"><strong>{slot.scheduleTime}</strong><span>{slot.taken ? 'Registrado' : slot.isPast ? 'A conferir' : 'Agendado'}</span></div><div className={`med-symbol ${med.color || 'teal'}`}><Pill size={23}/></div><div className="dose-info"><h3>{slot.name}</h3><p>{slot.dose}</p>{slot.taken ? <small className="confirmed-text"><Check size={13}/>Confirmado às {slot.takenAt}</small> : empty ? <small className="stock-warning">Estoque insuficiente</small> : med.instructions && <small>{med.instructions}</small>}</div>{slot.taken ? <span className="dose-done"><CheckCircle2 size={17}/>Tomei</span> : <button className={`btn small ${!slot.isPast ? 'secondary' : ''}`} aria-label={`${slot.isPast ? 'Já tomei' : 'Aguardar'}: ${slot.name} às ${slot.scheduleTime}`} disabled={busy || empty || !slot.isPast} onClick={() => takeMedication(slot.medicationId, slot.scheduleTime)} title={!slot.isPast ? 'Disponível a partir do horário agendado' : undefined}>{slot.isPast ? <><Check size={16}/>Já tomei</> : <><Clock3 size={15}/>Aguardar</>}</button>}</article>
+      })}</div>}<div className="panel-bottom-note"><ShieldNote/> Em caso de atraso, siga a orientação do profissional que acompanha você.</div></section>
+      <section className="panel stock-panel"><div className="section-heading"><div><h2>De olho no estoque</h2><p>Planeje sua próxima reposição com tranquilidade.</p></div><Link className="text-link" to="/medicamentos">Ver todos <ArrowUpRight size={15}/></Link></div>{medications.length ? medications.slice(0, 3).map(m => { const s = getStockStatus(m); return <div className="stock-line" key={m.id}><div className={`med-symbol small ${m.color || 'teal'}`}><Pill size={19}/></div><div className="stock-line-name"><strong>{m.name}</strong><span>{s.daysRemaining ? `Cerca de ${s.daysRemaining} dias` : 'Confira a reposição'}</span></div><div className="stock-meter"><div><span style={{ width: `${s.fillPercentage}%` }} className={s.needsReplenish ? 'warning-fill' : ''}/></div><small>{m.current.toLocaleString('pt-BR')} {m.stockUnit || 'unidades'}</small></div><span className={`badge ${s.needsReplenish ? 'amber' : 'teal'}`}>{s.needsReplenish ? 'Repor em breve' : 'Em dia'}</span></div> }) : <p className="muted p-6">Seu estoque aparecerá depois do primeiro cadastro.</p>}</section>
+    </div><aside className="dashboard-aside"><section className="panel week-panel"><div className="section-heading"><h2>Seu cuidado na semana</h2><Heart size={18}/></div><div className="week-days">{weekly.days.map(d => <Link to="/status" key={d.fullDate} className={d.isToday ? 'today' : ''} aria-label={`${d.date.toLocaleDateString('pt-BR', { weekday: 'short' }).slice(0, 3)} ${d.fullDate}: ${d.taken} de ${d.expected} doses`}><small>{d.date.toLocaleDateString('pt-BR', { weekday: 'short' }).slice(0,3)}</small>{' '}<span className={d.expected && d.taken >= d.expected ? 'complete' : d.taken ? 'partial' : ''}>{d.expected && d.taken >= d.expected ? <Check size={16}/> : d.date.getDate()}</span></Link>)}</div><div className="weekly-progress"><strong>{weekly.percentage}%<span>dos horários até agora</span></strong><div><span style={{ width: `${weekly.percentage}%` }}/></div><p>Registros de doses para acompanhar sua rotina.</p></div><Link to="/status" className="text-link">Ver meu acompanhamento <ArrowRight size={15}/></Link></section><NotificationPanel/><section className="care-note"><Heart size={20}/><h3>Cuidar também é se informar.</h3><p>Cadastre os horários conforme sua prescrição. O MEDControl ajuda a organizar sua rotina e não altera seu tratamento.</p></section></aside></div>
+  </>
 }
+function ShieldNote() { return <Heart size={14}/> }

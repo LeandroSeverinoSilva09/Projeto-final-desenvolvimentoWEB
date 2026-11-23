@@ -1,77 +1,13 @@
-import { motion } from 'framer-motion'
-import { Calendar, CheckCircle2 } from 'lucide-react'
-import { useMemo } from 'react'
-import { EmptyState } from '../components/common/EmptyState'
-import { Header } from '../components/layout/Header'
-import { MedIcon3D } from '../components/medication/MedIcon3D'
+import { useMemo, useState } from 'react'
+import { CheckCircle2, Download, History as HistoryIcon, Search } from 'lucide-react'
 import { useMedications } from '../contexts/MedicationContext'
-import { getTodayKey } from '../utils/dates'
 import { groupHistoryByDate } from '../utils/schedule'
-
+import { formatDate } from '../utils/dates'
+import { exportHistory } from '../utils/export'
 export function History() {
   const { history } = useMedications()
-  const grouped = useMemo(() => groupHistoryByDate(history), [history])
-  const today = getTodayKey()
-
-  return (
-    <div className="flex flex-1 flex-col overflow-hidden">
-      <Header
-        title="Histórico"
-        subtitle="Todas as doses que você confirmou"
-      />
-
-      <div className="flex-1 overflow-y-auto px-4 py-5 md:px-6">
-        <div className="mx-auto max-w-3xl space-y-5">
-          {grouped.length === 0 ? (
-            <EmptyState
-              icon={Calendar}
-              title="Nenhuma dose registrada"
-              description="Quando você tocar em Já tomei na tela Início, as doses aparecerão aqui."
-            />
-          ) : (
-            grouped.map((group, groupIndex) => (
-              <section key={group.date}>
-                <div className="mb-3 flex items-center gap-2">
-                  <Calendar size={16} className="text-slate-500" />
-                  <h2 className="text-lg font-bold text-slate-800">{group.date}</h2>
-                  {group.date === today && (
-                    <span className="rounded-full bg-primary-100 px-2 py-0.5 text-xs font-bold text-primary-700">
-                      Hoje
-                    </span>
-                  )}
-                  <span className="text-sm text-slate-400">
-                    {group.records.length} {group.records.length === 1 ? 'dose' : 'doses'}
-                  </span>
-                </div>
-
-                <div className="space-y-3">
-                  {group.records.map((record, index) => (
-                    <motion.div
-                      key={record.id}
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: groupIndex * 0.1 + index * 0.03 }}
-                      className="flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm"
-                    >
-                      <MedIcon3D dose={record.dose} size="sm" />
-
-                      <div className="min-w-0 flex-1">
-                        <p className="text-lg font-bold text-slate-800">{record.name}</p>
-                        <p className="text-sm text-slate-500">{record.dose}</p>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 text-base font-bold text-emerald-600">
-                        <CheckCircle2 size={16} />
-                        {record.time}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </section>
-            ))
-          )}
-        </div>
-      </div>
-    </div>
-  )
+  const [search, setSearch] = useState(''); const [period, setPeriod] = useState('all')
+  const filtered = useMemo(() => history.filter(r => r.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) && (period === 'all' || period === 'today' && r.date === formatDate(new Date()) || period === 'week' && r.timestamp >= Date.now() - 7 * 86400000)), [history, search, period])
+  const groups = groupHistoryByDate(filtered)
+  return <><div className="page-heading"><div><h1>Histórico de cuidados</h1><p>Cada dose registrada é um passo na sua rotina.</p></div><button className="btn secondary" disabled={!filtered.length} onClick={() => exportHistory(filtered)}><Download size={18}/>Exportar registros</button></div><div>{history.length >= 5000 && <p className="notice mb-5">Exibimos os 5.000 registros mais recentes. A exportação contém os registros exibidos.</p>}</div><div className="list-toolbar"><label className="search-field"><Search size={18}/><input aria-label="Buscar no histórico" placeholder="Buscar medicamento…" value={search} onChange={e => setSearch(e.target.value)}/></label><select aria-label="Período do histórico" value={period} onChange={e => setPeriod(e.target.value)}><option value="all">Todo o período</option><option value="today">Hoje</option><option value="week">Últimos 7 dias</option></select><span className="muted">{filtered.length} registros</span></div>{!groups.length ? <div className="panel empty-state"><div className="empty-icon"><HistoryIcon size={30}/></div><h2>Seu histórico começa com uma dose.</h2><p>Depois de tomar um medicamento, confirme na agenda. O registro aparecerá aqui.</p></div> : <div className="history-groups">{groups.map(g => <section className="panel" key={g.date}><div className="section-heading"><h2>{g.date === formatDate(new Date()) ? 'Hoje' : g.date}</h2><span className="count-badge">{g.records.length} registros</span></div>{g.records.map(r => <div className="history-row" key={r.id}><span className="history-check"><CheckCircle2 size={21}/></span><div><h3>{r.name}</h3><p>{r.dose}</p></div><div className="history-time"><strong>{r.scheduleTime || r.time}</strong><small>Confirmado às {r.time}</small></div><span className="badge teal">Dose registrada</span></div>)}</section>)}</div>}</>
 }

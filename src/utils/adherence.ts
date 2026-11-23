@@ -6,6 +6,7 @@ import {
   getExpectedDosesForDay,
   getLast7Days,
   getTakenDosesForDay,
+  parseScheduleTimes,
 } from './dates'
 
 export interface DayAdherenceInfo {
@@ -32,18 +33,23 @@ export interface WeeklyAdherenceSummary {
 export const ADHERENCE_LABELS: Record<AdherenceStatus, { short: string }> = {
   complete: { short: 'Tomou tudo' },
   partial: { short: 'Tomou alguns' },
-  none: { short: 'Esqueceu' },
+  none: { short: 'Sem registro' },
 }
 
 export function getWeeklyAdherence(
   medications: Medication[],
   history: DoseRecord[]
 ): WeeklyAdherenceSummary {
-  const expectedPerDay = getExpectedDosesForDay(medications)
   const today = formatDate(new Date())
 
   const days: DayAdherenceInfo[] = getLast7Days().map((date) => {
-    const taken = getTakenDosesForDay(history, date)
+    const activeMeds = medications.filter(m => !m.createdAt || new Date(m.createdAt).setHours(0,0,0,0) <= date.getTime())
+    const relevantHistory = history.filter(r => activeMeds.some(m => m.id === r.medicationId) && r.timestamp <= Date.now() && (formatDate(date) !== formatDate(new Date()) || !r.scheduleTime || r.scheduleTime <= new Date().toTimeString().slice(0,5)))
+    const taken = getTakenDosesForDay(relevantHistory, date)
+    const now = new Date()
+    const expectedPerDay = formatDate(date) === formatDate(now)
+      ? activeMeds.reduce((sum, m) => sum + parseScheduleTimes(m.schedules).filter(t => t <= now.toTimeString().slice(0,5)).length, 0)
+      : getExpectedDosesForDay(activeMeds)
     const fullDate = formatDate(date)
     const dayRecords = history.filter((h) => h.date === fullDate)
     const isExample = dayRecords.some((r) => r.id.startsWith('sample-'))
@@ -62,7 +68,7 @@ export function getWeeklyAdherence(
 
   const totalExpected = days.reduce((s, d) => s + d.expected, 0)
   const totalTaken = days.reduce((s, d) => s + d.taken, 0)
-  const percentage = totalExpected > 0 ? Math.round((totalTaken / totalExpected) * 100) : 0
+  const percentage = totalExpected > 0 ? Math.min(100, Math.round((totalTaken / totalExpected) * 100)) : 0
 
   return {
     totalExpected,
@@ -70,7 +76,7 @@ export function getWeeklyAdherence(
     percentage,
     completeDays: days.filter((d) => d.status === 'complete').length,
     partialDays: days.filter((d) => d.status === 'partial').length,
-    missedDays: days.filter((d) => d.status === 'none').length,
+    missedDays: days.filter((d) => d.expected > 0 && d.status === 'none').length,
     days,
   }
 }

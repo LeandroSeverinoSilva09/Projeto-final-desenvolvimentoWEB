@@ -27,6 +27,7 @@ function ToastItem({ toast }: { toast: ToastMessage }) {
       initial={{ opacity: 0, y: -20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, x: 100 }}
+      role={toast.type === 'error' ? 'alert' : 'status'}
       className={`flex items-center gap-3 rounded-xl border px-4 py-3 shadow-lg ${styles[toast.type]}`}
     >
       <Icon size={18} className="shrink-0" />
@@ -46,7 +47,7 @@ export function ToastContainer() {
   const { toasts } = useMedications()
 
   return (
-    <div className="pointer-events-none fixed top-4 right-4 z-50 flex w-full max-w-sm flex-col gap-2 px-4">
+    <div className="pointer-events-none fixed top-4 right-4 z-50 flex w-[calc(100%-2rem)] max-w-sm flex-col gap-2">
       <AnimatePresence>
         {toasts.map((toast) => (
           <div key={toast.id} className="pointer-events-auto">

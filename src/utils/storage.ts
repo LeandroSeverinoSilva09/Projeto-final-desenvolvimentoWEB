@@ -1,79 +1,20 @@
 import type { AppState } from '../types/medication'
-import { generateVariedSampleHistory, stripTodaySampleRecords } from './adherence'
-import { normalizeMedicationStock } from './stock'
+import { formatDate } from './dates'
 
-const STORAGE_KEY = 'medcontrol_app_state'
-
-export const DEFAULT_MEDICATIONS = [
-  {
-    id: '1',
-    name: 'Amoxicilina',
-    dose: '1 comprimido',
-    current: 42,
-    total: 60,
-    frequency: 8,
-    schedules: '08:00, 16:00, 00:00',
-    takenCount: 0,
-  },
-  {
-    id: '2',
-    name: 'Dipirona',
-    dose: '20 gotas',
-    current: 12,
-    total: 60,
-    frequency: 6,
-    schedules: '06:00, 12:00, 18:00',
-    takenCount: 0,
-  },
-]
-
-const SAMPLE_HISTORY = stripTodaySampleRecords(generateVariedSampleHistory())
-
-export const defaultState: AppState = {
-  user: null,
-  medications: DEFAULT_MEDICATIONS.map((m) => ({ ...m, takenCount: 2 })),
-  history: SAMPLE_HISTORY,
-  stats: {
-    streakCount: 2,
-    lastStreakDate: null,
-    totalDoses: SAMPLE_HISTORY.length,
-  },
-}
-
-function normalizeState(state: Partial<AppState>): AppState {
-  const medications = (state.medications ?? defaultState.medications).map(normalizeMedicationStock)
-  const rawHistory =
-    state.history && state.history.length > 0 ? state.history : SAMPLE_HISTORY
-  const history = stripTodaySampleRecords(rawHistory)
-
-  return {
-    ...defaultState,
-    ...state,
-    medications,
-    history,
-    stats: { ...defaultState.stats, ...state.stats },
-  }
-}
-
-export function loadState(): AppState {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return defaultState
-    const parsed = JSON.parse(raw) as Partial<AppState>
-    return normalizeState(parsed)
-  } catch {
-    return defaultState
-  }
-}
-
-export function saveState(state: AppState): void {
-  const normalized: AppState = {
-    ...state,
-    medications: state.medications.map(normalizeMedicationStock),
-  }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized))
-}
-
-export function generateId(): string {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`
+export const defaultState: AppState = { user: null, medications: [], history: [], stats: { streakCount: 0, lastStreakDate: null, totalDoses: 0 } }
+export function generateId(): string { return crypto.randomUUID() }
+export function loadState(): AppState { return defaultState }
+export function saveState(state: AppState): void { sessionStorage.setItem('medcontrol_demo_data', JSON.stringify(state)) }
+export function demoState(): AppState {
+  const createdAt = new Date(Date.now() - 6 * 86400000).toISOString()
+  const medications = [
+    { id: '1', name: 'Medicamento A', dose: '1 comprimido', current: 24, total: 30, schedules: '08:00, 20:00', frequency: 12, takenCount: 0, unitsPerDose: 1, createdAt, instructions: 'Exemplo fictício para apresentação.', color: 'teal' },
+    { id: '2', name: 'Medicamento B', dose: '1 cápsula', current: 3, total: 30, schedules: '12:00', frequency: 24, takenCount: 0, unitsPerDose: 1, createdAt, instructions: 'Exemplo fictício para apresentação.', color: 'amber' },
+    { id: '3', name: 'Medicamento C', dose: '1 comprimido', current: 18, total: 30, schedules: '18:00', frequency: 24, takenCount: 0, unitsPerDose: 1, createdAt, color: 'blue' },
+  ]
+  const history = Array.from({ length: 6 }, (_, i) => {
+    const day = new Date(); day.setDate(day.getDate() - i - 1); day.setHours(8, 2, 0, 0)
+    return { id: `demo-${i}`, medicationId: '1', name: 'Medicamento A', dose: '1 comprimido', date: formatDate(day), time: '08:02', scheduleTime: '08:00', timestamp: day.getTime() }
+  })
+  return { ...defaultState, medications, history }
 }

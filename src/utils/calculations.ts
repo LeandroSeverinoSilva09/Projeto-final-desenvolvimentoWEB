@@ -24,7 +24,7 @@ export interface StockStatus {
 
 export function getDailyConsumption(medication: Medication): number {
   const times = parseScheduleTimes(medication.schedules)
-  return times.length > 0 ? times.length : 1
+  return Math.round(Math.max(1, times.length) * (medication.unitsPerDose ?? 1) * 1000) / 1000
 }
 
 export function getStockStatus(medication: Medication): StockStatus {
@@ -32,8 +32,8 @@ export function getStockStatus(medication: Medication): StockStatus {
   const { current, total } = normalizeMedicationStock(medication)
 
   const daysRemaining =
-    current > 0 ? Math.floor(current / dailyConsumption) : 0
-  const replenishThreshold = dailyConsumption * REPLENISH_ALERT_DAYS
+    current > 0 ? Math.floor(Math.round(current * 1000) / Math.round(dailyConsumption * 1000)) : 0
+  const replenishThreshold = Math.round(dailyConsumption * REPLENISH_ALERT_DAYS * 1000) / 1000
   const needsReplenish = current > 0 && current <= replenishThreshold
   const fillPercentage =
     total > 0 ? Math.max(0, Math.min(100, (current / total) * 100)) : 0
