@@ -16,13 +16,14 @@ Não há iframe de mapa, opção de abrir OpenStreetMap ou seleção de provedor
 
 ## Localização e requisições
 
-- `getCurrentPosition` é chamado somente por ação explícita, com `enableHighAccuracy: true`, `maximumAge: 0` e timeout de 20 segundos. Não há monitoramento contínuo. Geolocalização exige HTTPS ou localhost.
-- As coordenadas são arredondadas a três casas decimais antes de entrar no estado React ou em requisições, uma grade de aproximadamente 100 metros no Brasil. A validação do aparelho rejeita o ponto nulo `(0, 0)`, inclusive após arredondamento, e precisão inválida ou superior a 2 km. Pontos válidos no equador ou meridiano de Greenwich continuam aceitos.
-- Permissão negada, posição indisponível, timeout ou precisão insuficiente preservam a alternativa de cidade/bairro/CEP. Nenhuma consulta de farmácias é enviada após uma posição rejeitada.
+- `getCurrentPosition` é chamado somente por ação explícita. A primeira tentativa usa `enableHighAccuracy: false`, cache de até 30 segundos e timeout de 8 segundos; posição indisponível ou pouco precisa permite uma segunda tentativa com alta precisão, sem cache e timeout de 10 segundos. Um limite próprio encerra cada tentativa se a API não chamar nenhum callback. Não há monitoramento contínuo. [A API exige contexto seguro e permissão do usuário](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition): no celular, acessar o computador por `http://192.168…` não equivale a localhost seguro; o endereço do aplicativo precisa de HTTPS.
+- As coordenadas são arredondadas a três casas decimais antes de entrar no estado React ou em requisições, uma grade de aproximadamente 100 metros no Brasil. A validação do aparelho rejeita o ponto nulo `(0, 0)`, inclusive após arredondamento, e precisão inválida ou superior a 10 km. Acima de 2 km, tenta melhorar a posição antes de aceitar o ponto aproximado; se a precisão continuar entre 2 e 10 km, a interface informa a limitação e amplia o raio de busca para 5 ou 10 km. Pontos válidos no equador ou meridiano de Greenwich continuam aceitos.
+- Permissão negada, exceção síncrona do navegador, API ausente, posição indisponível, timeout ou precisão insuficiente preservam a alternativa de cidade/bairro/CEP. O campo manual também permanece utilizável enquanto o aparelho procura sua posição; enviar uma cidade cancela a tentativa de geolocalização. Nenhuma consulta de farmácias é enviada após uma posição rejeitada.
 - A distância usa Haversine em linha reta. Na busca manual, a referência é o centro aproximado da região escolhida, não a posição da pessoa. Não representa trajeto ou tempo de viagem.
 - Cidade/bairro aceita de 3 a 120 caracteres e não admite número residencial. CEP exige 8 dígitos, com hífen opcional. Não há autocomplete nem busca a cada tecla.
 - Overpass recebe somente categoria farmácia, raio e ponto aproximado. Não recebe nomes de medicamentos, conta, e-mail, receitas ou histórico.
 - `fetch` usa `credentials: omit`, `cache: no-store`, referrer limitado à origem, AbortSignal e timeout de cliente de 25 segundos. Há limite local de uma nova requisição por segundo por serviço; HTTP 429, 406 ou 503 bloqueiam esse serviço por 30 segundos, sem retry automático.
+- A última lista concluída permanece visível durante uma nova tentativa ou erro, com sua região e raio originais identificados. Um resultado novo substitui lista, região e raio juntos. Cancelar/remover/recolher continua limpando esses dados.
 - Cache somente em memória, com validade de 5 minutos e limite de 20 entradas. Coordenadas não são escritas em Supabase, `localStorage`, `sessionStorage` ou URL da aplicação.
 
 ## Links externos seguros
@@ -53,6 +54,8 @@ Os itens precisam de categoria farmácia, tipo OSM válido, ID inteiro positivo 
 | `src/pages/Pharmacies.tsx` | Fluxo, estados, busca opcional, cancelamento e ações externas |
 | `src/styles/pharmacies.css` | Estilos da página e reflow em telas estreitas, com seletores locais |
 | `src/lib/pharmacies.ts` | Validação, consultas, cache, distâncias e URLs seguras |
+| `src/lib/deviceGeolocation.ts` | API nativa, captura de exceções, tentativas limitadas, precisão e cancelamento |
+| `src/components/common/PharmacyErrorBoundary.tsx` | Recuperação de erro de renderização sem remover a navegação do app |
 | `src/lib/pharmacies.test.ts` | Regressões de limites, fontes externas, links e cancelamento |
 | `src/pages/PublicInformation.tsx` | Privacidade e condições dos serviços externos |
 
@@ -63,3 +66,31 @@ A página requer `MedicationProvider` e usa `Header` e componentes visuais comun
 `npm test -- src/lib/pharmacies.test.ts` cobre coordenadas e precisão, CEP/cidade, Haversine, normalização, telefones, queries limitadas, links Google Maps/Waze, região sem navegação indevida, ausência de origem e dados médicos, requests sem credenciais, cache, cancelamento, timeout e pausa após limitação do serviço.
 
 A conferência de interface deve incluir desktop, mobile estreito e texto grande: estado inicial sem pedidos de rede, abertura das duas opções externas, busca manual, escolha de região, negação de localização, cancelamento durante espera, callback tardio após recolher, ampliação do raio, chamada telefônica e destinos das duas rotas. Confirmar atribuição visível e ausência de nomes de medicamentos nos links.
+
+
+## QA de geolocalização e recuperação — 23/11/2026
+
+A falha de bloqueio foi reproduzida antes da correção com uma exceção síncrona `SecurityError`: o erro escapava do clique, o estado permanecia em espera e a busca por cidade ficava desativada. A página agora trata a exceção e encerra a espera, mantendo o formulário manual. Erros assíncronos e callbacks atrasados também são tratados; a proteção de renderização mantém os outros destinos do aplicativo disponíveis se houver uma falha inesperada de apresentação.
+
+`node scripts/test-pharmacy-flow.mjs --port 9338` executou **17 cenários** em Chrome dedicado, contexto de demonstração descartável:
+
+- API nativa com permissão concedida, coordenadas emuladas de Campinas e **requisição real ao Overpass: HTTP 200, 41 farmácias**. Não foi uma localização física do celular do usuário.
+- Permissão nativa negada, seguida de busca manual; exceção síncrona de política; API ausente; posição aproximada; precisão excessivamente baixa; coordenadas nulas.
+- Cancelamento com callback tardio; busca manual interrompendo geolocalização; indisponibilidade do provedor preservando a lista anterior; JSON inválido; resultado vazio; API nativa sem resposta até o limite próprio.
+- Falha de renderização artificial, recuperação com “Tentar novamente” e navegação preservada. O Error Boundary é específico da página e não substitui o tratamento de erros do clique, [como explica a documentação do React](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+- Lista de resultados e rotas Google Maps/Waze em 320×568, 390×844 e 1280×900, sem cortes laterais.
+
+As falhas e os retornos controlados estão identificados no [relatório de QA](pharmacy-qa-results.json). O fluxo normal e as falhas esperadas não produziram exceções não tratadas. A falha artificial de renderização gera o diagnóstico esperado e a tela de recuperação.
+
+Verificação final: **172 testes passaram em 14 arquivos**, TypeScript/build de produção concluído. Ainda não foram testados GPS físico, Safari/iOS físico ou o endereço que a pessoa abre no próprio celular. O código não concede permissões do navegador nem transforma HTTP de rede local em contexto seguro.
+
+
+### Modo celular do computador e endereço 127.0.0.1
+
+O ambiente informado posteriormente foi o modo celular do navegador no computador, em `127…`, e não um telefone físico na rede local. Nessa situação, HTTP em loopback é uma [origem considerada confiável](https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Secure_Contexts#potentially_trustworthy_origins). A observação anterior sobre HTTPS em IP de rede local não explica, por si, esse caso.
+
+O [Device Mode do Chrome](https://developer.chrome.com/docs/devtools/device-mode) simula a apresentação mobile. A localização precisa vir do computador ou ser definida separadamente no [painel Sensors](https://developer.chrome.com/docs/devtools/sensors#geolocation).
+
+Na sessão isolada do ECC, a verificação sem coordenadas brasileiras configuradas encontrou `isSecureContext=true`, permissão `granted` e resposta nativa `0,0`, precisão `0`. O aplicativo manteve a página, o campo manual e a nova tentativa disponíveis, sem consultar farmácias para esse ponto. Na mesma página, após configurar explicitamente Campinas no emulador, uma nova tentativa recebeu HTTP 200 e listou 41 farmácias. Isso valida a recuperação sem recarregar; não é uma leitura da posição física ou das configurações do Chrome pessoal do usuário.
+
+Para repetir com uma posição de teste, abra o Command Menu do DevTools (`Command+Shift+P` no Mac, `Control+Shift+P` no Windows), escolha **Show Sensors**, selecione **Custom location** em **Geolocation** e informe latitude `-22.906` e longitude `-47.060`. Depois toque em **Usar minha localização**. Para posição real, retire a substituição de coordenadas e permita localização no navegador e no sistema. O aplicativo não deve escolher uma cidade simulada automaticamente.

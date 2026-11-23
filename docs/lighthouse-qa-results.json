@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-23",
+  "tool": "ECC Chrome DevTools Lighthouse snapshot, mobile",
+  "rows": [
+    {
+      "state": "/login",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/medicamentos",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/adicionar:1",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/adicionar:2",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/adicionar:3",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/adicionar:4",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/historico",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/status",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/configuracoes",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/farmacias:initial",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/ajuda",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/privacidade",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    },
+    {
+      "state": "/termos",
+      "accessibilityScore": 100,
+      "bestPracticesScore": 100,
+      "accessibilityFailures": []
+    }
+  ],
+  "performanceLab": {
+    "origin": "http://127.0.0.1:4173",
+    "cpuThrottling": "1x",
+    "networkThrottling": "none",
+    "login": {
+      "lcpMs": 379,
+      "cls": 0
+    },
+    "routine": {
+      "lcpMs": 107,
+      "cls": 0
+    },
+    "inp": null,
+    "fieldData": null
+  },
+  "limitations": [
+    "Lighthouse snapshot does not certify full accessibility",
+    "Precise viewport and expanded result states covered separately by CDP/axe",
+    "INP not measured; lab loading data is not mobile network or real-user performance",
+    "SEO and agentic-browsing scores are outside this functional QA scope"
+  ]
+}

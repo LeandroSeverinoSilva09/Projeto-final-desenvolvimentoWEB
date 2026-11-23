@@ -1,5 +1,7 @@
 # Verificação da implementação — 23/11/2026
 
+**Resultado atual:** consulte a [revisão funcional ECC](platform-qa-review.md), com 172 testes unitários, 29 cenários de interface, 220 estados de proporção e os testes nativos de aviso imediato. Os registros abaixo preservam as verificações de rodadas anteriores e seus respectivos limites.
+
 ## Verificações concluídas
 
 - `npm test`: **11 arquivos e 118 testes aprovados**. Cobrem horários, associação estrita de doses, estoque fracionado e precisão decimal, adesão, CSV, notificações, catálogo oficial e normalização/erros dos serviços de mapas, paginação do histórico e novas tentativas do dispatcher.

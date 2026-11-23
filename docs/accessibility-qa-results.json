@@ -1,0 +1,274 @@
+{
+  "checkedAt": "2026-11-23T20:15:41.856Z",
+  "tool": "axe-core",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "scope": "Local demo; normal and large text; pharmacy result fixture includes a phone link",
+  "states": [
+    {
+      "name": "login",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "login",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "name-validation",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "name-validation",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "catalog-results",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "name": "catalog-results",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "name": "format-and-amount",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "name": "format-and-amount",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "name": "schedule-validation",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "schedule-validation",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "review",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "review",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "restock-dialog",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "restock-dialog",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/medicamentos",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/medicamentos",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/historico",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/historico",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/status",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/status",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/configuracoes",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/configuracoes",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/farmacias",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/farmacias",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "pharmacy-results-fixture",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "pharmacy-results-fixture",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/ajuda",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/ajuda",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/privacidade",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/privacidade",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/termos",
+      "large": false,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "/termos",
+      "large": true,
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "limitations": [
+    "Automated scan does not certify WCAG compliance",
+    "Incomplete checks require human assessment",
+    "No VoiceOver/TalkBack session or participant usability study"
+  ]
+}

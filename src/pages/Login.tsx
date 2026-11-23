@@ -46,7 +46,7 @@ export function Login() {
     finally { setBusy(false) }
   }
   const title = { login: 'Que bom ter você aqui.', signup: 'Comece a cuidar da sua rotina.', reset: 'Vamos recuperar seu acesso.', recover: 'Crie uma nova senha.' }[mode]
-  return <div className="auth-page">
+  return <main className="auth-page">
     <section className="auth-story">
       <a className="brand" href="/login"><span className="brand-symbol"><BrandMark size={29}/></span><span>MED<span className="brand-light">Control</span></span></a>
       <div className="auth-story-content"><span className="soft-label"><Heart size={16}/> Mais tranquilidade no seu dia</span>
@@ -74,5 +74,5 @@ export function Login() {
       {mode !== 'recover' && <><div className="auth-divider"><span>Conheça antes de criar sua conta</span></div><button className="demo-button" onClick={startDemo}>Explorar demonstração <ArrowRight size={17}/></button><p className="auth-demo-note">Um ambiente com dados fictícios para conhecer o projeto.</p></>}
       <p className="auth-privacy"><ShieldCheck size={15}/> Seus dados de saúde merecem cuidado e privacidade.</p><p className="auth-privacy"><Link className="text-link" to="/privacidade">Privacidade</Link> · <Link className="text-link" to="/termos">Condições de uso</Link></p>
     </div><p className="auth-footer">Projeto acadêmico de impacto social · Acesso gratuito</p></section>
-  </div>
+  </main>
 }

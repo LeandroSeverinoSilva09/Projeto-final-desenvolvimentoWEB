@@ -1,0 +1,286 @@
+{
+  "date": "2026-11-23",
+  "environment": "Local Chrome, disposable demo context",
+  "cases": [
+    {
+      "scenario": "native_geolocation_real_public_api",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 41,
+      "status": "41 farmácias encontradas.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [],
+      "coordinatesEmulated": true,
+      "apiMocked": false
+    },
+    {
+      "scenario": "native_permission_denied_manual_fallback",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 1,
+      "status": "1 farmácia encontrada.",
+      "location": "Campinas · Sao PauloAté 2 km · distância aproximada em linha reta.As distâncias partem do centro da região escolhida.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://photon.komoot.io/api/?q=Campinas%2C+SP&countrycode=BR&limit=5&layer=city&layer=district&layer=locality",
+          "body": ""
+        },
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "nativePermissionDenied": true,
+      "manualResultsMocked": true
+    },
+    {
+      "scenario": "synchronous_security_error",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "A localização não foi autorizada. Você pode permitir no navegador ou buscar por cidade, bairro ou CEP.",
+      "cards": 0,
+      "status": "Busca não concluída.",
+      "location": null,
+      "mockRequests": []
+    },
+    {
+      "scenario": "unsupported_geolocation",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "A localização não está disponível nesta página. Busque por cidade, bairro ou CEP. Para usar a localização no celular, abra o aplicativo em HTTPS.",
+      "cards": 0,
+      "status": "Busca não concluída.",
+      "location": null,
+      "mockRequests": []
+    },
+    {
+      "scenario": "native_approximate_position",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 1,
+      "status": "1 farmácia encontrada.",
+      "location": "Região aproximada do aparelhoAté 10 km · distância aproximada em linha reta.Precisão informada pelo aparelho: cerca de 8 km. Confira a região; se precisar, busque pela sua cidade.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A10000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A10000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "coordinatesEmulated": true,
+      "apiMocked": true
+    },
+    {
+      "scenario": "position_too_inaccurate",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "A localização recebida está muito imprecisa para encontrar farmácias próximas. Tente novamente com a localização precisa ativada ou busque por cidade, bairro ou CEP.",
+      "cards": 0,
+      "status": "Busca não concluída.",
+      "location": null,
+      "mockRequests": []
+    },
+    {
+      "scenario": "zero_coordinates",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "O navegador não informou sua localização real. Tente localizar novamente ou digite sua cidade, bairro ou CEP abaixo.",
+      "cards": 0,
+      "status": "Busca não concluída.",
+      "location": null,
+      "mockRequests": []
+    },
+    {
+      "scenario": "cancel_ignores_late_position",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 0,
+      "status": "Localização removida. Você pode fazer uma nova busca.",
+      "location": null,
+      "mockRequests": []
+    },
+    {
+      "scenario": "manual_search_interrupts_geolocation",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 1,
+      "status": "1 farmácia encontrada.",
+      "location": "Campinas · Sao PauloAté 2 km · distância aproximada em linha reta.As distâncias partem do centro da região escolhida.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://photon.komoot.io/api/?q=Campinas%2C+SP&countrycode=BR&limit=5&layer=city&layer=district&layer=locality",
+          "body": ""
+        },
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ]
+    },
+    {
+      "scenario": "provider_failure_keeps_previous_results",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "O serviço de mapas está indisponível ou ocupado. Aguarde 30 segundos ou abra Google Maps ou Waze no início da página.",
+      "cards": 1,
+      "status": "Busca não concluída.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        },
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A5000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A5000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "apiMocked": true
+    },
+    {
+      "scenario": "invalid_provider_json",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "Não foi possível consultar os mapas. Confira sua conexão ou abra Google Maps ou Waze no início da página.",
+      "cards": 0,
+      "status": "Busca não concluída.",
+      "location": null,
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "apiMocked": true
+    },
+    {
+      "scenario": "empty_results",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 0,
+      "status": "0 farmácias encontradas.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "apiMocked": true
+    },
+    {
+      "scenario": "silent_native_api_deadline",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "O aparelho demorou para localizar você. Tente novamente ou busque por cidade, bairro ou CEP.",
+      "cards": 0,
+      "status": "Busca não concluída.",
+      "location": null,
+      "mockRequests": [],
+      "nativeApiMocked": true
+    },
+    {
+      "scenario": "render_boundary_recovery",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 0,
+      "status": "Use sua localização ou informe uma cidade, bairro ou CEP.",
+      "location": null,
+      "mockRequests": [],
+      "injectedRenderFailure": true,
+      "recovery": true
+    },
+    {
+      "scenario": "results_layout_320",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 1,
+      "status": "1 farmácia encontrada.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "width": 320,
+      "height": 568,
+      "cuts": [],
+      "apiMocked": true
+    },
+    {
+      "scenario": "results_layout_390",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 1,
+      "status": "1 farmácia encontrada.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "width": 390,
+      "height": 844,
+      "cuts": [],
+      "apiMocked": true
+    },
+    {
+      "scenario": "results_layout_1280",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 1,
+      "status": "1 farmácia encontrada.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "width": 1280,
+      "height": 900,
+      "cuts": [],
+      "apiMocked": true
+    }
+  ],
+  "apiRequests": [
+    {
+      "scenario": "native_geolocation_real_public_api",
+      "url": "https://ovp.dresel.systems/api-sa/interpreter",
+      "status": 200
+    }
+  ],
+  "unexpectedExceptions": [],
+  "limitations": [
+    "Device coordinates are emulated, not a physical GPS fix",
+    "Failure scenarios use controlled native API/provider failures"
+  ]
+}

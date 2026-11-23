@@ -17,7 +17,7 @@ describe('coordinates, distances and query boundaries', () => {
     expect(() => deviceLocation({ latitude: 0, longitude: 0, accuracy: 1 })).toThrow('não informou sua localização real')
     expect(() => deviceLocation({ latitude: 0.00001, longitude: -0.00001, accuracy: 1 })).toThrow('não informou sua localização real')
   })
-  it.each([NaN, Infinity, -1, 2001, 50000])('rejects unusable device accuracy %s', accuracy => {
+  it.each([NaN, Infinity, -1, 10001, 50000])('rejects unusable device accuracy %s', accuracy => {
     expect(() => deviceLocation({ ...origin, accuracy })).toThrow('muito imprecisa')
   })
   it('keeps valid device fixes on the equator and rounds coordinates before sharing', () => {

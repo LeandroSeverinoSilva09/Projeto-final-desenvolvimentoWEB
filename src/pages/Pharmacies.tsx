@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronDown, Clock3, ExternalLink, LocateFixed, MapPin, Navigation, Package, Phone, Search, X } from 'lucide-react'
+import { PharmacyErrorBoundary } from '../components/common/PharmacyErrorBoundary'
+import { DeviceLocationError, getDeviceLocation, radiusForDeviceLocation } from '../lib/deviceGeolocation'
 import { Header } from '../components/layout/Header'
 import { useMedications } from '../contexts/MedicationContext'
 import { getStockStatus } from '../utils/calculations'
-import { deviceLocation, DEVICE_LOCATION_OPTIONS, clearPharmacyCache, externalSearchUrls, formatDistance, geolocationErrorMessage, googleDirectionsUrl, normalizeLocationQuery, PharmacyError, searchPharmacies, searchPlaces, wazeDirectionsUrl, type Coordinates, type Pharmacy, type PharmacyRadius, type PlaceOption } from '../lib/pharmacies'
+import { clearPharmacyCache, externalSearchUrls, formatDistance, googleDirectionsUrl, normalizeLocationQuery, PharmacyError, searchPharmacies, searchPlaces, wazeDirectionsUrl, type Coordinates, type Pharmacy, type PharmacyRadius, type PlaceOption } from '../lib/pharmacies'
 import '../styles/pharmacies.css'
 
 interface SelectedLocation extends Coordinates {
@@ -13,16 +15,20 @@ interface SelectedLocation extends Coordinates {
   accuracy?: number
 }
 
-export function Pharmacies() {
+export function Pharmacies() { return <PharmacyErrorBoundary><PharmacySearch/></PharmacyErrorBoundary> }
+
+function PharmacySearch() {
   const { medications } = useMedications()
   const lowStock = medications.filter(medication => getStockStatus(medication).needsReplenish)
   const [query, setQuery] = useState('')
   const [fallbackPlace, setFallbackPlace] = useState('')
   const [radius, setRadius] = useState<PharmacyRadius>(2000)
   const [places, setPlaces] = useState<PlaceOption[]>([])
-  const [location, setLocation] = useState<SelectedLocation | null>(null)
-  const [pharmacies, setPharmacies] = useState<Pharmacy[]>([])
-  const [searched, setSearched] = useState(false)
+  const [result, setResult] = useState<{ location: SelectedLocation; radius: PharmacyRadius; pharmacies: Pharmacy[] } | null>(null)
+  const location = result?.location ?? null
+  const pharmacies = result?.pharmacies ?? []
+  const searched = result !== null
+  const resultRadius = result?.radius ?? radius
   const [pending, setPending] = useState<'location' | 'places' | 'pharmacies' | null>(null)
   const [error, setError] = useState('')
   const [status, setStatus] = useState('Use sua localização ou informe uma cidade, bairro ou CEP.')
@@ -43,43 +49,36 @@ export function Pharmacies() {
 
   const reportError = (cause: unknown) => {
     if (cause instanceof DOMException && cause.name === 'AbortError') return
-    setError(cause instanceof PharmacyError ? cause.message : 'Não foi possível concluir a busca. Tente novamente ou abra Google Maps ou Waze no início da página.')
+    setError(cause instanceof PharmacyError || cause instanceof DeviceLocationError ? cause.message : 'Não foi possível concluir a busca. Tente novamente ou abra Google Maps ou Waze no início da página.')
     setStatus('Busca não concluída.')
   }
 
   const loadPharmacies = async (selected: SelectedLocation, selectedRadius: PharmacyRadius) => {
     const { controller, id } = begin('pharmacies')
-    setLocation(selected); setPharmacies([]); setSearched(false)
     setStatus(`Buscando farmácias em até ${selectedRadius / 1000} km…`)
     try {
       const results = await searchPharmacies(selected, selectedRadius, controller.signal)
       if (generation.current !== id) return
-      setPharmacies(results); setSearched(true)
+      setResult({ location: selected, radius: selectedRadius, pharmacies: results }); setRadius(selectedRadius)
       setStatus(`${results.length} ${results.length === 1 ? 'farmácia encontrada' : 'farmácias encontradas'}.`)
       requestAnimationFrame(() => { if (generation.current === id) resultsHeading.current?.focus() })
     } catch (cause) { if (generation.current === id) reportError(cause) }
     finally { if (generation.current === id) setPending(null) }
   }
 
-  const locate = () => {
-    const { id } = begin('location')
-    setLocation(null); setPharmacies([]); setSearched(false); setFallbackPlace('')
-    clearPharmacyCache()
-    if (!window.isSecureContext || !navigator.geolocation) {
-      setError('Seu navegador não oferece localização nesta página. Busque por cidade, bairro ou CEP.'); setPending(null)
-      return
-    }
-    setStatus('Aguardando a localização do aparelho…')
-    navigator.geolocation.getCurrentPosition(position => {
+  const locate = async () => {
+    const { controller, id } = begin('location')
+    setFallbackPlace('')
+    setStatus('Procurando a localização do aparelho… Você também pode buscar pela cidade.')
+    try {
+      const approximate = await getDeviceLocation(controller.signal)
       if (generation.current !== id) return
-      try {
-        const approximate = deviceLocation(position.coords)
-        void loadPharmacies({ ...approximate, source: 'device', label: 'Perto de você' }, radius)
-      } catch (cause) { reportError(cause); setStatus('Localização não obtida. Nenhuma busca de farmácias foi enviada.'); setPending(null) }
-    }, cause => {
+      const selectedRadius = radiusForDeviceLocation(radius, approximate.accuracy)
+      await loadPharmacies({ ...approximate, source: 'device', label: approximate.accuracy > 2000 ? 'Região aproximada do aparelho' : 'Perto de você' }, selectedRadius)
+    } catch (cause) {
       if (generation.current !== id) return
-      setError(geolocationErrorMessage(cause.code)); setStatus('Localização não obtida. Você pode buscar por cidade, bairro ou CEP.'); setPending(null)
-    }, DEVICE_LOCATION_OPTIONS)
+      reportError(cause)
+    } finally { if (generation.current === id) setPending(null) }
   }
 
   const submitPlace = async (event: FormEvent<HTMLFormElement>) => {
@@ -88,7 +87,6 @@ export function Pharmacies() {
     try { normalized = normalizeLocationQuery(query) }
     catch (cause) { reportError(cause); return }
     const { controller, id } = begin('places')
-    setLocation(null); setPharmacies([]); setSearched(false)
     setFallbackPlace(normalized.kind === 'place' ? normalized.value : '')
     setStatus('Procurando a cidade ou o bairro…')
     try {
@@ -103,7 +101,7 @@ export function Pharmacies() {
 
   const removeLocation = () => {
     generation.current += 1; request.current?.abort(); request.current = null
-    clearPharmacyCache(); setPending(null); setLocation(null); setPlaces([]); setPharmacies([]); setSearched(false); setQuery(''); setFallbackPlace(''); setError('')
+    clearPharmacyCache(); setPending(null); setResult(null); setPlaces([]); setQuery(''); setFallbackPlace(''); setError('')
     setStatus('Localização removida. Você pode fazer uma nova busca.')
   }
 
@@ -113,7 +111,7 @@ export function Pharmacies() {
   }
 
   const external = externalSearchUrls(location, fallbackPlace)
-  const searchDisabled = !!pending
+  const searchDisabled = pending === 'places' || pending === 'pharmacies'
   return <div className="pharmacy-page">
     <Header title="Farmácias próximas" subtitle="Encontre uma farmácia e escolha como chegar." />
     <section className="panel pharmacy-map-choice" aria-labelledby="pharmacy-map-choice-title">
@@ -134,23 +132,25 @@ export function Pharmacies() {
         <section className="panel pharmacy-search-panel" aria-labelledby="pharmacy-search-title">
           <h2 id="pharmacy-search-title">Onde você quer buscar?</h2>
           <p className="pharmacy-privacy" id="pharmacy-privacy-note">Sua região aproximada é enviada a um serviço de mapas para encontrar farmácias. Ela não é salva na conta. <a href="#pharmacy-sources">Saiba mais sobre a busca</a>.</p>
-          <button type="button" className="btn" onClick={locate} disabled={searchDisabled} aria-describedby="pharmacy-privacy-note"><LocateFixed size={19} aria-hidden="true" />{pending === 'location' ? 'Localizando…' : 'Usar minha localização'}</button>
-          <form className="pharmacy-search-form" onSubmit={submitPlace}><label htmlFor="pharmacy-place">Ou digite cidade, bairro ou CEP</label><div className="pharmacy-input-row"><input id="pharmacy-place" value={query} maxLength={120} onChange={event => setQuery(event.target.value)} placeholder="Ex.: Campinas, SP" autoComplete="off" aria-describedby="pharmacy-place-hint pharmacy-privacy-note" required disabled={!!pending} /><button className="btn secondary" type="submit" disabled={searchDisabled}><Search size={18} aria-hidden="true" />Buscar</button></div><p id="pharmacy-place-hint" className="field-help">Para um bairro, inclua a cidade e o estado.</p></form>
-          <fieldset className="pharmacy-radius" disabled={searchDisabled}><legend>Buscar em até</legend>{([2000, 5000, 10000] as const).map(value => <label key={value}><input type="radio" name="pharmacy-radius" value={value} checked={radius === value} onChange={() => changeRadius(value)} />{value / 1000} km</label>)}</fieldset>
+          <button type="button" className="btn" onClick={() => void locate()} disabled={!!pending} aria-describedby="pharmacy-privacy-note"><LocateFixed size={19} aria-hidden="true" />{pending === 'location' ? 'Localizando…' : 'Usar minha localização'}</button>
+          {pending === 'location' && <button type="button" className="text-link pharmacy-cancel-location" onClick={removeLocation}><X size={18} aria-hidden="true"/>Cancelar localização</button>}
+          <form className="pharmacy-search-form" onSubmit={submitPlace}><label htmlFor="pharmacy-place">Ou digite cidade, bairro ou CEP</label><div className="pharmacy-input-row"><input id="pharmacy-place" value={query} maxLength={120} onChange={event => setQuery(event.target.value)} placeholder="Ex.: Campinas, SP" autoComplete="off" aria-describedby="pharmacy-place-hint pharmacy-privacy-note" required disabled={searchDisabled} /><button className="btn secondary" type="submit" disabled={searchDisabled}><Search size={18} aria-hidden="true" />Buscar</button></div><p id="pharmacy-place-hint" className="field-help">Para um bairro, inclua a cidade e o estado.</p></form>
+          <fieldset className="pharmacy-radius" disabled={!!pending}><legend>Buscar em até</legend>{([2000, 5000, 10000] as const).map(value => <label key={value}><input type="radio" name="pharmacy-radius" value={value} checked={radius === value} onChange={() => changeRadius(value)} />{value / 1000} km</label>)}</fieldset>
           <div className="pharmacy-status" role="status" aria-live="polite"><p>{status}</p></div>
           {error && <div className="notice error" role="alert">{error}</div>}
-          {pending && <button type="button" className="btn secondary pharmacy-cancel" onClick={removeLocation}><X size={18} aria-hidden="true" />Cancelar busca</button>}
+          {pending && pending !== 'location' && <button type="button" className="btn secondary pharmacy-cancel" onClick={removeLocation}><X size={18} aria-hidden="true" />Cancelar busca</button>}
           {places.length > 0 && <div className="pharmacy-place-options"><h3>Escolha o local</h3><ul>{places.map(place => <li key={place.id}><button type="button" className="pharmacy-place-option btn secondary" onClick={() => void loadPharmacies({ ...place, source: 'manual' }, radius)}><MapPin size={18} aria-hidden="true" /><span>{place.label}</span><ArrowRight size={18} aria-hidden="true" /></button></li>)}</ul></div>}
         </section>
         <section className="pharmacy-results" aria-labelledby="pharmacy-results-title" aria-busy={pending === 'pharmacies'}>
+          {result && (pending || error) && <p className="pharmacy-last-result-note">A lista abaixo é da última busca concluída.</p>}
           <div className="pharmacy-results-header"><div><h2 id="pharmacy-results-title" ref={resultsHeading} tabIndex={-1}>{searched ? `${pharmacies.length} ${pharmacies.length === 1 ? 'farmácia encontrada' : 'farmácias encontradas'}` : 'Farmácias da região'}</h2><p>Confirme disponibilidade, preço e atendimento antes de sair.</p></div></div>
-          {location && <div className="pharmacy-location"><div><strong><MapPin size={17} aria-hidden="true" />{location.label}</strong><p>Até {radius / 1000} km · distância aproximada em linha reta.</p>{location.source === 'manual' && <p>As distâncias partem do centro da região escolhida.</p>}</div><button className="text-link" type="button" onClick={removeLocation}><X size={16} aria-hidden="true" />Remover localização</button></div>}
+          {location && <div className="pharmacy-location"><div><strong><MapPin size={17} aria-hidden="true" />{location.label}</strong><p>Até {resultRadius / 1000} km · distância aproximada em linha reta.</p>{location.source === 'device' && location.accuracy !== undefined && location.accuracy > 2000 && <p className="pharmacy-accuracy-note">Precisão informada pelo aparelho: cerca de {formatDistance(location.accuracy)}. Confira a região; se precisar, busque pela sua cidade.</p>}{location.source === 'manual' && <p>As distâncias partem do centro da região escolhida.</p>}</div><button className="text-link" type="button" onClick={removeLocation}><X size={16} aria-hidden="true" />Remover localização</button></div>}
           {!location && !pending && <div className="pharmacy-empty"><MapPin size={32} aria-hidden="true" /><h3>Escolha uma região</h3><p>Use a localização do aparelho ou informe uma cidade, bairro ou CEP.</p></div>}
           {searched && !pharmacies.length && <div className="pharmacy-empty"><Search size={30} aria-hidden="true" /><h3>Nenhuma farmácia encontrada neste raio</h3><p>Tente uma distância maior ou outro bairro. Você também pode abrir Google Maps ou Waze no início da página.</p>{radius < 10000 && <button className="btn secondary" type="button" onClick={() => changeRadius(radius === 2000 ? 5000 : 10000)}>Ampliar para {radius === 2000 ? 5 : 10} km</button>}</div>}
           {pharmacies.length > 0 && <ol className="pharmacy-list">{pharmacies.map(pharmacy => <li key={pharmacy.id}><article className="panel pharmacy-card">
             <div className="pharmacy-card-heading"><h3>{pharmacy.name}</h3><span className="pharmacy-distance">≈ {formatDistance(pharmacy.distanceMeters)}</span></div>
             <p className="pharmacy-address">{pharmacy.address || 'Endereço não informado. Confira no mapa ou por telefone.'}</p>
-            {pharmacy.phone && <a className="pharmacy-call text-link" href={pharmacy.phone.href} aria-label={`Ligar para ${pharmacy.name}`}><Phone size={18} aria-hidden="true" />Ligar <span>{pharmacy.phone.label}</span></a>}
+            {pharmacy.phone && <a className="pharmacy-call text-link" href={pharmacy.phone.href} aria-label={`Ligar ${pharmacy.phone.label} para ${pharmacy.name}`}><Phone size={18} aria-hidden="true" />Ligar <span>{pharmacy.phone.label}</span></a>}
             <div className="pharmacy-route-options"><p>Como chegar</p><a className="btn" href={googleDirectionsUrl(pharmacy)} target="_blank" rel="noopener noreferrer" aria-label={`Google Maps: como chegar a ${pharmacy.name}`}><Navigation size={16} aria-hidden="true" />Google Maps<ExternalLink size={14} aria-hidden="true" /></a><a className="btn secondary" href={wazeDirectionsUrl(pharmacy)} target="_blank" rel="noopener noreferrer" aria-label={`Waze: como chegar a ${pharmacy.name}`}><Navigation size={16} aria-hidden="true" />Waze<ExternalLink size={14} aria-hidden="true" /></a></div>
             {pharmacy.openingHours && <details className="pharmacy-hours-details"><summary><Clock3 size={16} aria-hidden="true" />Horário informado</summary><p lang="en">{pharmacy.openingHours}</p><p>Confirme o horário com a farmácia.</p></details>}
           </article></li>)}</ol>}

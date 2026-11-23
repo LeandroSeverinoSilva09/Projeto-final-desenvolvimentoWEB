@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-11-23T19:58:34.385Z",
+  "origin": "http://127.0.0.1:5173",
+  "browser": "Chrome/158.0.8127.36",
+  "permissionGrantedInDisposableContext": true,
+  "api": "native Notification with real show events",
+  "manualTests": [
+    {
+      "attempt": 1,
+      "clickedAt": "2026-11-23T19:57:31.278Z",
+      "latencyMs": 14,
+      "type": "show",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-698633a6-e6b4-4a40-9883-78271487fc46",
+      "time": "2026-11-23T19:57:31.292Z"
+    },
+    {
+      "attempt": 2,
+      "clickedAt": "2026-11-23T19:57:31.542Z",
+      "latencyMs": 9,
+      "type": "show",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-9662538e-9fe1-4f89-b627-0d5f0f472d80",
+      "time": "2026-11-23T19:57:31.551Z"
+    }
+  ],
+  "scheduledTime": "16:58",
+  "events": [
+    {
+      "type": "created",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-698633a6-e6b4-4a40-9883-78271487fc46",
+      "time": "2026-11-23T19:57:31.286Z"
+    },
+    {
+      "type": "show",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-698633a6-e6b4-4a40-9883-78271487fc46",
+      "time": "2026-11-23T19:57:31.292Z"
+    },
+    {
+      "type": "created",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-9662538e-9fe1-4f89-b627-0d5f0f472d80",
+      "time": "2026-11-23T19:57:31.546Z"
+    },
+    {
+      "type": "show",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-9662538e-9fe1-4f89-b627-0d5f0f472d80",
+      "time": "2026-11-23T19:57:31.551Z"
+    },
+    {
+      "type": "created",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:23/11/2026:23/11/2026-ecc-native-notification-16:58",
+      "time": "2026-11-23T19:58:01.896Z"
+    },
+    {
+      "type": "show",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:23/11/2026:23/11/2026-ecc-native-notification-16:58",
+      "time": "2026-11-23T19:58:01.904Z"
+    }
+  ],
+  "duplicateCheck": "passed",
+  "disabledCheck": "passed",
+  "pushSubscriptionRequests": [],
+  "osBannerVisuallyConfirmed": false
+}

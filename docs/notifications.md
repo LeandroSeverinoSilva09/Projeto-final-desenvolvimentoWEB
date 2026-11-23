@@ -39,7 +39,7 @@ A verificação JWT legada da plataforma fica desligada para esse endpoint porqu
 3. Acessar GET uma vez para inicializar as chaves; o cliente também faz isso ao ativar os lembretes. Requisições simultâneas inserem a mesma chave primária e releem a linha vencedora; não regeneram chaves de inscrições existentes.
 4. Publicar o frontend em HTTPS, atualizar os retornos do Auth e instalar/abrir o PWA no aparelho.
 5. Na conta real, ativar notificações. Conferir a inscrição em `push_subscriptions` sem divulgar endpoint ou chaves.
-6. Usar **Testar aviso local** para verificar permissão e apresentação pelo navegador. Esse botão não chama o dispatcher. Para validar o caminho completo, cadastrar um horário de teste futuro, deixar o app em segundo plano e confirmar o recebimento no próprio aparelho; correlacionar a tentativa com o resultado do cron.
+6. Usar **Enviar teste agora** para verificar permissão e apresentação pelo navegador. Esse botão não chama o dispatcher. Para validar o caminho completo, cadastrar um horário de teste futuro, deixar o app em segundo plano e confirmar o recebimento no próprio aparelho; correlacionar a tentativa com o resultado do cron.
 
 Para atualizar uma instalação existente, aplicar a migração `005` antes de publicar a nova função. O comando de deploy inclui automaticamente `dispatch.ts`. Para o editor de arquivo único no Dashboard, executar `node scripts/bundle-dispatcher.mjs`: ele gera `/tmp/medcontrol-dispatch-reminders.ts`, mantendo os imports npm e reunindo apenas os módulos locais, sem ler credenciais.
 
@@ -99,4 +99,10 @@ Os eventos nativos estão em [notification-test-results.json](notification-test-
 
 O roteiro nativo é repetível com `node scripts/test-browser-notifications.mjs --port 9337`, tendo o servidor Vite em `127.0.0.1:5173` e um Chrome dedicado iniciado com `--remote-debugging-port=9337` e um `--user-data-dir` temporário. O script cria e descarta seu próprio contexto, concede permissão nele, usa um horário futuro e verifica duplicação e desativação. Ele observa eventos reais da API e não cria um `show` artificial.
 
-Para repetir pela interface: recarregue o app, entre na demonstração, ative as notificações em Ajustes, use **Testar aviso local** e cadastre um horário de teste um ou dois minutos à frente. Mantenha a aba aberta. A permissão pertence ao endereço usado: `localhost` e `127.0.0.1` são origens diferentes. Verifique também se o navegador está autorizado nos ajustes do computador e se Não Perturbe/Foco está ocultando banners.
+Para repetir pela interface: recarregue o app, entre na demonstração, ative as notificações em Ajustes e toque em **Enviar teste agora**. O teste é enviado nesse clique, sem cadastrar remédio ou aguardar horário. Para testar separadamente o lembrete da agenda, cadastre um horário fictício um ou dois minutos à frente e mantenha a aba aberta. A permissão pertence ao endereço usado: `localhost` e `127.0.0.1` são origens diferentes. Verifique também se o navegador está autorizado nos ajustes do computador e se Não Perturbe/Foco está ocultando banners.
+
+## Teste imediato e revisão geral ECC
+
+A ação **Enviar teste agora** foi verificada sem medicamentos cadastrados: dois eventos nativos `show` em 14 ms e 9 ms após os cliques. No preview de produção, com worker ativo, `showNotification()` foi resolvido em 5 ms e 3 ms. Os testes repetidos usam tags distintas; cliques simultâneos são bloqueados durante o envio. A falha remove a confirmação anterior e permite nova tentativa. Desativar no modo demonstração não consulta nem remove inscrições remotas.
+
+A confirmação do navegador não atesta que o sistema operacional apresentou um banner. Consulte a [revisão completa e seus limites](platform-qa-review.md), os [eventos desktop](notification-immediate-qa.json) e os [resultados do PWA](notification-production-qa.json).

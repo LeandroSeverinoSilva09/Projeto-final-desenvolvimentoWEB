@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-11-23T20:02:33.322Z",
+  "origin": "http://127.0.0.1:4173",
+  "browser": "Chrome/158.0.8127.36",
+  "permissionGrantedInDisposableContext": true,
+  "api": "native service worker showNotification resolution",
+  "manualTests": [
+    {
+      "attempt": 1,
+      "clickedAt": "2026-11-23T20:01:00.392Z",
+      "latencyMs": 5,
+      "type": "worker-show-resolved",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-4c9bb0d0-2f8b-423a-9994-1898a5bcee12",
+      "time": "2026-11-23T20:01:00.397Z"
+    },
+    {
+      "attempt": 2,
+      "clickedAt": "2026-11-23T20:01:00.649Z",
+      "latencyMs": 3,
+      "type": "worker-show-resolved",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-4ffe2e42-3e13-4a26-95b2-e8e0721b6ec8",
+      "time": "2026-11-23T20:01:00.652Z"
+    }
+  ],
+  "scheduledTime": "17:02",
+  "events": [
+    {
+      "type": "worker-created",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-4c9bb0d0-2f8b-423a-9994-1898a5bcee12",
+      "time": "2026-11-23T20:01:00.394Z"
+    },
+    {
+      "type": "worker-show-resolved",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-4c9bb0d0-2f8b-423a-9994-1898a5bcee12",
+      "time": "2026-11-23T20:01:00.397Z"
+    },
+    {
+      "type": "worker-created",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-4ffe2e42-3e13-4a26-95b2-e8e0721b6ec8",
+      "time": "2026-11-23T20:01:00.650Z"
+    },
+    {
+      "type": "worker-show-resolved",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-4ffe2e42-3e13-4a26-95b2-e8e0721b6ec8",
+      "time": "2026-11-23T20:01:00.652Z"
+    },
+    {
+      "type": "worker-created",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:23/11/2026:23/11/2026-ecc-native-notification-17:02",
+      "time": "2026-11-23T20:02:00.944Z"
+    },
+    {
+      "type": "worker-show-resolved",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:23/11/2026:23/11/2026-ecc-native-notification-17:02",
+      "time": "2026-11-23T20:02:00.952Z"
+    }
+  ],
+  "duplicateCheck": "passed",
+  "disabledCheck": "passed",
+  "pushSubscriptionRequests": [],
+  "osBannerVisuallyConfirmed": false
+}

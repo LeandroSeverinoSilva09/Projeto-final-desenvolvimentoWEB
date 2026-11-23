@@ -1,0 +1,2772 @@
+{
+  "date": "2026-11-23",
+  "environment": "Local Chrome CDP, disposable demo context; no real accounts",
+  "rows": [
+    {
+      "route": "/",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 581.1875,
+        "bottom": 625.1875,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 474,
+        "bottom": 500.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 433.984375,
+        "bottom": 493.984375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 410.7890625,
+        "bottom": 520.3828125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 518.375,
+        "bottom": 578.375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 727.2578125,
+        "bottom": 791.2578125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 371.296875,
+        "bottom": 447.890625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 824.3671875,
+        "bottom": 869.3671875,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 523.6875,
+        "bottom": 555.8828125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 461.09375,
+        "bottom": 523.59375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 467.59375,
+        "bottom": 621.59375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 550.59375,
+        "bottom": 613.09375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 780.09375,
+        "bottom": 844.09375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": {
+        "top": 483.953125,
+        "bottom": 566.9453125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "documentWidth": 320,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 546.9375,
+        "bottom": 590.9375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 474,
+        "bottom": 500.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 366.7890625,
+        "bottom": 426.7890625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 374.7890625,
+        "bottom": 484.3828125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 482.375,
+        "bottom": 542.375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 635.4609375,
+        "bottom": 699.4609375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 320.8984375,
+        "bottom": 397.4921875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 795.5703125,
+        "bottom": 840.5703125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 523.6875,
+        "bottom": 555.8828125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 461.09375,
+        "bottom": 523.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 467.59375,
+        "bottom": 621.59375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 550.59375,
+        "bottom": 613.09375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 748.09375,
+        "bottom": 812.09375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": {
+        "top": 411.765625,
+        "bottom": 494.7578125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "documentWidth": 360,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 546.9375,
+        "bottom": 590.9375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 474,
+        "bottom": 500.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 366.7890625,
+        "bottom": 426.7890625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 374.7890625,
+        "bottom": 569.3828125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 482.375,
+        "bottom": 542.375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 635.4609375,
+        "bottom": 699.4609375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 318.8984375,
+        "bottom": 395.4921875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": false,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 765.375,
+        "bottom": 810.375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 523.6875,
+        "bottom": 555.8828125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 461.09375,
+        "bottom": 523.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 431.1953125,
+        "bottom": 555.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 550.59375,
+        "bottom": 613.09375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 718.09375,
+        "bottom": 782.09375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": {
+        "top": 377.5703125,
+        "bottom": 460.5625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 375,
+      "height": 667,
+      "large": true,
+      "documentWidth": 375,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 546.9375,
+        "bottom": 590.9375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 474,
+        "bottom": 500.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 366.7890625,
+        "bottom": 426.7890625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 374.7890625,
+        "bottom": 569.3828125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 482.375,
+        "bottom": 542.375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 635.4609375,
+        "bottom": 699.4609375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 318.8984375,
+        "bottom": 395.4921875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": false,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 717.375,
+        "bottom": 762.375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 484.5,
+        "bottom": 516.6953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 461.09375,
+        "bottom": 523.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 431.1953125,
+        "bottom": 555.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 550.59375,
+        "bottom": 613.09375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 718.09375,
+        "bottom": 782.09375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": {
+        "top": 377.5703125,
+        "bottom": 460.5625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 390,
+      "height": 844,
+      "large": true,
+      "documentWidth": 390,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 546.9375,
+        "bottom": 590.9375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 413,
+        "bottom": 439.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 366.7890625,
+        "bottom": 426.7890625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 374.7890625,
+        "bottom": 548.3828125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 451.1796875,
+        "bottom": 511.1796875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 576.96875,
+        "bottom": 640.96875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 318.8984375,
+        "bottom": 395.4921875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": false,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 651.1875,
+        "bottom": 696.1875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 484.5,
+        "bottom": 516.6953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 381.6953125,
+        "bottom": 444.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 388.1953125,
+        "bottom": 500.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 507.59375,
+        "bottom": 570.09375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 675.09375,
+        "bottom": 739.09375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": {
+        "top": 348.7734375,
+        "bottom": 431.765625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 430,
+      "height": 932,
+      "large": true,
+      "documentWidth": 430,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 567.9375,
+        "bottom": 611.9375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 413,
+        "bottom": 439.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 366.7890625,
+        "bottom": 426.7890625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 374.7890625,
+        "bottom": 537.9765625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 423.484375,
+        "bottom": 483.484375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 488.484375,
+        "bottom": 552.484375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 314.59375,
+        "bottom": 404.5859375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 687.1875,
+        "bottom": 732.1875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 418,
+        "bottom": 450.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 381.6953125,
+        "bottom": 444.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 388.1953125,
+        "bottom": 568.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 440.1953125,
+        "bottom": 502.6953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 540.6953125,
+        "bottom": 604.6953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": {
+        "top": 335.1796875,
+        "bottom": 431.5703125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "documentWidth": 768,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 567.9375,
+        "bottom": 611.9375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 413,
+        "bottom": 439.59375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 366.7890625,
+        "bottom": 426.7890625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 374.7890625,
+        "bottom": 537.9765625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 423.484375,
+        "bottom": 483.484375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 488.484375,
+        "bottom": 552.484375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 314.59375,
+        "bottom": 404.5859375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": false,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 687.1875,
+        "bottom": 732.1875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 418,
+        "bottom": 450.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 381.6953125,
+        "bottom": 444.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 388.1953125,
+        "bottom": 568.1953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 440.1953125,
+        "bottom": 502.6953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 508.6953125,
+        "bottom": 572.6953125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": {
+        "top": 335.1796875,
+        "bottom": 431.5703125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 900,
+      "height": 900,
+      "large": true,
+      "documentWidth": 900,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 1024.4921875,
+        "bottom": 1063.4921875,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 551.84375,
+        "bottom": 578.4375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 603.7421875,
+        "bottom": 663.7421875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 641.4375,
+        "bottom": 826.03125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 620.7421875,
+        "bottom": 680.7421875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 747.03125,
+        "bottom": 811.03125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 369.7421875,
+        "bottom": 459.734375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": false,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 1179.4453125,
+        "bottom": 1224.4453125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 590.28125,
+        "bottom": 622.4765625,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 627.1875,
+        "bottom": 689.6875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 666.6875,
+        "bottom": 906.6875,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 642.6875,
+        "bottom": 705.1875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 780.1875,
+        "bottom": 844.1875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": {
+        "top": 418.4765625,
+        "bottom": 514.8671875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 901,
+      "height": 900,
+      "large": true,
+      "documentWidth": 901,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 910.2109375,
+        "bottom": 949.2109375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 542.9609375,
+        "bottom": 569.5546875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 615.2578125,
+        "bottom": 675.2578125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 623.2578125,
+        "bottom": 786.4453125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 632.2578125,
+        "bottom": 692.2578125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 701.2578125,
+        "bottom": 765.2578125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 381.2578125,
+        "bottom": 471.25,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": false,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 1033.4453125,
+        "bottom": 1078.4453125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 565.6875,
+        "bottom": 597.8828125,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 633.1875,
+        "bottom": 695.6875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 672.6875,
+        "bottom": 852.6875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 648.6875,
+        "bottom": 711.1875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 753.1875,
+        "bottom": 817.1875,
+        "visible": true
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": {
+        "top": 393.8828125,
+        "bottom": 490.2734375,
+        "visible": true
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 1440,
+      "height": 900,
+      "large": true,
+      "documentWidth": 1440,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 567.9375,
+        "bottom": 611.9375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 413,
+        "bottom": 439.59375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 366.7890625,
+        "bottom": 426.7890625,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 374.7890625,
+        "bottom": 537.9765625,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 423.484375,
+        "bottom": 483.484375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 488.484375,
+        "bottom": 552.484375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 314.59375,
+        "bottom": 404.5859375,
+        "visible": false
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": false,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 687.1875,
+        "bottom": 732.1875,
+        "visible": false
+      }
+    },
+    {
+      "route": "/medicamentos",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 418,
+        "bottom": 450.1953125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 1,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 381.6953125,
+        "bottom": 444.1953125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 2,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 388.1953125,
+        "bottom": 568.1953125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 3,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 440.1953125,
+        "bottom": 502.6953125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/adicionar",
+      "step": 4,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 508.6953125,
+        "bottom": 572.6953125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/status",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/historico",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/configuracoes",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    },
+    {
+      "route": "/farmacias",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": {
+        "top": 335.1796875,
+        "bottom": 431.5703125,
+        "visible": false
+      }
+    },
+    {
+      "route": "/ajuda",
+      "step": null,
+      "width": 844,
+      "height": 390,
+      "large": true,
+      "documentWidth": 844,
+      "cuts": [],
+      "primary": null
+    }
+  ],
+  "layoutIssues": [],
+  "visualRegression": "INCONCLUSIVE: no baseline for this version",
+  "limitations": [
+    "No physical iOS/Android device or real virtual keyboard",
+    "No participant usability sessions"
+  ]
+}

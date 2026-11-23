@@ -16,6 +16,7 @@ export function useNotifications() {
   const [error, setError] = useState('')
   const [testing, setTesting] = useState(false)
   const [testMessage, setTestMessage] = useState('')
+  const testInFlight = useRef(false)
   const refreshVersion = useRef(0)
   const refresh = useCallback(async () => {
     const version = ++refreshVersion.current
@@ -49,10 +50,11 @@ export function useNotifications() {
     finally { setBusy(false); window.dispatchEvent(new Event('medcontrol:notifications')) }
   }
   const disable = async () => {
-    setBusy(true); setError('')
+    setBusy(true); setError(''); setTestMessage('')
     try {
       setNotificationsEnabled(false)
-      const registration = await navigator.serviceWorker?.getRegistration()
+      // Demo controls only local preferences, never a real account's push subscription.
+      const registration = !isDemo && user?.id ? await navigator.serviceWorker?.getRegistration() : undefined
       const subscription = await registration?.pushManager?.getSubscription()
       if (subscription) {
         const result = await supabase?.from('push_subscriptions').delete().eq('endpoint', subscription.endpoint)
@@ -64,11 +66,17 @@ export function useNotifications() {
     finally { setBusy(false); window.dispatchEvent(new Event('medcontrol:notifications')) }
   }
   const test = async () => {
+    if (testInFlight.current) return
+    testInFlight.current = true
     setError(''); setTestMessage(''); setTesting(true)
-    const sent = await sendBrowserNotification('Teste de aviso local', 'Este teste confirma apenas o aviso neste navegador. O envio em segundo plano precisa de uma verificação separada.', 'medcontrol-test')
-    setTesting(false)
-    if (sent) setTestMessage('O navegador aceitou o aviso de teste. Se o banner não aparecer, confira as notificações do navegador nos ajustes do computador e o modo Não Perturbe.')
-    else setError('O navegador não confirmou o aviso. Confira as permissões deste site e as notificações do navegador nos ajustes do computador. Depois, tente novamente.')
+    try {
+      // Send directly from this click: no medicine, schedule, polling or server required.
+      // A new tag prevents the OS from silently replacing an earlier manual test.
+      const sent = await sendBrowserNotification('Teste de aviso local', 'Seu aviso de teste chegou. Você não precisa cadastrar um remédio nem esperar um horário para fazer este teste.', `medcontrol-test-${crypto.randomUUID()}`)
+      if (sent) setTestMessage('Teste enviado agora e aceito pelo navegador. Se o banner não aparecer, confira as notificações do navegador nos ajustes do computador e o modo Não Perturbe.')
+      else setError('O navegador não confirmou o aviso. Confira as permissões deste site e as notificações do navegador nos ajustes do computador. Depois, tente novamente.')
+    } catch (e) { setError(errorMessage(e)) }
+    finally { testInFlight.current = false; setTesting(false) }
   }
   return { permission, enabled, subscribed, busy, error, testing, testMessage, isDemo, enable, disable, test, backgroundAvailable: !!supabase && !isDemo && 'serviceWorker' in navigator && 'PushManager' in window }
 }

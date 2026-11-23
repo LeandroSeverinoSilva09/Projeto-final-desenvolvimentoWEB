@@ -1,0 +1,148 @@
+{
+  "checkedAt": "2026-11-23T20:15:41.855Z",
+  "origin": "http://127.0.0.1:5173",
+  "browser": "Chrome/158.0.8127.36",
+  "scope": "Disposable local demo; auth/permission failure fixtures explicitly identified",
+  "cases": [
+    {
+      "name": "protected_route_and_no_permission_prompt",
+      "result": "passed"
+    },
+    {
+      "name": "login_required_fields_prevent_request",
+      "result": "passed"
+    },
+    {
+      "name": "login_error_and_password_visibility",
+      "result": "passed",
+      "auth": "fixture; no real login"
+    },
+    {
+      "name": "signup_confirmation_feedback",
+      "result": "passed",
+      "auth": "fixture; no email sent"
+    },
+    {
+      "name": "password_recovery_feedback",
+      "result": "passed",
+      "auth": "fixture; no email sent"
+    },
+    {
+      "name": "demo_and_empty_routine",
+      "result": "passed"
+    },
+    {
+      "name": "notification_consent_success_and_failed_display",
+      "result": "passed",
+      "notificationAPI": "fixture; native delivery tested separately"
+    },
+    {
+      "name": "demo_disable_without_remote_subscription_mutation",
+      "result": "passed"
+    },
+    {
+      "name": "empty_name_focus_and_error",
+      "result": "passed"
+    },
+    {
+      "name": "local_anvisa_catalog_enter_search_and_name_selection",
+      "result": "passed",
+      "nameOnly": true
+    },
+    {
+      "name": "four_step_registration_explicit_choices_decimal_and_duplicate_times",
+      "result": "passed",
+      "current": 10.5,
+      "unitsPerDose": 2.5,
+      "stockUnit": "mL"
+    },
+    {
+      "name": "demo_session_reload_persistence",
+      "result": "passed"
+    },
+    {
+      "name": "double_confirmation_records_once_and_subtracts_exact_decimal",
+      "result": "passed",
+      "history": 1,
+      "current": 8
+    },
+    {
+      "name": "agenda_filters",
+      "result": "passed"
+    },
+    {
+      "name": "editing_preserves_count_stock_units_and_history",
+      "result": "passed"
+    },
+    {
+      "name": "modal_keyboard_focus_trap_and_escape",
+      "result": "passed"
+    },
+    {
+      "name": "restock_validates_and_adds_decimal",
+      "result": "passed",
+      "current": 8.5
+    },
+    {
+      "name": "medication_search",
+      "result": "passed"
+    },
+    {
+      "name": "history_search_period_and_csv_content",
+      "result": "passed",
+      "rows": 1,
+      "download": "intercepted locally; CSV blob inspected"
+    },
+    {
+      "name": "weekly_progress_and_calendar",
+      "result": "passed"
+    },
+    {
+      "name": "large_text_persists_across_reload",
+      "result": "passed"
+    },
+    {
+      "name": "all_routes_main_landmark_and_mobile_width",
+      "result": "passed",
+      "routes": 9
+    },
+    {
+      "name": "daily_navigation_links_and_current_page",
+      "result": "passed"
+    },
+    {
+      "name": "archive_preserves_history",
+      "result": "passed"
+    },
+    {
+      "name": "unknown_medication_recovery",
+      "result": "passed"
+    },
+    {
+      "name": "future_dose_and_insufficient_stock_disabled",
+      "result": "passed"
+    },
+    {
+      "name": "three_breakpoint_visual_references",
+      "result": "passed",
+      "visualRegression": "INCONCLUSIVE: no previous matching baseline"
+    },
+    {
+      "name": "logout_revokes_protected_routes",
+      "result": "passed"
+    },
+    {
+      "name": "no_uncaught_errors_or_real_treatment_mutations",
+      "result": "passed"
+    }
+  ],
+  "uncaughtErrors": [],
+  "remoteMutations": [],
+  "limitations": [
+    "No real account signup/recovery emails sent",
+    "No physical Android/iOS or screen reader test",
+    "No participant usability study",
+    "Native notifications tested by a separate script",
+    "Visual regression inconclusive without previous matching baselines"
+  ]
+}

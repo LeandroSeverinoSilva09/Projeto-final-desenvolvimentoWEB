@@ -92,7 +92,7 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
     if (id && !original) throw new Error('Reabra o medicamento antes de salvar a edição.')
     if (isDemo) {
       const item = { ...data, id: id || generateId(), takenCount: 0, createdAt: data.createdAt || new Date().toISOString() }
-      setState(s => ({ ...s, medications: id ? s.medications.map(m => m.id === id ? item : m) : [...s.medications, item] }))
+      setState(s => ({ ...s, medications: id ? s.medications.map(m => m.id === id ? { ...item, takenCount: m.takenCount } : m) : [...s.medications, item] }))
     } else {
       const result = id
         ? await supabase!.from('medications').update(medicationRow(data)).eq('id', id)
@@ -127,6 +127,7 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
     if (!med) return
     const amount = quantity ?? med.total
     if (!Number.isFinite(amount) || Math.abs(amount * 1000 - Math.round(amount * 1000)) > 1e-7 || amount < 0.001 || amount > 100000) throw new Error('Informe uma quantidade válida para reposição.')
+    if (med.current + amount > 100000) throw new Error('A quantidade excede o limite de estoque.')
     if (isDemo) setState(s => ({ ...s, medications: s.medications.map(m => m.id === id ? { ...m, current: Math.round((m.current + amount) * 1000) / 1000, total: Math.max(m.total, Math.round((m.current + amount) * 1000) / 1000) } : m) }))
     else {
       const { error } = await supabase!.rpc('restock_medication', { p_medication_id: id, p_quantity: amount })

@@ -47,7 +47,7 @@ import { MedicationSearch } from '../medication/MedicationSearch'
 <MedicationSearch currentValue={name} onSelect={setName} />
 ```
 
-No cadastro visual, o componente fica depois do campo manual, recolhido em “Me ajude a encontrar o nome”. `onSelect` recebe apenas uma `string` com o nome oficial. `currentValue` é opcional e permite ocultar a confirmação se o nome tiver sido alterado manualmente. O componente pode ficar dentro do formulário existente: não cria um `<form>` aninhado e captura Enter do campo de busca para não salvar o medicamento sem querer.
+No cadastro visual, o componente fica depois do campo manual, recolhido em “Ajuda com o nome”. `onSelect` recebe apenas uma `string` com o nome oficial. `currentValue` é opcional e permite ocultar a confirmação se o nome tiver sido alterado manualmente. O componente pode ficar dentro do formulário existente: não cria um `<form>` aninhado e captura Enter do campo de busca para não salvar o medicamento sem querer.
 
 A busca ocorre apenas ao pressionar **Buscar** ou Enter. Na primeira busca válida, um GET ao arquivo estático no **mesmo host** carrega a base. Essa requisição não contém termos de busca, cookies, identificadores da conta ou referrer. As consultas seguintes usam a mesma cópia em memória. O aplicativo não envia as buscas à Anvisa ou a outro provedor, nem armazena histórico de buscas. Links da fonte abrem sem referrer e sem incluir o termo digitado.
 

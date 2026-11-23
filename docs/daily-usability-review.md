@@ -27,7 +27,7 @@ Erros aparecem na etapa correspondente e levam o foco ao campo. A ajuda pode ser
 | “Alterar” e “Cancelar cadastro” | “Corrigir” e “Sair sem salvar” |
 | Informar zero pelo teclado | Botão “Não tenho mais esse remédio”, que preenche zero somente após a pessoa tocar |
 
-O campo do nome aparece antes do desenho de exemplo, para a pessoa começar sem procurar o campo. A embalagem ilustrada mostra onde procurar nome e número; o desenho não identifica um medicamento real. Os cartões têm figuras maiores, letras legíveis e “Escolhido” escrito, além do estado do botão de opção. No celular ficam em uma coluna, sem reduzir as letras para acomodar dois cartões.
+O campo do nome aparece antes do desenho de exemplo, para a pessoa começar sem procurar o campo. A embalagem ilustrada mostra onde procurar nome e número; o desenho não identifica um medicamento real. Os cartões têm figuras maiores, letras legíveis e “Escolhido” escrito, além do estado do botão de opção. No celular, o arranjo se adapta à largura: uma coluna em telas muito estreitas ou com letras maiores; duas nas demais telas pequenas. A ajuda ilustrada e a busca ficam em “Ajuda com o nome”, para não empurrar o campo principal para baixo.
 
 “Letras maiores” está dentro do cadastro e mantém a escolha no aparelho. Campos de texto passam de 20 para 23 px e perguntas de 28/30 para 32 px. Os textos auxiliares relevantes têm pelo menos 16 px; erros são exibidos com 18 px. Bordas e foco receberam contraste mais forte. O valor informado aparece novamente junto da figura antes de avançar, sem sugerir quantidade de uso. Manhã, tarde, noite e madrugada têm ícone e palavra, sem depender apenas de cor.
 

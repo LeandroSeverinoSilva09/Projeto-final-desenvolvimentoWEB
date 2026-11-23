@@ -84,14 +84,14 @@ export function deviceLocation(coords: Pick<GeolocationCoordinates, 'latitude' |
   if (point.latitude === 0 && point.longitude === 0) {
     throw new PharmacyError('validation', 'O navegador não informou sua localização real. Tente localizar novamente ou digite sua cidade, bairro ou CEP abaixo.')
   }
-  if (!Number.isFinite(coords.accuracy) || coords.accuracy < 0 || coords.accuracy > 2000) {
+  if (!Number.isFinite(coords.accuracy) || coords.accuracy < 0 || coords.accuracy > 10000) {
     throw new PharmacyError('validation', 'A localização recebida está muito imprecisa para encontrar farmácias próximas. Tente novamente com a localização precisa ativada ou busque por cidade, bairro ou CEP.')
   }
   return { ...point, accuracy: coords.accuracy }
 }
 
 export const DEVICE_LOCATION_OPTIONS: PositionOptions = {
-  enableHighAccuracy: true, timeout: 20000, maximumAge: 0,
+  enableHighAccuracy: false, timeout: 8000, maximumAge: 30000,
 }
 
 export function distanceMeters(from: Coordinates, to: Coordinates): number {
