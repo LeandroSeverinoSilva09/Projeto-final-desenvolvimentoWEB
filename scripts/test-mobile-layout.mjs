@@ -60,7 +60,7 @@ try {
       const visible=e=>{if(!e.getClientRects().length)return false;for(let p=e;p;p=p.parentElement){const style=getComputedStyle(p);if(style.visibility==='hidden'||style.clipPath!=='none'||p.getAttribute('aria-hidden')==='true')return false;if(p.tagName==='DETAILS'&&!p.open&&!p.querySelector(':scope > summary')?.contains(e))return false;}return true;};
       const cuts=[...root.querySelectorAll('*')].filter(visible).map(e=>({tag:e.tagName,class:String(e.className),text:e.textContent.slice(0,50),left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right})).filter(e=>e.left< -1||e.right>innerWidth+1);
       const step=Number(document.querySelector('.med-form-tools strong')?.textContent)||null;
-      const primary=document.querySelector(step===1?'#med-name':step===2?'.med-format-option':step===3?'input[type=time]':step===4?'#med-quantity':location.pathname==='/'?'.dose-row .btn':location.pathname==='/medicamentos'?'.medication-detail h2':'.pharmacy-map-option');
+      const primary=document.querySelector(step===1?'#med-name':step===2?'.med-format-option':step===3?'input[type=time]':step===4?'#med-quantity':location.pathname==='/'?'.dose-row .btn':location.pathname==='/medicamentos'?'.medication-detail h2':'.pharmacy-search-panel > .btn');
       const rect=primary?.getBoundingClientRect();const navRect=nav?.getBoundingClientRect();
       return {route:location.pathname,step,width:innerWidth,height:innerHeight,large:document.documentElement.classList.contains('large-text'),documentWidth:document.documentElement.scrollWidth,cuts,primary:rect?{top:rect.top,bottom:rect.bottom,visible:rect.top>=0&&rect.bottom<=(navRect?.height?navRect.top:innerHeight)}:null};
     })()`)

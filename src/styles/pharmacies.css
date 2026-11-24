@@ -1,19 +1,3 @@
-.pharmacy-page .pharmacy-map-choice { padding: 26px; margin-bottom: 20px; }
-.pharmacy-page .pharmacy-map-choice-heading { display: flex; align-items: flex-start; gap: 15px; }
-.pharmacy-page .pharmacy-map-choice-heading > div { min-width: 0; }
-.pharmacy-page .pharmacy-choice-icon { display: grid; place-items: center; width: 48px; height: 48px; flex-shrink: 0; border-radius: 13px; background: #e4f3ec; color: #216d60; }
-.pharmacy-page .pharmacy-map-choice-heading h2 { font-size: 23px; line-height: 1.4; }
-.pharmacy-page .pharmacy-map-choice-heading p { color: #526b76; font-size: 15px; line-height: 1.7; margin-top: 7px; }
-.pharmacy-page .pharmacy-map-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 23px 0 15px; }
-.pharmacy-page .pharmacy-map-option { display: grid; grid-template-columns: 28px minmax(0, 1fr) 18px; align-items: center; gap: 13px; min-height: 88px; padding: 18px 20px; border: 1px solid transparent; border-radius: 12px; transition: background .15s ease; }
-.pharmacy-page .pharmacy-map-option.google { background: #176a5b; color: #fff; }
-.pharmacy-page .pharmacy-map-option.google:hover { background: #125749; }
-.pharmacy-page .pharmacy-map-option.waze { background: #edf5fc; border-color: #d0e2f0; color: #245575; }
-.pharmacy-page .pharmacy-map-option.waze:hover { background: #deedf9; }
-.pharmacy-page .pharmacy-map-option strong { display: block; font-size: 19px; line-height: 1.4; }
-.pharmacy-page .pharmacy-map-option small { display: block; font-size: 14px; line-height: 1.6; margin-top: 3px; overflow-wrap: anywhere; }
-.pharmacy-page .pharmacy-map-hint, .pharmacy-page .pharmacy-map-region { color: #526b76; font-size: 13px; line-height: 1.7; }
-.pharmacy-page .pharmacy-map-region { margin-top: 8px; }
 .pharmacy-page .pharmacy-restock-list { border: 1px solid #ecddb8; border-radius: 12px; background: #fff9e9; color: #765720; margin-bottom: 20px; }
 .pharmacy-page .pharmacy-restock-list > summary { display: flex; align-items: center; gap: 11px; min-height: 60px; padding: 16px 18px; cursor: pointer; font-size: 16px; font-weight: 750; list-style: none; }
 .pharmacy-page .pharmacy-restock-list > summary > span:first-of-type { flex: 1; min-width: 0; }
@@ -24,16 +8,22 @@
 .pharmacy-page .pharmacy-restock-list li strong { color: #614b26; }
 .pharmacy-page .pharmacy-restock-list .text-link { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
 .pharmacy-page .pharmacy-in-app { margin-bottom: 18px; }
-.pharmacy-page .pharmacy-in-app > summary { display: grid; grid-template-columns: 24px minmax(0, 1fr) 20px; gap: 12px; align-items: center; min-height: 76px; padding: 18px 20px; background: #fff; border: 1px solid #dce8e4; border-radius: 12px; color: #2f6056; cursor: pointer; list-style: none; }
-.pharmacy-page .pharmacy-in-app > summary strong { display: block; font-size: 16px; line-height: 1.5; }
-.pharmacy-page .pharmacy-in-app > summary small { display: block; color: #526b76; font-size: 14px; line-height: 1.6; margin-top: 3px; }
-.pharmacy-page .pharmacy-in-app > summary::-webkit-details-marker, .pharmacy-page .pharmacy-restock-list > summary::-webkit-details-marker { display: none; }
-.pharmacy-page .pharmacy-in-app[open] > summary { margin-bottom: 18px; }
-.pharmacy-page .pharmacy-in-app[open] > summary > svg:last-child, .pharmacy-page .pharmacy-restock-list[open] > summary > svg:last-child { transform: rotate(180deg); }
+.pharmacy-page .pharmacy-restock-list > summary::-webkit-details-marker { display: none; }
+.pharmacy-page .pharmacy-restock-list[open] > summary > svg:last-child { transform: rotate(180deg); }
+.pharmacy-page .pharmacy-google-search { display: flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 12px; color: #216d60; line-height: 1.6; }
+.pharmacy-page .pharmacy-google-search svg { flex-shrink: 0; }
+.pharmacy-page .pharmacy-results-header h2 { scroll-margin-top: 24px; }
+.pharmacy-page .pharmacy-nearest { color: #216d60; font-size: 13px; font-weight: 750; margin-bottom: 9px; }
+.pharmacy-page .pharmacy-route-choice { margin-top: 16px; }
+.pharmacy-page .pharmacy-route-choice > summary { display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 11px 14px; border: 1px solid #c3ddd4; border-radius: 10px; color: #176a5b; background: #eff7f3; font-size: 16px; font-weight: 750; cursor: pointer; list-style: none; }
+.pharmacy-page .pharmacy-route-choice > summary::-webkit-details-marker { display: none; }
+.pharmacy-page .pharmacy-route-choice > summary > svg:last-child { margin-left: auto; }
+.pharmacy-page .pharmacy-route-choice[open] > summary > svg:last-child { transform: rotate(180deg); }
+.pharmacy-page .pharmacy-route-choice > summary:focus-visible { outline: 3px solid #237f6d; outline-offset: 3px; }
 .pharmacy-page .pharmacy-layout { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr); gap: 20px; align-items: start; }
 .pharmacy-page .pharmacy-search-panel { padding: 22px; min-width: 0; }
 .pharmacy-page .pharmacy-search-panel > h2 { font-size: 20px; margin-bottom: 12px; }
-.pharmacy-page .pharmacy-privacy { font-size: 14px !important; line-height: 1.7 !important; margin-bottom: 17px; }
+.pharmacy-page .pharmacy-privacy { font-size: 14px !important; line-height: 1.7 !important; margin: 12px 0 17px; }
 .pharmacy-page .pharmacy-privacy a { display: inline-flex; align-items: center; min-height: 44px; }
 .pharmacy-page .pharmacy-search-panel > .btn { width: 100%; white-space: normal; }
 .pharmacy-page .pharmacy-search-form { margin-top: 24px; }
@@ -88,23 +78,10 @@
   .pharmacy-page .pharmacy-layout { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
-  .pharmacy-page .pharmacy-map-choice { padding: 16px; }
-  .pharmacy-page .pharmacy-choice-icon { display: none; }
-  .pharmacy-page .pharmacy-map-choice-heading { gap: 11px; }
-  .pharmacy-page .pharmacy-map-choice-heading h2 { font-size: 20px; }
-  .pharmacy-page .pharmacy-map-options { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 16px; }
-  .pharmacy-page .pharmacy-map-option { min-height: 72px; padding: 12px; }
-  .pharmacy-page .pharmacy-map-option strong { font-size: 18px; }
   .pharmacy-page .pharmacy-restock-list > summary { padding: 15px; }
   .pharmacy-page .pharmacy-restock-list > div { padding: 0 16px 16px; }
-  .pharmacy-page .pharmacy-in-app > summary { padding: 16px; gap: 10px; }
-  .pharmacy-page .pharmacy-in-app > summary strong { font-size: 15px; }
-  .pharmacy-page .pharmacy-in-app > summary small { font-size: 13px; }
   .pharmacy-page .pharmacy-card, .pharmacy-page .pharmacy-search-panel { padding: 18px; }
 }
 @media (max-width: 360px) {
-  .pharmacy-page .pharmacy-map-choice { padding: 18px; }
-  .pharmacy-page .pharmacy-choice-icon { display: none; }
-  .pharmacy-page .pharmacy-map-option { gap: 10px; }
   .pharmacy-page .pharmacy-route-options { grid-template-columns: minmax(0, 1fr); }
 }

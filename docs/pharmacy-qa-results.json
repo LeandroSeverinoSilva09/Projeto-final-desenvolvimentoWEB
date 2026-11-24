@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "environment": "Local Chrome, disposable demo context",
   "cases": [
     {
@@ -14,6 +14,28 @@
       "mockRequests": [],
       "coordinatesEmulated": true,
       "apiMocked": false
+    },
+    {
+      "scenario": "routes_only_after_selecting_pharmacy",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": null,
+      "cards": 41,
+      "status": "41 farmácias encontradas.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [],
+      "keyboardActivation": true,
+      "routes": [
+        {
+          "url": "https://www.google.com/maps/dir/?api=1&destination=-22.9047465%2C-47.0588627",
+          "label": "Google Maps: como chegar a Drogasil"
+        },
+        {
+          "url": "https://waze.com/ul?ll=-22.9047465%2C-47.0588627&navigate=yes",
+          "label": "Waze: como chegar a Drogasil"
+        }
+      ]
     },
     {
       "scenario": "native_permission_denied_manual_fallback",
@@ -135,7 +157,7 @@
       "page": true,
       "navigation": true,
       "manualEnabled": true,
-      "error": "O serviço de mapas está indisponível ou ocupado. Aguarde 30 segundos ou abra Google Maps ou Waze no início da página.",
+      "error": "A busca está indisponível ou ocupada. Aguarde 30 segundos ou use “Ver região no Google Maps”.",
       "cards": 1,
       "status": "Busca não concluída.",
       "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
@@ -152,11 +174,34 @@
       "apiMocked": true
     },
     {
+      "scenario": "google_fallback_uses_attempted_region",
+      "page": true,
+      "navigation": true,
+      "manualEnabled": true,
+      "error": "A busca está indisponível ou ocupada. Aguarde 30 segundos ou use “Ver região no Google Maps”.",
+      "cards": 1,
+      "status": "Busca não concluída.",
+      "location": "Perto de vocêAté 2 km · distância aproximada em linha reta.Remover localização",
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        },
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-23.55%2C-46.633%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-23.55%2C-46.633%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
+      "apiMocked": true,
+      "nativeApiMocked": true,
+      "lastResultsPreserved": true
+    },
+    {
       "scenario": "invalid_provider_json",
       "page": true,
       "navigation": true,
       "manualEnabled": true,
-      "error": "Não foi possível consultar os mapas. Confira sua conexão ou abra Google Maps ou Waze no início da página.",
+      "error": "Não foi possível consultar as farmácias. Confira sua conexão ou use “Ver região no Google Maps”.",
       "cards": 0,
       "status": "Busca não concluída.",
       "location": null,
@@ -206,7 +251,12 @@
       "cards": 0,
       "status": "Use sua localização ou informe uma cidade, bairro ou CEP.",
       "location": null,
-      "mockRequests": [],
+      "mockRequests": [
+        {
+          "url": "https://ovp.dresel.systems/api-sa/interpreter",
+          "body": "data=%5Bout%3Ajson%5D%5Btimeout%3A20%5D%5Bmaxsize%3A16777216%5D%3B%28nwr%5B%22amenity%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3Bnwr%5B%22healthcare%22%3D%22pharmacy%22%5D%28around%3A2000%2C-22.906%2C-47.06%29%3B%29%3Bout+center+tags%3B"
+        }
+      ],
       "injectedRenderFailure": true,
       "recovery": true
     },

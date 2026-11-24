@@ -1,0 +1,492 @@
+{
+  "checkedAt": "2026-11-24T19:07:24.593Z",
+  "environment": "Local disposable Chrome demo; provider results and coordinates are fictitious fixtures",
+  "states": [
+    {
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "state": "initial",
+      "documentWidth": 320,
+      "clipped": [],
+      "primary": {
+        "top": 281.296875,
+        "bottom": 331.296875,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "state": "results",
+      "documentWidth": 320,
+      "clipped": [],
+      "primary": {
+        "top": -675.703125,
+        "bottom": -625.703125,
+        "visible": false
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "state": "routes",
+      "documentWidth": 320,
+      "clipped": [],
+      "primary": {
+        "top": -1002.203125,
+        "bottom": -952.203125,
+        "visible": false
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "state": "initial",
+      "documentWidth": 320,
+      "clipped": [],
+      "primary": {
+        "top": 307.3828125,
+        "bottom": 387.3828125,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "state": "results",
+      "documentWidth": 320,
+      "clipped": [],
+      "primary": {
+        "top": -849.5234375,
+        "bottom": -769.5234375,
+        "visible": false
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "state": "routes",
+      "documentWidth": 320,
+      "clipped": [],
+      "primary": {
+        "top": -1279.0234375,
+        "bottom": -1199.0234375,
+        "visible": false
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "large": false,
+      "state": "initial",
+      "documentWidth": 375,
+      "clipped": [],
+      "primary": {
+        "top": 281.296875,
+        "bottom": 331.296875,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "large": false,
+      "state": "results",
+      "documentWidth": 375,
+      "clipped": [],
+      "primary": {
+        "top": -626.703125,
+        "bottom": -576.703125,
+        "visible": false
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "large": false,
+      "state": "routes",
+      "documentWidth": 375,
+      "clipped": [],
+      "primary": {
+        "top": -650.703125,
+        "bottom": -600.703125,
+        "visible": false
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "large": true,
+      "state": "initial",
+      "documentWidth": 375,
+      "clipped": [],
+      "primary": {
+        "top": 307.3828125,
+        "bottom": 360.3828125,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "large": true,
+      "state": "results",
+      "documentWidth": 375,
+      "clipped": [],
+      "primary": {
+        "top": -784.6171875,
+        "bottom": -731.6171875,
+        "visible": false
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "large": true,
+      "state": "routes",
+      "documentWidth": 375,
+      "clipped": [],
+      "primary": {
+        "top": -784.6171875,
+        "bottom": -731.6171875,
+        "visible": false
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "state": "initial",
+      "documentWidth": 768,
+      "clipped": [],
+      "primary": {
+        "top": 262.8984375,
+        "bottom": 312.8984375,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "state": "results",
+      "documentWidth": 768,
+      "clipped": [],
+      "primary": {
+        "top": -518.1015625,
+        "bottom": -468.1015625,
+        "visible": false
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "state": "routes",
+      "documentWidth": 768,
+      "clipped": [],
+      "primary": {
+        "top": -518.1015625,
+        "bottom": -468.1015625,
+        "visible": false
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "state": "initial",
+      "documentWidth": 768,
+      "clipped": [],
+      "primary": {
+        "top": 282.5859375,
+        "bottom": 335.5859375,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "state": "results",
+      "documentWidth": 768,
+      "clipped": [],
+      "primary": {
+        "top": -647.4140625,
+        "bottom": -594.4140625,
+        "visible": false
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "state": "routes",
+      "documentWidth": 768,
+      "clipped": [],
+      "primary": {
+        "top": -647.4140625,
+        "bottom": -594.4140625,
+        "visible": false
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "large": false,
+      "state": "initial",
+      "documentWidth": 1440,
+      "clipped": [],
+      "primary": {
+        "top": 329.5625,
+        "bottom": 379.5625,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "large": false,
+      "state": "results",
+      "documentWidth": 1440,
+      "clipped": [],
+      "primary": {
+        "top": 87.0625,
+        "bottom": 137.0625,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "large": false,
+      "state": "routes",
+      "documentWidth": 1440,
+      "clipped": [],
+      "primary": {
+        "top": 87.0625,
+        "bottom": 137.0625,
+        "visible": true
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "large": true,
+      "state": "initial",
+      "documentWidth": 1440,
+      "clipped": [],
+      "primary": {
+        "top": 341.2890625,
+        "bottom": 394.2890625,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 0,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "large": true,
+      "state": "results",
+      "documentWidth": 1440,
+      "clipped": [],
+      "primary": {
+        "top": 91.2890625,
+        "bottom": 144.2890625,
+        "visible": true
+      },
+      "visibleWaze": 0,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "large": true,
+      "state": "routes",
+      "documentWidth": 1440,
+      "clipped": [],
+      "primary": {
+        "top": 91.2890625,
+        "bottom": 144.2890625,
+        "visible": true
+      },
+      "visibleWaze": 1,
+      "providerRequests": 1,
+      "audit": {
+        "version": "4.14.1",
+        "violations": [],
+        "incomplete": []
+      }
+    }
+  ],
+  "unexpectedExceptions": [],
+  "limitations": [
+    "New layout has no matching pixel baseline; pixel regression comparison is inconclusive",
+    "Automated axe results do not certify WCAG compliance",
+    "No physical GPS or VoiceOver/TalkBack validation"
+  ]
+}

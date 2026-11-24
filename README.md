@@ -11,7 +11,7 @@
 - Histórico preservado ao arquivar um medicamento e exportação CSV dos até 5.000 registros mais recentes carregados por paginação.
 - Busca local em uma cópia oficial dos **dados abertos da Anvisa**, com **10.339 registros ativos** na atualização de 23/11/2026. A seleção preenche somente o nome; dose e horários seguem a prescrição.
 - Alerta de estoque numérico para aproximadamente três dias de consumo; frascos em gotas geram alerta quando marcados como acabando ou vazios. Acesso a **farmácias próximas**.
-- Localização opcional, busca por cidade/bairro ou CEP, distâncias estimadas e acesso a mapas. Dados públicos do OpenStreetMap, Photon e ViaCEP, sem chave de mapas ou faturamento; Google Maps e Waze em destaque para abrir buscas e trajetos. A lista interna é opcional.
+- Localização opcional, busca por cidade/bairro ou CEP e lista de farmácias diretamente na página, com distâncias estimadas. Dados públicos do OpenStreetMap, Photon e ViaCEP, sem chave de mapas ou faturamento. Depois de escolher a farmácia, “Como chegar” oferece Google Maps ou Waze para a rota; o link de consulta da região abre o Google Maps.
 - Notificações solicitadas por um botão, teste imediato e dois lembretes por dose: cinco minutos antes e no horário. Demonstração com avisos locais; contas reais com inscrição Web Push e serviço agendado no Supabase, conforme a [validação e o estado da publicação](docs/notifications.md).
 - Interface adaptada ao telefone, navegação fixa, saída da conta em Ajustes, texto ampliado, ajuda “Como usar” e alternativa manual aos recursos opcionais. Formulário mantém campos ao alternar janelas e recusa edição de estoque desatualizado.
 - Demonstração identificada, com dados fictícios separados das contas reais.
@@ -64,7 +64,7 @@ O cadastro de medicamentos utiliza uma **cópia de dados oficiais**, sem API cl�
 
 A busca de farmácias funciona com serviços públicos sem cadastro ou chave de mapas: OpenStreetMap via Overpass Dresel fornece os estabelecimentos. Photon/Komoot localiza cidades e bairros; ViaCEP permite informar CEP. Os pedidos partem apenas da ação do usuário e a posição é aproximada antes do envio. A posição não é gravada na conta. Consulte [fontes, privacidade e limites dos mapas](docs/pharmacies.md).
 
-Google Maps e Waze abrem buscas e trajetos por links públicos oficiais, sem SDK ou API paga. Os resultados listados dentro do MEDControl vêm do OpenStreetMap.
+Google Maps permite consultar a região por link público oficial. Depois de escolher uma farmácia da lista, a pessoa pode abrir o trajeto em Google Maps ou Waze, sem SDK ou API paga. Os resultados listados dentro do MEDControl vêm do OpenStreetMap.
 
 **A localização de uma farmácia não confirma estoque, preço, horário atual ou participação na Farmácia Popular.** A pessoa deve confirmar a disponibilidade com o estabelecimento.
 

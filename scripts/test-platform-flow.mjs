@@ -228,7 +228,7 @@ try{
     assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth+1'),true,`Largura em ${route}`)
     await audit(route)
     if(axeSource&&route==='/farmacias'){
-      await evaluate(`(()=>{document.querySelector('.pharmacy-in-app').open=true;navigator.geolocation.getCurrentPosition=success=>success({coords:{latitude:-22.90612,longitude:-47.06012,accuracy:35}});const nativeFetch=window.fetch;window.fetch=(url,init)=>String(url).includes('ovp.dresel')?Promise.resolve(new Response(JSON.stringify({elements:[{type:'node',id:999,lat:-22.9061,lon:-47.0601,tags:{amenity:'pharmacy',name:'Farmacia ficticia QA',phone:'(19) 3333-4444','addr:street':'Rua de exemplo'}}]}),{status:200,headers:{'Content-Type':'application/json'}})):nativeFetch(url,init)})()`)
+      await evaluate(`(()=>{navigator.geolocation.getCurrentPosition=success=>success({coords:{latitude:-22.90612,longitude:-47.06012,accuracy:35}});const nativeFetch=window.fetch;window.fetch=(url,init)=>String(url).includes('ovp.dresel')?Promise.resolve(new Response(JSON.stringify({elements:[{type:'node',id:999,lat:-22.9061,lon:-47.0601,tags:{amenity:'pharmacy',name:'Farmacia ficticia QA',phone:'(19) 3333-4444','addr:street':'Rua de exemplo'}}]}),{status:200,headers:{'Content-Type':'application/json'}})):nativeFetch(url,init)})()`)
       await button('Usar minha localização');await waitFor('document.querySelectorAll(".pharmacy-card").length===1')
       await audit('pharmacy-results-fixture')
     }

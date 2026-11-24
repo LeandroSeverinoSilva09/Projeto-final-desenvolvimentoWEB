@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { deviceLocation, approximateCoordinates, buildOverpassQuery, distanceMeters, externalSearchUrls, formatDistance, geolocationErrorMessage, googleDirectionsUrl, normalizeLocationQuery, normalizePharmacies, normalizePlaces, normalizePublicPhone, validateCoordinates, wazeDirectionsUrl } from './pharmacies'
+import { deviceLocation, approximateCoordinates, buildOverpassQuery, distanceMeters, googleSearchUrl, formatDistance, geolocationErrorMessage, googleDirectionsUrl, normalizeLocationQuery, normalizePharmacies, normalizePlaces, normalizePublicPhone, validateCoordinates, wazeDirectionsUrl } from './pharmacies'
 
 const origin = { latitude: -23.55, longitude: -46.633 }
 const overpassFixture = { elements: [
@@ -118,31 +118,25 @@ describe('links and geolocation recovery', () => {
     expect([...url.searchParams.keys()]).toEqual(['ll', 'navigate'])
   })
   it('encodes manual locations in safe external links', () => {
-    const urls = externalSearchUrls(null, 'Cambuí, Campinas, SP')
-    expect(new URL(urls.google).searchParams.get('query')).toBe('farmácias Cambuí, Campinas, SP')
-    const waze = new URL(urls.waze)
-    expect(waze.origin).toBe('https://waze.com')
-    expect(waze.searchParams.get('q')).toBe('farmácias Cambuí, Campinas, SP')
-    expect([...waze.searchParams.keys()]).toEqual(['q'])
+    const url = new URL(googleSearchUrl(null, 'Cambuí, Campinas, SP'))
+    expect(url.origin).toBe('https://www.google.com')
+    expect(url.searchParams.get('query')).toBe('farmácias Cambuí, Campinas, SP')
+    expect([...url.searchParams.keys()]).toEqual(['api', 'query'])
   })
   it('offers nearby searches before any location is shared with the app', () => {
-    const urls = externalSearchUrls(null)
-    expect(new URL(urls.google).searchParams.get('query')).toBe('farmácias perto de mim')
-    const waze = new URL(urls.waze)
-    expect(waze.searchParams.get('q')).toBe('farmácias perto de mim')
-    expect([...waze.searchParams.keys()]).toEqual(['q'])
+    const url = new URL(googleSearchUrl(null))
+    expect(url.searchParams.get('query')).toBe('farmácias perto de mim')
+    expect([...url.searchParams.keys()]).toEqual(['api', 'query'])
   })
-  it('uses an approximate region as a Waze search reference without navigating to the region center', () => {
-    const urls = externalSearchUrls({ latitude: -23.55098765, longitude: -46.63387654 })
-    expect(new URL(urls.google).searchParams.get('query')).toBe('farmácias perto de -23.551,-46.634')
-    const waze = new URL(urls.waze)
-    expect(waze.searchParams.get('q')).toBe('farmácias')
-    expect(waze.searchParams.get('ll')).toBe('-23.551,-46.634')
-    expect([...waze.searchParams.keys()]).toEqual(['q', 'll'])
+  it('searches Google around an approximate region without routing to the region center', () => {
+    const url = new URL(googleSearchUrl({ latitude: -23.55098765, longitude: -46.63387654 }))
+    expect(url.searchParams.get('query')).toBe('farmácias perto de -23.551,-46.634')
+    expect(url.pathname).toBe('/maps/search/')
+    expect([...url.searchParams.keys()]).toEqual(['api', 'query'])
   })
   it('rejects malformed places and coordinates before producing external links', () => {
-    expect(() => externalSearchUrls(null, 'Campinas&navigate=yes')).toThrow('Digite cidade')
-    expect(() => externalSearchUrls({ latitude: NaN, longitude: 0 })).toThrow('localização recebida é inválida')
+    expect(() => googleSearchUrl(null, 'Campinas&navigate=yes')).toThrow('Digite cidade')
+    expect(() => googleSearchUrl({ latitude: NaN, longitude: 0 })).toThrow('localização recebida é inválida')
     expect(() => googleDirectionsUrl({ latitude: 0, longitude: 181 })).toThrow('localização recebida é inválida')
     expect(() => wazeDirectionsUrl({ latitude: 91, longitude: 0 })).toThrow('localização recebida é inválida')
   })

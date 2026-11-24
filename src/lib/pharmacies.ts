@@ -187,7 +187,7 @@ function abortError() { return new DOMException('Consulta cancelada.', 'AbortErr
 async function requestJson(url: string, signal: AbortSignal, service: string, init: RequestInit = {}): Promise<unknown> {
   if (signal.aborted) throw abortError()
   const now = Date.now()
-  if ((nextRequest.get(service) || 0) > now) throw new PharmacyError('unavailable', 'Aguarde alguns instantes antes de tentar novamente. Você também pode abrir Google Maps ou Waze no início da página.')
+  if ((nextRequest.get(service) || 0) > now) throw new PharmacyError('unavailable', 'Aguarde alguns instantes antes de tentar novamente. Você também pode consultar a região no Google Maps.')
   nextRequest.set(service, now + 1000)
   const controller = new AbortController()
   const abort = () => controller.abort()
@@ -198,14 +198,14 @@ async function requestJson(url: string, signal: AbortSignal, service: string, in
     const response = await fetch(url, { ...init, headers: { Accept: 'application/json', ...init.headers }, signal: controller.signal, credentials: 'omit', cache: 'no-store', referrerPolicy: 'strict-origin' })
     if (!response.ok) {
       if (response.status === 429 || response.status === 406 || response.status === 503) nextRequest.set(service, Date.now() + 30000)
-      throw new PharmacyError('unavailable', 'O serviço de mapas está indisponível ou ocupado. Aguarde 30 segundos ou abra Google Maps ou Waze no início da página.')
+      throw new PharmacyError('unavailable', 'A busca está indisponível ou ocupada. Aguarde 30 segundos ou use “Ver região no Google Maps”.')
     }
     return await response.json()
   } catch (error) {
     if (signal.aborted) throw abortError()
-    if (timedOut) throw new PharmacyError('timeout', 'A consulta demorou mais que o esperado. Tente novamente ou abra Google Maps ou Waze no início da página.')
+    if (timedOut) throw new PharmacyError('timeout', 'A consulta demorou mais que o esperado. Tente novamente ou use “Ver região no Google Maps”.')
     if (error instanceof PharmacyError) throw error
-    throw new PharmacyError('network', 'Não foi possível consultar os mapas. Confira sua conexão ou abra Google Maps ou Waze no início da página.')
+    throw new PharmacyError('network', 'Não foi possível consultar as farmácias. Confira sua conexão ou use “Ver região no Google Maps”.')
   } finally { clearTimeout(timeout); signal.removeEventListener('abort', abort) }
 }
 
@@ -261,20 +261,14 @@ export function wazeDirectionsUrl(destination: Coordinates): string {
   return url.toString()
 }
 
-export function externalSearchUrls(point: Coordinates | null, place = ''): { google: string; waze: string } {
-  const waze = new URL('https://waze.com/ul')
+export function googleSearchUrl(point: Coordinates | null, place = ''): string {
   if (point) {
     const origin = approximateCoordinates(point)
-    // A region is a search reference, never a pharmacy navigation destination.
-    waze.searchParams.set('q', 'farmácias')
-    waze.searchParams.set('ll', `${origin.latitude},${origin.longitude}`)
-    return { google: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`farmácias perto de ${origin.latitude},${origin.longitude}`)}`,
-      waze: waze.toString() }
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`farmácias perto de ${origin.latitude},${origin.longitude}`)}`
   }
   const region = place ? normalizeLocationQuery(place).value : 'perto de mim'
   const query = `farmácias ${region}`
-  waze.searchParams.set('q', query)
-  return { google: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, waze: waze.toString() }
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
 }
 
 export function geolocationErrorMessage(code: number): string {

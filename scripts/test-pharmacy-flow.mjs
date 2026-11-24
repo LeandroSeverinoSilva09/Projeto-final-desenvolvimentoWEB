@@ -56,8 +56,6 @@ try {
     scenario = name
     await page('Page.navigate', { url: origin + '/farmacias' })
     await waitFor('!!document.querySelector(".pharmacy-page")')
-    await evaluate('document.querySelector(".pharmacy-in-app").open=true')
-    await pause(50)
   }
   const locate = () => evaluate('[...document.querySelectorAll("button")].find(e=>e.textContent.includes("Usar minha localização")).click()')
   const idle = () => waitFor('!document.querySelector(".pharmacy-cancel,.pharmacy-cancel-location")')
@@ -86,11 +84,25 @@ try {
   await click('.demo-button'); await waitFor('!!document.querySelector(".routine-heading")')
 
   await open('native_geolocation_real_public_api')
+  assert(await evaluate('!!document.querySelector(".pharmacy-search-panel > .btn")&&!document.querySelector("details.pharmacy-in-app")'))
+  assert.equal(await evaluate('[...document.querySelectorAll("a")].filter(a=>a.href.includes("waze.com")).length'),0)
+  assert.equal(apiRequests.length,0,'A pagina nao consulta mapas antes da escolha da pessoa.')
   await locate(); await idle()
   let state = await snapshot()
   assert(state.cards > 0, `A consulta real deve retornar farmacias: ${JSON.stringify(state)}`)
   assert(!state.error)
   await finish({ coordinatesEmulated: true, apiMocked: false })
+
+  scenario='routes_only_after_selecting_pharmacy'
+  assert.equal(await evaluate('document.querySelector(".pharmacy-route-choice").open'),false)
+  await page('Runtime.evaluate',{expression:'document.querySelector(".pharmacy-route-choice > summary").focus()'})
+  await page('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'})
+  await page('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13})
+  await waitFor('document.querySelector(".pharmacy-route-choice").open')
+  const nativeRoutes=await evaluate('[...document.querySelector(".pharmacy-route-choice").querySelectorAll("a")].map(a=>({url:a.href,label:a.getAttribute("aria-label")}))')
+  assert(nativeRoutes.some(a=>a.url.includes('/maps/dir/?api=1&destination=')))
+  assert(nativeRoutes.some(a=>new URL(a.url).hostname==='waze.com'&&new URL(a.url).searchParams.get('navigate')==='yes'))
+  await finish({ keyboardActivation:true,routes:nativeRoutes })
 
   await command('Browser.setPermission', { browserContextId, origin, permission: { name: 'geolocation' }, setting: 'denied' })
   await open('native_permission_denied_manual_fallback')
@@ -162,6 +174,13 @@ try {
   assert(await evaluate('!!document.querySelector(".pharmacy-last-result-note")'))
   await finish({ apiMocked: true })
 
+  await open('google_fallback_uses_attempted_region')
+  await mockApi();await locate();await idle()
+  await evaluate('window.__qaHttpFailure=true;navigator.geolocation.getCurrentPosition=success=>success({coords:{latitude:-23.55012,longitude:-46.63312,accuracy:35}})');await pause(1100);await locate();await idle()
+  state=await snapshot();assert(state.error&&state.cards===1)
+  assert.equal(await evaluate('new URL(document.querySelector(".pharmacy-google-search").href).searchParams.get("query")'),'farmácias perto de -23.55,-46.633')
+  await finish({ apiMocked:true,nativeApiMocked:true,lastResultsPreserved:true })
+
   await open('invalid_provider_json')
   await mockApi(); await evaluate('window.__qaInvalidJson=true'); await locate(); await idle()
   state = await snapshot(); assert(state.error && state.cards === 0 && state.manualEnabled)
@@ -180,6 +199,7 @@ try {
   await finish({ nativeApiMocked: true })
 
   await open('render_boundary_recovery')
+  await mockApi()
   await evaluate("window.__qaNativeURL=URL;window.URL=class extends URL { constructor(input,...rest){if(String(input)==='https://waze.com/ul')throw new Error('QA_RENDER_FAULT');super(input,...rest)} }")
   await locate(); await waitFor('!!document.querySelector(".pharmacy-recovery")')
   assert(await evaluate('!!document.querySelector(".mobile-nav")'))
@@ -191,6 +211,7 @@ try {
   for (const [width,height] of [[320,568],[390,844],[1280,900]]) {
     await page('Emulation.setDeviceMetricsOverride', { width,height,deviceScaleFactor:1,mobile:width<900 })
     await open(`results_layout_${width}`); await mockApi(); await locate(); await idle()
+    await evaluate('document.querySelector(".pharmacy-route-choice").open=true')
     const cuts=await evaluate(`(() => [...document.querySelectorAll('.pharmacy-page *')].filter(e=>{const r=e.getBoundingClientRect();return r.width>1&&r.height>1&&r.right>innerWidth+1&&!e.closest('details:not([open])')}).map(e=>String(e.className)))()`)
     assert.equal(await evaluate('document.documentElement.scrollWidth'),width)
     if(cuts.length)issues.push({width,cuts})
