@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-24",
+  "scope": "Supabase production activation following explicit user approval; metadata and health checks only",
+  "method": "Authenticated Dashboard SQL Editor and Edge Function editor; OAuth connector was unavailable",
+  "migration": {
+    "file": "202611240006_bottle_stock.sql",
+    "applied": true,
+    "legacyNumericBalancesPreserved": true,
+    "verification": {
+      "stockLevelColumnExists": true,
+      "dropDoseSeparatedFromNumericStock": true,
+      "numericRefillOfDropsRejected": true,
+      "anonymousRpcExecutionBlocked": true,
+      "authenticatedRpcExecutionAllowed": true
+    }
+  },
+  "dispatcher": {
+    "function": "dispatch-reminders",
+    "deployed": true,
+    "stockUnitAndLevelSelected": true,
+    "manualLevelControlsDropReplenishment": true,
+    "authenticationUnchanged": true,
+    "dashboardConfirmation": "Last deployed a few seconds ago"
+  },
+  "cron": {
+    "checkedAt": "2026-11-24T14:54:52-03:00",
+    "responseAt": "2026-11-24T14:54:00-03:00",
+    "active": true,
+    "httpStatus": 200,
+    "timedOut": false,
+    "sent": 0,
+    "failed": 0
+  },
+  "limitations": [
+    "No hosted Auth user journey or real patient rows exercised in production",
+    "No physical-device push receipt observed",
+    "SQL applied manually; CLI migration history was not managed in this step"
+  ]
+}

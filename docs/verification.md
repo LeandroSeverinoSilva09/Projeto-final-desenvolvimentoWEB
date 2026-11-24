@@ -1,6 +1,6 @@
 # Verificação da implementação — 23/11/2026
 
-**Revisão de gotas em 24/11/2026:** 190 testes, 9 cenários SQL locais e 12 cenários específicos de interface aprovados. A [revisão de frascos](drop-medications-review.md) descreve o novo modelo e a ativação remota pendente de autorização.
+**Revisão de gotas em 24/11/2026:** 190 testes, 9 cenários SQL locais e 12 cenários específicos de interface aprovados. A [revisão de frascos](drop-medications-review.md) descreve o novo modelo e a ativação remota concluída após autorização explícita.
 
 **Resultado atual:** consulte a [revisão funcional ECC](platform-qa-review.md), com 172 testes unitários, 29 cenários de interface, 220 estados de proporção e os testes nativos de aviso imediato. Os registros abaixo preservam as verificações de rodadas anteriores e seus respectivos limites.
 

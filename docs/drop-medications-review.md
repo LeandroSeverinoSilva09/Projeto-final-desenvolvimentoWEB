@@ -39,9 +39,13 @@ Relatórios: [gotas na interface](drop-medications-qa.json), [migração em Post
 
 ## Ativação no Supabase
 
-**Pendente de autorização explícita para produção.** A chave secreta fornecida foi validada por uma consulta sem registros, e o painel autenticado permitiu inspecionar a estrutura. O campo `stock_level` ainda não existia. A revisão automática rejeitou o clique que executaria a migração por alterar estrutura e funções compartilhadas no banco de produção sem autorização explícita para essa aplicação imediata. Nenhuma migração nem publicação da função foi realizada nesta rodada.
+**Ativado em produção após autorização explícita em 24/11/2026.** A migração foi executada pelo SQL Editor do painel autenticado, usando o mesmo SQL validado localmente. Não foi usado o gerenciador de migrações do CLI. A verificação posterior confirmou a coluna `stock_level`, a separação da dose em gotas, a reposição visual, o bloqueio de execução por `anon` e a permissão para usuários autenticados.
 
-A implementação e os testes locais estão concluídos. Para ativar nas contas reais, aplicar a migração e depois publicar `dispatch-reminders` com o código atualizado. As chaves não estão no repositório. As chaves de API e a autorização administrativa da plataforma são mecanismos distintos, conforme a [documentação de chaves](https://supabase.com/docs/guides/getting-started/api-keys) e a [Management API](https://supabase.com/docs/reference/api/introduction).
+A função `dispatch-reminders` foi atualizada e o painel confirmou uma implantação nova. Foram alteradas a leitura de `stock_unit`/`stock_level` e a condição de aviso de reposição dos frascos. A autenticação do serviço não foi alterada. A execução do cron posterior à publicação, às 14:54 de São Paulo, retornou HTTP 200, sem timeout, com `sent=0` e `failed=0`.
+
+A checagem remota foi de estrutura, permissões e saúde do serviço, sem consultar registros pessoais ou enviar notificações de teste a pessoas. Os cenários funcionais de dose e estoque foram exercitados no banco temporário e na demonstração. Esses resultados não comprovam recebimento de push em aparelhos físicos. Consulte o [registro de ativação](bottle-stock-production-qa.json).
+
+As chaves não estão no repositório. As chaves de API e a autorização administrativa da plataforma são mecanismos distintos, conforme a [documentação de chaves](https://supabase.com/docs/guides/getting-started/api-keys) e a [Management API](https://supabase.com/docs/reference/api/introduction).
 
 ```bash
 npm test
