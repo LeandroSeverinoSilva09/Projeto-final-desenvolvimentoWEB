@@ -1,4 +1,20 @@
 /* Shared reflow rules: allow content to wrap instead of clipping inside panels. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.main-content { container: workspace / inline-size; padding-inline: clamp(16px, 2.5vw, 38px); }
+.sidebar { min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
+.sidebar > * { flex-shrink: 0; }
+.sidebar-link { min-width: 0; }
+.sidebar-link > svg { flex-shrink: 0; }
+.list-toolbar > .muted { color: #526b76; }
+
+/* A short laptop window must keep the account and pharmacy controls reachable. */
+@media (max-height: 760px) {
+  .sidebar { padding-top: 20px; }
+  .sidebar-intro { margin-block: 8px 20px; }
+  .sidebar-help { display: none; }
+  .sidebar nav { gap: 5px; }
+  .sidebar-link { padding-block: 11px; }
+}
 .demo-mobile-label { display: none; }
 .dose-format-inline { display: none; }
 .app-footer .text-link { color: #146b61; }
@@ -80,7 +96,7 @@
 }
 
 /* Switch navigation before the sidebar starts squeezing the workspace. */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   html { scroll-padding-block: 12px calc(81px + env(safe-area-inset-bottom)); }
   .sidebar { display: none; }
   .workspace { width: 100%; margin-left: 0; }
@@ -342,4 +358,20 @@
   .metrics.three { gap: 7px; }
   .metrics.three .metric { padding: 12px 9px; }
   .dose-row { grid-template-columns: 54px minmax(0, 1fr) 90px; gap: 8px; }
+}
+
+/* Fit cards to the space left for content, including browser zoom and sidebars. */
+.medication-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+@container workspace (max-width: 60rem) {
+  .dashboard-columns, .settings-grid, .form-layout { grid-template-columns: minmax(0, 1fr); }
+  .dashboard-aside, .form-aside { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .welcome-copy { max-width: 100%; }
+  .welcome-illustration { display: none; }
+}
+
+@media (max-width: 1100px) and (max-height: 500px) {
+  .topbar { height: calc(52px + env(safe-area-inset-top)); }
+  .mobile-nav a { min-height: 44px; gap: 3px; }
+  .mobile-nav svg { width: 18px; height: 18px; }
+  .main-content { padding-top: 12px; }
 }

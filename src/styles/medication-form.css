@@ -103,7 +103,7 @@
 .med-form-support a, .med-form-support button { display: inline-flex; align-items: center; gap: 6px; min-height: 48px; font-size: 16px; color: #425d6a; }
 .large-text .medication-form.visual-medication-form label, .large-text .medication-form.visual-medication-form legend { font-size: 20px !important; }
 .large-text .med-format-copy strong, .large-text .med-format-copy > span, .large-text .med-check-summary dd { font-size: 20px; }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .medication-editor-heading .page-heading { margin-bottom: 12px; }
   .medication-editor-heading .page-heading h1 { font-size: 22px; }
   .medication-editor-heading .page-heading p { display: none; }

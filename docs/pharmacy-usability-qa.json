@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T19:07:24.593Z",
+  "checkedAt": "2026-11-24T19:19:04.296Z",
   "environment": "Local disposable Chrome demo; provider results and coordinates are fictitious fixtures",
   "states": [
     {
@@ -90,8 +90,8 @@
       "documentWidth": 320,
       "clipped": [],
       "primary": {
-        "top": -849.5234375,
-        "bottom": -769.5234375,
+        "top": -901.5234375,
+        "bottom": -821.5234375,
         "visible": false
       },
       "visibleWaze": 0,
@@ -270,9 +270,9 @@
       "documentWidth": 768,
       "clipped": [],
       "primary": {
-        "top": -518.1015625,
-        "bottom": -468.1015625,
-        "visible": false
+        "top": 10.3984375,
+        "bottom": 60.3984375,
+        "visible": true
       },
       "visibleWaze": 0,
       "providerRequests": 1,
@@ -330,8 +330,8 @@
       "documentWidth": 768,
       "clipped": [],
       "primary": {
-        "top": -647.4140625,
-        "bottom": -594.4140625,
+        "top": -93.9140625,
+        "bottom": -40.9140625,
         "visible": false
       },
       "visibleWaze": 0,

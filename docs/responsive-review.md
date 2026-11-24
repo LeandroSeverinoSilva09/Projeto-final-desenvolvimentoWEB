@@ -63,6 +63,45 @@ Resultados: [mobile-proportion-test-results.json](mobile-proportion-test-results
 
 Para repetir o teste, inicie um Chrome dedicado com perfil temporário e porta CDP e execute `node scripts/test-mobile-layout.mjs --port 9338` com o Vite local ativo. Não reutilize um perfil pessoal. O script limpa seu contexto ao terminar; encerre o navegador temporário após a execução.
 
+## Adaptação durante redimensionamento — 24/11/2026
+
+O ECC reproduziu uma falha que a conferência anterior de largura não cobria. Em 1024×600, o menu lateral tinha cerca de 994 px de conteúdo em uma área de 600 px, com `overflow-y: visible`; as opções inferiores ficavam fora da tela. Em 1180×600, com letras maiores, a situação também impedia alcançar o botão de saída. A distribuição de desktop mantinha a agenda abaixo de uma introdução grande em larguras de tablet.
+
+Correções:
+
+- A navegação inferior e o cadastro compacto passam a ser usados até 1100 px. O mesmo limite é aplicado ao formulário, evitando mudanças incompatíveis entre a estrutura e os campos.
+- Em janelas largas e baixas, o menu lateral tem rolagem própria. A área decorativa é recolhida em alturas de até 760 px; as opções mantêm tamanho de toque e não são comprimidas para caber.
+- O conteúdo usa espaçamento horizontal flexível e uma área de consulta de tamanho. Os cartões se distribuem pela largura disponível com `auto-fit`, e os painéis se reorganizam conforme a área de conteúdo, inclusive quando a barra lateral ocupa parte da janela. Referência: [container queries no MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries).
+- Telas de baixa altura têm cabeçalho e navegação mais compactos. O viewport usa `interactive-widget=resizes-content` para navegadores compatíveis; o teste de altura reduzida não comprova comportamento de um teclado físico/virtual real.
+- O manifesto do app instalado usa `orientation: any`, preservando as orientações permitidas pelo sistema, em vez de forçar retrato. O manifesto gerado foi conferido. Referência: [orientação do manifesto no MDN](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/orientation).
+- A revisão de desktop também corrigiu contraste do contador da lista e nomes das duas regiões complementares para leitores de tela.
+
+Validação final:
+
+| Verificação | Resultado |
+| --- | --- |
+| Roteiro de páginas/etapas em dez viewports | 220 estados, sem cortes ou rolagem horizontal |
+| Redimensionamento sem recarregar | 174 estados, incluindo entrada, rotina, cartões, cadastro e ajustes |
+| Dimensões e densidades | 21 combinações, de 320×568 até 2560×1440, DPR 1/2/3, retrato e paisagem |
+| Preservação do cadastro | Nome fictício preservado em todas as trocas de tamanho; `performance.timeOrigin` permaneceu igual durante cada sequência |
+| Navegação | Apenas um menu visível; área útil integral em larguras de tablet; opções inferiores alcançáveis no menu lateral |
+| Formulário de reposição | Quatro tamanhos, incluindo 844×390; ações alcançáveis, sem confirmar nenhuma reposição |
+| Acessibilidade automatizada | 45 estados com axe-core 4.14.1, sem violações automáticas; verificações incompletas ficam no relatório |
+| Farmácias após alterar estilos compartilhados | 24 estados, sem cortes, exceções ou violações automáticas |
+| Testes e compilação | 203 testes em 17 arquivos; TypeScript, Vite e PWA passaram |
+
+O novo [roteiro de redimensionamento](../scripts/test-responsive-resize.mjs) usa somente demonstração descartável e não grava doses, reposições ou dados em contas reais. Resultados: [redimensionamento](responsive-resize-qa.json), [páginas e etapas](mobile-proportion-test-results.json) e [farmácias](pharmacy-usability-qa.json).
+
+Para repetir, com o Vite e um Chrome temporário na porta indicada:
+
+```bash
+node scripts/test-responsive-resize.mjs --port 9338 --axe-path /caminho/temporario/axe-core/axe.min.js
+```
+
+Referências atuais: [celular](screenshots/responsive-routine-375x667.png), [altura reduzida](screenshots/responsive-routine-375x420.png), [tablet](screenshots/responsive-routine-1024x768.png) e [desktop](screenshots/responsive-routine-1440x900.png). A distribuição mudou; a comparação automática de pixels entre estruturas diferentes permanece inconclusiva. As imagens e as medidas atuais foram inspecionadas.
+
+O resultado é aprovado no escopo de layout e interação local observado. Não constitui certificação WCAG, teste de zoom pela barra do navegador, teclado virtual real, leitor de tela ou GPS físico. A emulação de dimensões, orientação e densidade não equivale a teste em aparelho Android/iOS. Core Web Vitals não foram medidos nesta revisão.
+
 ## Limites
 
 Resultado responsivo aprovado no escopo local observado. A comparação automática de regressão visual permanece **INCONCLUSIVE**, pois não existe baseline versionado de screenshots. Houve inspeção visual antes e depois das correções.

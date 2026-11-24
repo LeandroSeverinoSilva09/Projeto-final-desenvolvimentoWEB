@@ -22,7 +22,7 @@ export function AppLayout() {
   const exit = async () => { try { await logout() } catch(e) { addToast('error', errorMessage(e)) } }
   return <div className="app-shell">
     <a className="skip-link" href="#main-content">Ir para o conteúdo</a>
-    <aside className="sidebar"><Link className="brand" to="/"><span className="brand-symbol"><BrandMark size={29}/></span><span>MED<span className="brand-light">Control</span></span></Link>
+    <aside className="sidebar" aria-label="Menu do MEDControl"><Link className="brand" to="/"><span className="brand-symbol"><BrandMark size={29}/></span><span>MED<span className="brand-light">Control</span></span></Link>
       <p className="sidebar-intro">Cada cuidado conta.</p>
       <nav aria-label="Navegação principal">{navigation.map(({ to, label, icon: Icon }) => <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}><Icon size={21}/><span>{label}</span></NavLink>)}</nav>
       <div className="sidebar-help"><div className="heart-icon"><Heart size={24}/></div><h3>Uma rotina mais leve</h3><p>Pequenos lembretes.<br/>Mais autonomia no seu dia.</p><Link to="/configuracoes">Conheça os lembretes <span>↗</span></Link></div>

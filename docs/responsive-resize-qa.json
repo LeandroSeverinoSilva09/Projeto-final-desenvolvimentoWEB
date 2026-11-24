@@ -1,0 +1,3978 @@
+{
+  "checkedAt": "2026-11-24T19:18:37.443Z",
+  "environment": "Disposable local Chrome demo, native live resizing without page reloads",
+  "rows": [
+    {
+      "route": "/login",
+      "large": false,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547900679.7,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": false,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": null,
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/login",
+      "large": false,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547900679.7,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": false,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": null,
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/login",
+      "large": false,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547900679.7,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": false,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": null,
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/login",
+      "large": false,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547900679.7,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": false,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": null,
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/login",
+      "large": false,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547900679.7,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": false,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": null,
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/login",
+      "large": false,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547900679.7,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": false,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": null,
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": false,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547901733.9,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/",
+      "large": true,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547903862.1,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": "361.328px 361.336px 361.336px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": "444.5px 444.5px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": "406.977px 406.977px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": "345.328px 345.336px 345.336px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": "320px 320px 320px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": "360px 360px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": "568px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": "398px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": "358px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": "358px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": "358px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": "343px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": "288px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": "398px 398px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": "424px 424px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": "320px 320px 320px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": "343px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": "310.664px 310.664px 310.664px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": "337.898px 337.898px 337.898px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": "476.664px 476.664px 476.664px 0px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": false,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547905774.5,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": "476.664px 476.664px 476.664px 0px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": "361.328px 361.336px 361.336px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": "444.5px 444.5px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": "406.977px 406.977px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": "526px 526px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": "488px 488px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": "736px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": "568px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": "398px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": "358px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": "358px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": "358px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": "343px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": "288px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": "398px 398px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": "424px 424px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": "488px 488px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": "343px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": "477px 477px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": "517.852px 517.852px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": "476.664px 476.664px 476.664px",
+      "draft": null
+    },
+    {
+      "route": "/medicamentos",
+      "large": true,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547907622.3,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": "476.664px 476.664px 476.664px",
+      "draft": null
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": false,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547909470.5,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/adicionar",
+      "large": true,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547911334.2,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": null,
+      "draft": "Remedio ficticio para conferir a adaptacao automatica entre dispositivos"
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": false,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547913190.2,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1440,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1200
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1180,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1180,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 970
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1101,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1101,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 210,
+        "width": 891
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1100,
+      "height": 650,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1100,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1100
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1024,
+      "height": 768,
+      "dpr": 2,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 768,
+      "height": 1024,
+      "dpr": 2,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 768,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 768
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 600,
+      "height": 800,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 600,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 600
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 430,
+      "height": 932,
+      "dpr": 3,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 430,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 430
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 390,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 390
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 375,
+      "height": 667,
+      "dpr": 2,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 320,
+      "height": 568,
+      "dpr": 2,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 320,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 320
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 844,
+      "height": 390,
+      "dpr": 3,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 844,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 844
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 896,
+      "height": 414,
+      "dpr": 3,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 896,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 896
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1024,
+      "height": 500,
+      "dpr": 2,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1024,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 1024
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 375,
+      "height": 420,
+      "dpr": 3,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 375,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": false,
+      "navVisible": true,
+      "sidebarLastReachable": null,
+      "sidebarOverflow": null,
+      "workspace": {
+        "left": 0,
+        "width": 375
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1280,
+      "height": 720,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1280,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1040
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1366,
+      "height": 600,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1366,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 240,
+        "width": 1126
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 1920,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 1660
+      },
+      "columns": null,
+      "draft": null
+    },
+    {
+      "route": "/configuracoes",
+      "large": true,
+      "width": 2560,
+      "height": 1440,
+      "dpr": 2,
+      "timeOrigin": 1795547915019.2,
+      "documentWidth": 2560,
+      "cuts": [],
+      "squeezed": [],
+      "sidebarVisible": true,
+      "navVisible": false,
+      "sidebarLastReachable": true,
+      "sidebarOverflow": "auto",
+      "workspace": {
+        "left": 260,
+        "width": 2300
+      },
+      "columns": null,
+      "draft": null
+    }
+  ],
+  "issues": [],
+  "dialogRows": [
+    {
+      "width": 320,
+      "height": 568,
+      "dialog": {
+        "left": 16,
+        "right": 304,
+        "top": 28.3984375,
+        "bottom": 539.59375
+      },
+      "finalActionReachable": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "dialog": {
+        "left": 182,
+        "right": 662,
+        "top": 19.5,
+        "bottom": 370.5
+      },
+      "finalActionReachable": true
+    },
+    {
+      "width": 1024,
+      "height": 500,
+      "dialog": {
+        "left": 272,
+        "right": 752,
+        "top": 50.1015625,
+        "bottom": 449.8984375
+      },
+      "finalActionReachable": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "dialog": {
+        "left": 480,
+        "right": 960,
+        "top": 250.1015625,
+        "bottom": 649.8984375
+      },
+      "finalActionReachable": true
+    }
+  ],
+  "clippedDialogs": [],
+  "accessibility": [
+    {
+      "label": "login-landscape",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 1440 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ 1180 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 768 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 1440 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 1180 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 768 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/ 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 1440 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 1180 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 768 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 1440 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 1180 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/medicamentos 768 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/medicamentos 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 1440 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 1180 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 768 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 1440 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 1180 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 768 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/adicionar 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 1440 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 1180 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 768 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 375 normal",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 1440 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 1180 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/configuracoes 768 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "/configuracoes 375 large",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "restock 320",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "restock 844",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "restock 1024",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "restock 1440",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "unexpectedExceptions": [],
+  "limitations": [
+    "DPR and viewport emulation is not a physical iOS or Android test",
+    "Short viewports approximate available height; no real virtual keyboard tested",
+    "Effective CSS widths exercise reflow; browser toolbar zoom was not automated",
+    "Automated accessibility does not certify WCAG; no screen reader session",
+    "Current screenshots are references; pixel comparison across different layouts is inconclusive"
+  ]
+}
