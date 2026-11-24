@@ -8,6 +8,24 @@ import { Input } from '../components/common/Input'
 import { Button } from '../components/common/Button'
 
 type Mode = 'login' | 'signup' | 'reset' | 'recover'
+const teamMembers = [
+  'Arthur Fonseca Victor da Silva',
+  'Gabriell Levy Santos Oliveira',
+  'Italo Gabriel Sobreira Silva',
+  'João Gabriel Beligoli',
+  'Leandro Severino da Silva',
+  'Pedro Henrique Alves Teixeira',
+  'Pedro Henrique Noleto Milagres',
+  'Vinicius Diniz Viana Moreira',
+]
+
+function TeamCredits({ className }: { className: string }) {
+  return <section className={`auth-team ${className}`} aria-label="Integrantes do grupo">
+    <ShieldCheck size={17} aria-hidden="true"/>
+    <div><strong>Desenvolvido por</strong><ul>{teamMembers.map(name => <li key={name}>{name}</li>)}</ul></div>
+  </section>
+}
+
 export function Login() {
   const { startDemo, recovering, finishRecovery } = useAuth()
   const navigate = useNavigate()
@@ -54,7 +72,7 @@ export function Login() {
         <p>Organize seus medicamentos, acompanhe seus horários e tenha mais autonomia para cuidar de você.</p>
         <div className="medicine-art" aria-hidden="true"><div className="art-orbit"/><div className="art-box"><span className="art-cross">+</span><strong>Seu cuidado<br/>em dia.</strong><div className="art-box-line"/></div><div className="art-pill"/><div className="art-notice"><span><BellRing size={20}/></span><div><strong>Um lembrete faz a diferença</strong><small>Seu próximo cuidado, no horário.</small></div><Check size={17}/></div></div>
       </div>
-      <div className="auth-caption"><ShieldCheck size={17}/> Desenvolvido para apoiar a rotina de cuidado.</div>
+      <TeamCredits className="auth-caption"/>
     </section>
     <section className="auth-form-side"><div className="auth-form-wrap">
       <span className="auth-welcome">Bem-vindo ao MEDControl</span><h2>{title}</h2>
@@ -73,6 +91,6 @@ export function Login() {
       {mode === 'reset' && <button className="text-link mt-5" onClick={() => changeMode('login')}>Voltar para entrar</button>}
       {mode !== 'recover' && <><div className="auth-divider"><span>Conheça antes de criar sua conta</span></div><button className="demo-button" onClick={startDemo}>Explorar demonstração <ArrowRight size={17}/></button><p className="auth-demo-note">Um ambiente com dados fictícios para conhecer o projeto.</p></>}
       <p className="auth-privacy"><ShieldCheck size={15}/> Seus dados de saúde merecem cuidado e privacidade.</p><p className="auth-privacy"><Link className="text-link" to="/privacidade">Privacidade</Link> · <Link className="text-link" to="/termos">Condições de uso</Link></p>
-    </div><p className="auth-footer">Projeto acadêmico de impacto social · Acesso gratuito</p></section>
+    </div><p className="auth-footer">Projeto acadêmico de impacto social · Acesso gratuito</p><TeamCredits className="auth-team-mobile"/></section>
   </main>
 }

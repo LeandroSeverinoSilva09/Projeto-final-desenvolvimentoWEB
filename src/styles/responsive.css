@@ -1,5 +1,11 @@
 /* Shared reflow rules: allow content to wrap instead of clipping inside panels. */
 .demo-mobile-label { display: none; }
+.auth-team { align-items: flex-start; font-size: 13px; line-height: 1.6; color: #526b76; }
+.auth-team > svg { flex-shrink: 0; margin-top: 3px; }
+.auth-team > div { min-width: 0; }
+.auth-team ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; margin: 8px 0 0; padding: 0; list-style: none; }
+.auth-team li { overflow-wrap: anywhere; }
+.auth-team-mobile { display: none; }
 .page-heading > div,
 .section-heading > div,
 .form-section-title > div,
@@ -290,6 +296,8 @@
   .auth-story h1 { font-size: 26px; letter-spacing: -1px; }
   .auth-story-content > p { font-size: 13px; line-height: 1.6; margin-top: 8px; max-width: 420px; }
   .soft-label, .medicine-art, .auth-caption, .auth-welcome { display: none; }
+  .auth-team-mobile { display: flex; gap: 7px; margin-top: 24px; }
+  .auth-team-mobile ul { grid-template-columns: minmax(0, 1fr); }
   .auth-form-side { min-width: 0; padding: 24px 20px; }
   .auth-form-wrap { max-width: 420px; }
   .auth-form-wrap h2 { font-size: 24px; margin: 0 0 8px; }
