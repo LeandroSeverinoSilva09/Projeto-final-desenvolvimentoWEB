@@ -9,12 +9,9 @@ import { Button } from '../components/common/Button'
 
 type Mode = 'login' | 'signup' | 'reset' | 'recover'
 const teamMembers = [
-  'Arthur Fonseca Victor da Silva',
   'Gabriell Levy Santos Oliveira',
-  'Italo Gabriel Sobreira Silva',
   'João Gabriel Beligoli',
   'Leandro Severino da Silva',
-  'Pedro Henrique Alves Teixeira',
   'Pedro Henrique Noleto Milagres',
   'Vinicius Diniz Viana Moreira',
 ]
