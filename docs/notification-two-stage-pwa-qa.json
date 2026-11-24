@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-11-24T18:41:41.389Z",
+  "origin": "http://127.0.0.1:4173",
+  "browser": "Chrome/158.0.8127.37",
+  "clock": "Real wall clock; Date and success events are not simulated",
+  "planned": {
+    "time": "15:41",
+    "dueAt": 1795545660000,
+    "advanceAt": 1795545360000,
+    "timezone": "America/Sao_Paulo"
+  },
+  "advance": {
+    "type": "worker-accepted",
+    "title": "Prepare-se para seu cuidado",
+    "tag": "medcontrol-notified:demo:24/11/2026:24/11/2026-two-stage-native-15:41:advance",
+    "body": "Seu medicamento está agendado para 15:41. Prepare-se para esse horário.",
+    "time": 1795545369027
+  },
+  "due": {
+    "type": "worker-accepted",
+    "title": "Seu cuidado tem hora",
+    "tag": "medcontrol-notified:demo:24/11/2026:24/11/2026-two-stage-native-15:41",
+    "body": "Chegou seu horário de medicamento, agendado para 15:41. Abra o MEDControl para conferir.",
+    "time": 1795545669075
+  },
+  "advanceLeadSeconds": 290.973,
+  "dueDelaySeconds": 9.075,
+  "events": [
+    {
+      "type": "worker-created",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-0da78e2e-8368-4965-81ed-0c842c1c7dcb",
+      "body": "Seu aviso de teste chegou. Você não precisa cadastrar um remédio nem esperar um horário para fazer este teste.",
+      "time": 1795545309116
+    },
+    {
+      "type": "worker-accepted",
+      "title": "Teste de aviso local",
+      "tag": "medcontrol-test-0da78e2e-8368-4965-81ed-0c842c1c7dcb",
+      "body": "Seu aviso de teste chegou. Você não precisa cadastrar um remédio nem esperar um horário para fazer este teste.",
+      "time": 1795545309119
+    },
+    {
+      "type": "worker-created",
+      "title": "Prepare-se para seu cuidado",
+      "tag": "medcontrol-notified:demo:24/11/2026:24/11/2026-two-stage-native-15:41:advance",
+      "body": "Seu medicamento está agendado para 15:41. Prepare-se para esse horário.",
+      "time": 1795545369011
+    },
+    {
+      "type": "worker-accepted",
+      "title": "Prepare-se para seu cuidado",
+      "tag": "medcontrol-notified:demo:24/11/2026:24/11/2026-two-stage-native-15:41:advance",
+      "body": "Seu medicamento está agendado para 15:41. Prepare-se para esse horário.",
+      "time": 1795545369027
+    },
+    {
+      "type": "worker-created",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:24/11/2026:24/11/2026-two-stage-native-15:41",
+      "body": "Chegou seu horário de medicamento, agendado para 15:41. Abra o MEDControl para conferir.",
+      "time": 1795545669030
+    },
+    {
+      "type": "worker-accepted",
+      "title": "Seu cuidado tem hora",
+      "tag": "medcontrol-notified:demo:24/11/2026:24/11/2026-two-stage-native-15:41",
+      "body": "Chegou seu horário de medicamento, agendado para 15:41. Abra o MEDControl para conferir.",
+      "time": 1795545669075
+    }
+  ],
+  "deduplication": "passed",
+  "disabled": "passed",
+  "remoteSubscriptionRequests": 0,
+  "limitations": [
+    "Native browser acceptance is not visual confirmation of an OS banner",
+    "This is the open-app local path; server/provider delivery is validated separately",
+    "No physical-device or closed-browser receipt observed"
+  ]
+}

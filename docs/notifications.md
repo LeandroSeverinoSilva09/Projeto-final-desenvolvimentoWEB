@@ -18,10 +18,10 @@ A confirmação de uma dose não é inferida pela notificação: o usuário prec
 - `medcontrol-reminders`: cron de um em um minuto, chamando a função pelo `pg_net` com o segredo dedicado.
 - `notification_deliveries`: chave única por inscrição, medicamento, data e horário coordena execuções concorrentes. A migração `202611230005_push_delivery_leases.sql` acrescenta confirmação de envio e uma concessão temporária de 45 segundos para recuperar tentativas abandonadas. Cada tentativa usa um token; um worker antigo não pode liberar a tentativa de outro. Falhas transitórias liberam a tentativa; inscrições vencidas (HTTP 404/410) são removidas.
 - A leitura das inscrições usa paginação por cursor para não pular aparelhos quando inscrições vencidas são removidas durante o envio.
-- A consulta considera o fuso horário do aparelho informado na inscrição e os últimos dois minutos para absorver atrasos curtos. Doses já confirmadas não geram novo aviso.
+- A consulta considera o fuso horário do aparelho informado na inscrição. Cada dose tem dois avisos: cinco minutos antes, para se preparar, e no horário cadastrado. Ambos permitem recuperação de até dois minutos em caso de atraso curto. Doses já confirmadas não geram novo aviso.
 - Estoque para até três dias de consumo gera um aviso diário por medicamento/aparelho, com acesso à página de farmácias. Nenhum GPS é coletado automaticamente pelo aviso.
 
-O conteúdo mostrado pelo worker é fixo e discreto, sem nome, dose ou medicamento na tela bloqueada. Os únicos destinos internos permitidos pelo worker são `/` e `/farmacias`.
+O conteúdo mostrado pelo worker é discreto, sem nome ou quantidade do medicamento na tela bloqueada. O horário cadastrado pode aparecer; textos arbitrários do payload são ignorados. Os únicos destinos internos permitidos pelo worker são `/` e `/farmacias`.
 
 O agendamento usa um segredo próprio; não transmite a chave `service_role`. Operadores com conexão direta privilegiada ao banco ainda podem acessar configurações/filas do servidor. Não copie essas informações para logs, cliente ou documentação pública.
 
@@ -41,7 +41,7 @@ A verificação JWT legada da plataforma fica desligada para esse endpoint porqu
 5. Na conta real, ativar notificações. Conferir a inscrição em `push_subscriptions` sem divulgar endpoint ou chaves.
 6. Usar **Enviar teste agora** para verificar permissão e apresentação pelo navegador. Esse botão não chama o dispatcher. Para validar o caminho completo, cadastrar um horário de teste futuro, deixar o app em segundo plano e confirmar o recebimento no próprio aparelho; correlacionar a tentativa com o resultado do cron.
 
-Para atualizar uma instalação existente, aplicar a migração `005` antes de publicar a nova função. O comando de deploy inclui automaticamente `dispatch.ts`. Para o editor de arquivo único no Dashboard, executar `node scripts/bundle-dispatcher.mjs`: ele gera `/tmp/medcontrol-dispatch-reminders.ts`, mantendo os imports npm e reunindo apenas os módulos locais, sem ler credenciais.
+Para atualizar uma instalação existente, aplicar a migração `005` antes de publicar a nova função. O comando de deploy inclui `dispatch.ts` e o módulo compartilhado `_shared/reminderTiming.ts`. Para o editor de arquivo único no Dashboard, executar `node scripts/bundle-dispatcher.mjs`: ele gera `/tmp/medcontrol-dispatch-reminders.ts`, mantendo os imports npm e reunindo apenas os módulos locais, sem ler credenciais.
 
 Não é necessário inserir chaves privadas em `.env.local`. Se as chaves VAPID forem rotacionadas pelo operador, inscrições anteriores precisarão ser refeitas.
 
@@ -99,10 +99,47 @@ Os eventos nativos estão em [notification-test-results.json](notification-test-
 
 O roteiro nativo é repetível com `node scripts/test-browser-notifications.mjs --port 9337`, tendo o servidor Vite em `127.0.0.1:5173` e um Chrome dedicado iniciado com `--remote-debugging-port=9337` e um `--user-data-dir` temporário. O script cria e descarta seu próprio contexto, concede permissão nele, usa um horário futuro e verifica duplicação e desativação. Ele observa eventos reais da API e não cria um `show` artificial.
 
-Para repetir pela interface: recarregue o app, entre na demonstração, ative as notificações em Ajustes e toque em **Enviar teste agora**. O teste é enviado nesse clique, sem cadastrar remédio ou aguardar horário. Para testar separadamente o lembrete da agenda, cadastre um horário fictício um ou dois minutos à frente e mantenha a aba aberta. A permissão pertence ao endereço usado: `localhost` e `127.0.0.1` são origens diferentes. Verifique também se o navegador está autorizado nos ajustes do computador e se Não Perturbe/Foco está ocultando banners.
+Para repetir pela interface: recarregue o app, entre na demonstração, ative as notificações em Ajustes e toque em **Enviar teste agora**. O teste é enviado nesse clique, sem cadastrar remédio ou aguardar horário. Para testar separadamente o lembrete da agenda no horário, cadastre um horário fictício um ou dois minutos à frente e mantenha a aba aberta. Para observar os dois avisos da revisão abaixo, cadastre um horário pelo menos seis minutos à frente. A permissão pertence ao endereço usado: `localhost` e `127.0.0.1` são origens diferentes. Verifique também se o navegador está autorizado nos ajustes do computador e se Não Perturbe/Foco está ocultando banners.
 
 ## Teste imediato e revisão geral ECC
 
 A ação **Enviar teste agora** foi verificada sem medicamentos cadastrados: dois eventos nativos `show` em 14 ms e 9 ms após os cliques. No preview de produção, com worker ativo, `showNotification()` foi resolvido em 5 ms e 3 ms. Os testes repetidos usam tags distintas; cliques simultâneos são bloqueados durante o envio. A falha remove a confirmação anterior e permite nova tentativa. Desativar no modo demonstração não consulta nem remove inscrições remotas.
 
 A confirmação do navegador não atesta que o sistema operacional apresentou um banner. Consulte a [revisão completa e seus limites](platform-qa-review.md), os [eventos desktop](notification-immediate-qa.json) e os [resultados do PWA](notification-production-qa.json).
+
+## Dois avisos por dose — revisão de 24/11/2026
+
+O agendador anterior cobria somente o horário da dose; faltava o aviso antecipado. O cliente e o dispatcher agora usam a mesma regra: preparar cinco minutos antes e lembrar no horário cadastrado. A verificação local ocorre a cada 15 segundos, também ao voltar à aba; o cron verifica a cada minuto. Atrasos curtos de até dois minutos permitem nova tentativa. Nenhum aviso é solicitado antes do início de sua janela.
+
+A reserva antecipada usa `before:HH:MM`; a reserva do horário continua usando `HH:MM`, preservando registros anteriores. As tags também são separadas, para que uma apresentação não suprima a outra. O histórico é consultado pelo horário original da dose e sua data no fuso do aparelho, incluindo doses logo após meia-noite. O aviso antecipado não libera confirmação adiantada e não registra que a pessoa tomou o medicamento. A preferência de desativação e as falhas de exibição continuam sendo respeitadas.
+
+Não há nova migração: `notification_deliveries.schedule_time` e o RPC existente já aceitam essas reservas de texto. O [teste com PostgreSQL descartável](notification-claims-sql-qa.json) verificou seis cenários: privilégios, reserva antecipada, independência da dose, recuperação de tentativa abandonada, bloqueio de repetição após conclusão e separação das datas. O [roteiro SQL](../scripts/test-reminder-claims-sql.mjs) usa apenas registros fictícios em memória.
+
+Os 203 testes em 17 arquivos e a compilação TypeScript/Vite/PWA passaram. A cobertura inclui os dois momentos, concorrência, falha transitória, dose confirmada, virada de data/ano, fuso com mudança de relógio e apresentação discreta do worker. O projeto não possui comando de lint nem provedor de cobertura configurado; não foi atribuído percentual de cobertura.
+
+Para repetir o teste nativo com relógio real, inicie um Chrome dedicado com perfil temporário e porta de depuração 9338, mantenha o servidor local ativo e execute:
+
+```bash
+node scripts/test-two-stage-notifications.mjs --port 9338 --origin http://127.0.0.1:5173
+# Com o preview de producao ativo na porta 4173:
+node scripts/test-two-stage-notifications.mjs --port 9338 --origin http://127.0.0.1:4173
+```
+
+Cada execução leva cerca de seis minutos e cria seu próprio contexto descartável. A permissão vale apenas nele. O teste manual deve ser imediato; em seguida, o roteiro aguarda os dois momentos reais, confere ausência de repetição, bloqueio de confirmação adiantada, desativação e ausência de consultas de inscrições remotas na demonstração. Não há simulação de `Date`, de `show` ou do sucesso de `showNotification()`.
+
+Resultados observados em 24/11/2026, no Chrome 158, com relógio real:
+
+| Ambiente | Aviso antecipado | Aviso no horário | Repetição e desativação |
+| --- | --- | --- | --- |
+| Desktop/Vite, evento nativo `show` | 4 min 52,493 s antes | 4,703 s após o horário | Passaram |
+| Preview/PWA, `showNotification()` nativo resolvido | 4 min 50,973 s antes | 9,075 s após o horário | Passaram |
+
+Os pequenos atrasos correspondem à checagem local de 15 segundos. O teste manual foi aceito imediatamente nas duas versões. A confirmação da dose permaneceu bloqueada antes do horário; notificações não geraram registros no histórico. Não houve erros JavaScript nem consultas de inscrições remotas. Evidências: [desktop](notification-two-stage-desktop-qa.json), [PWA](notification-two-stage-pwa-qa.json) e [serviço remoto](notification-two-stage-server-qa.json). Esses sinais nativos confirmam aceitação pelo navegador, não a apresentação visual do banner pelo sistema ou sua leitura pela pessoa.
+
+### Estado da publicação desta revisão
+
+A conexão foi restabelecida e o dispatcher foi publicado como **versão 5, ACTIVE**, em 24/11/2026 às 15:43 (America/Sao_Paulo). A fonte obtida novamente do serviço corresponde integralmente ao bundle local validado. A autenticação dedicada do POST foi preservada: GET público retornou 200 com chave pública e POST com segredo inválido retornou 401. Às 15:44, a execução do cron posterior à publicação retornou HTTP 200, sem timeout, `sent=0` e `failed=0`; havia zero aparelhos inscritos. Não foi necessário executar migrações nem alterar dados de usuários.
+
+Atualize também o frontend e seu service worker ao publicar; dispositivos com inscrições ativas deixam o envio a cargo do servidor. O build local foi validado, mas esta verificação não atesta uma publicação do frontend em um domínio externo. Nenhuma entrega por provedor real ou recebimento em telefone físico foi observado nesta revisão.
+
+A avaliação de saúde do Supabase não apontou problemas. Os avisos sobre tabelas sem políticas RLS se referem às duas tabelas privadas do servidor, sem acesso pelos clientes. Os RPCs de confirmação/reposição são intencionalmente acessíveis a usuários autenticados e verificam o proprietário; o RPC de reserva continua restrito ao serviço. Referências: [RLS sem políticas](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) e [funções SECURITY DEFINER](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable). O informativo de desempenho sobre [índice da chave estrangeira de dose_records](https://supabase.com/docs/guides/database/database-linter?lint=0001_unindexed_foreign_keys) já existe no projeto; não foi realizada alteração de esquema nesta revisão.

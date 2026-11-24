@@ -32,8 +32,9 @@ export async function localBrowser(port='9338',origin='http://127.0.0.1:5173'){
     if(r.exceptionDetails)throw new Error(r.exceptionDetails.exception?.description||r.exceptionDetails.text)
     return r.result.value
   }
-  const waitFor=async expression=>{
-    for(let i=0;i<100;i++){if(await evaluate(`(async()=>Boolean(await (${expression})))()`))return;await pause(100)}
+  const waitFor=async (expression,timeout=10000)=>{
+    const end=Date.now()+timeout
+    while(Date.now()<end){if(await evaluate(`(async()=>Boolean(await (${expression})))()`))return;await pause(100)}
     throw new Error(`Condicao nao confirmada: ${expression}`)
   }
   const navigate=async route=>{
@@ -44,5 +45,7 @@ export async function localBrowser(port='9338',origin='http://127.0.0.1:5173'){
   const input=(selector,value)=>evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,${JSON.stringify(value)});e.dispatchEvent(new Event('input',{bubbles:true}));})()`)
   const button=text=>evaluate(`(()=>{const b=[...document.querySelectorAll('button')].find(b=>b.textContent.trim()===${JSON.stringify(text)});if(!b||b.disabled)throw Error('Botao indisponivel: '+${JSON.stringify(text)});b.click()})()`)
   await page('Page.enable');await page('Page.setLifecycleEventsEnabled',{enabled:true});await page('Runtime.enable');await page('Network.enable')
-  return {page,evaluate,waitFor,navigate,input,button,errors,requests,version:version.Browser,async dispose(){await command('Target.disposeBrowserContext',{browserContextId}).catch(()=>{});socket.close()}}
+  return {page,evaluate,waitFor,navigate,input,button,errors,requests,version:version.Browser,
+    grantPermissions:permissions=>command('Browser.grantPermissions',{browserContextId,origin,permissions}),
+    async dispose(){await command('Target.disposeBrowserContext',{browserContextId}).catch(()=>{});socket.close()}}
 }

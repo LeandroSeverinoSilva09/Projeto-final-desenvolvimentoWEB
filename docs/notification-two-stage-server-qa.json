@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-24T18:44:29Z",
+  "function": {
+    "name": "dispatch-reminders",
+    "version": 5,
+    "status": "ACTIVE",
+    "updatedAt": "2026-11-24T18:43:00.445Z",
+    "sha256": "d443f6637d22da21b13e35a53c99f0018921dbe89bef8e53a31cf052ed12f4bd",
+    "exactSourceMatch": true,
+    "authentication": "Existing cron secret authentication preserved"
+  },
+  "health": [
+    {
+      "verificado_em": "2026-11-24 15:44:29.011342",
+      "cron_ativo": true,
+      "status_code": 200,
+      "timed_out": false,
+      "enviados": "0",
+      "falhas": "0",
+      "resposta_em": "2026-11-24 15:44:00.022654"
+    }
+  ],
+  "endpoints": {
+    "publicGetStatus": 200,
+    "publicKeyPresent": true,
+    "invalidPostStatus": 401
+  },
+  "database": {
+    "subscribedDevices": 0,
+    "schemaChanges": false,
+    "patientDataChanges": false,
+    "claimPermissions": {
+      "anon": false,
+      "authenticated": false,
+      "serviceRole": true
+    }
+  },
+  "advisories": {
+    "health": [],
+    "security": "Existing server-only RLS tables and intentional owner-checked dose/refill RPCs",
+    "performance": "Existing informational missing dose_records medication FK index; no schema change in this review"
+  },
+  "limitations": [
+    "No real provider delivery or physical-device receipt observed; zero subscribed devices",
+    "Frontend build validated locally; external frontend deployment is not verified"
+  ]
+}

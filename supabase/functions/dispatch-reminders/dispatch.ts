@@ -1,16 +1,13 @@
 import type { SupabaseClient } from 'npm:@supabase/supabase-js@2.119.2'
 import type { PushSubscription, RequestOptions } from 'npm:web-push@4.0.0'
+import { localParts, reminderCandidates, reminderClaimTime, type ReminderCandidate, type ReminderKind } from '../_shared/reminderTiming.ts'
+export { localParts } from '../_shared/reminderTiming.ts'
 
 export const allowedEndpoint = (endpoint: string) => {
   try {
     const u = new URL(endpoint)
     return u.protocol === 'https:' && !u.username && !u.password && (!u.port || u.port === '443') && (u.hostname === 'fcm.googleapis.com' || u.hostname === 'web.push.apple.com' || u.hostname.endsWith('.push.services.mozilla.com') || u.hostname === 'updates.push.services.mozilla.com' || u.hostname.endsWith('.notify.windows.com'))
   } catch { return false }
-}
-export const localParts = (date: Date, timezone: string) => {
-  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: timezone, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(date)
-  const p = Object.fromEntries(parts.map(v => [v.type, v.value]))
-  return { day: `${p.year}-${p.month}-${p.day}`, time: `${p.hour}:${p.minute}` }
 }
 type Send = (subscription: PushSubscription, payload: string, options: RequestOptions) => Promise<unknown>
 type Claim = { subscription_id: string; medication_id: string; scheduled_date: string; schedule_time: string }
@@ -25,12 +22,12 @@ export async function dispatchReminders(db: SupabaseClient, send: Send, now = ne
     if (error) throw new Error('Unable to load subscriptions')
     for (const sub of subscriptions || []) {
       if (!allowedEndpoint(sub.endpoint) || sub.subscription?.endpoint !== sub.endpoint) { failed++; continue }
-      let candidates: { day: string; time: string }[]
-      try { candidates = [0, 1, 2].map(minutes => localParts(new Date(now.getTime() - minutes * 60000), sub.timezone)) } catch { failed++; continue }
+      let candidates: ReminderCandidate[], today: string
+      try { candidates = reminderCandidates(now, sub.timezone); today = localParts(now, sub.timezone).day } catch { failed++; continue }
       const { data: meds, error: medError } = await db.from('medications').select('id,schedules,current,units_per_dose,stock_unit,stock_level').eq('user_id', sub.user_id).is('archived_at', null)
       if (medError) { failed++; continue }
       let expired = false
-      const deliver = async (claim: Claim, stock = false) => {
+      const deliver = async (claim: Claim, kind: ReminderKind | 'stock' = 'due', time?: string) => {
         const { data: token, error: claimError } = await db.rpc('claim_notification_delivery', {
           p_subscription_id: claim.subscription_id, p_medication_id: claim.medication_id,
           p_scheduled_date: claim.scheduled_date, p_schedule_time: claim.schedule_time,
@@ -38,7 +35,8 @@ export async function dispatchReminders(db: SupabaseClient, send: Send, now = ne
         if (claimError) { failed++; return }
         if (!token) return
         try {
-          await send(sub.subscription, JSON.stringify({ ...(stock ? { kind: 'stock' } : {}), tag: `medcontrol${stock ? '-stock' : ''}:${claim.medication_id}:${claim.scheduled_date}${stock ? '' : `:${claim.schedule_time}`}` }), { TTL: stock ? 3600 : 120, urgency: 'high', timeout: 10000 })
+          const stock = kind === 'stock'
+          await send(sub.subscription, JSON.stringify({ kind, ...(time ? { time } : {}), tag: `medcontrol${stock ? '-stock' : kind === 'advance' ? '-advance' : ''}:${claim.medication_id}:${claim.scheduled_date}${stock ? '' : `:${time || claim.schedule_time}`}` }), { TTL: stock ? 3600 : 120, urgency: 'high', timeout: 10000 })
         } catch (error) {
           failed++
           const status = (error as { statusCode?: number }).statusCode
@@ -66,11 +64,11 @@ export async function dispatchReminders(db: SupabaseClient, send: Send, now = ne
           const { data: dose, error: doseError } = await db.from('dose_records').select('id').eq('user_id', sub.user_id).eq('medication_id', med.id).eq('scheduled_date', candidate.day).eq('schedule_time', candidate.time).maybeSingle()
           if (doseError) { failed++; continue }
           if (dose) continue
-          await deliver({ subscription_id: sub.id, medication_id: med.id, scheduled_date: candidate.day, schedule_time: candidate.time })
+          await deliver({ subscription_id: sub.id, medication_id: med.id, scheduled_date: candidate.day, schedule_time: reminderClaimTime(candidate) }, candidate.kind, candidate.time)
         }
         const needsStock = med.stock_unit === 'gotas' ? med.stock_level === 'low' || med.stock_level === 'empty' : med.current <= med.schedules.length * med.units_per_dose * 3
         if (!expired && needsStock) {
-          await deliver({ subscription_id: sub.id, medication_id: med.id, scheduled_date: candidates[0].day, schedule_time: 'stock' }, true)
+          await deliver({ subscription_id: sub.id, medication_id: med.id, scheduled_date: today, schedule_time: 'stock' }, 'stock')
         }
       }
     }

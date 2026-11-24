@@ -11,6 +11,7 @@ function database(ids = ['a']) {
   let confirmed = false
   let stock = false
   let bottle: { stock_unit: string; stock_level: string; current: number } | undefined
+  let schedules = ['12:00']
   let failClaims = false
   let failRelease = false
   const db = {
@@ -39,7 +40,7 @@ function database(ids = ['a']) {
           let data: unknown = null, error: unknown = null
           if (table === 'push_subscriptions' && action === 'select') data = devices.filter(row => row.id > cursor).slice(0, limit)
           if (table === 'push_subscriptions' && action === 'delete') devices.splice(devices.findIndex(row => row.id === filters.id), 1)
-          if (table === 'medications') data = [{ id: 'med', schedules: ['12:00'], current: stock ? 1 : 99, units_per_dose: 1, ...bottle }]
+          if (table === 'medications') data = [{ id: 'med', schedules, current: stock ? 1 : 99, units_per_dose: 1, ...bottle }]
           if (table === 'dose_records') data = confirmed ? { id: 'dose' } : null
           if (table === 'notification_deliveries' && ['delete', 'update'].includes(action)) {
             const key = [filters.subscription_id, filters.medication_id, filters.scheduled_date, filters.schedule_time].join(':')
@@ -59,10 +60,42 @@ function database(ids = ['a']) {
   return { db: db as unknown as Parameters<typeof dispatchReminders>[0], devices, claims, operations,
     confirm: () => { confirmed = true }, lowStock: () => { stock = true },
     bottle: (level: string, current = 0) => { bottle = { stock_unit: 'gotas', stock_level: level, current } },
+    schedules: (value: string[]) => { schedules = value },
     failClaims: () => { failClaims = true }, failRelease: () => { failRelease = true } }
 }
 
 describe('server dispatcher', () => {
+  it('delivers five minutes before and at the time with separate claims and tags', async () => {
+    const state = database(), send = vi.fn().mockResolvedValue({})
+    const before = new Date(now.getTime()-5*60000)
+    expect(await dispatchReminders(state.db,send,new Date(before.getTime()-60000))).toEqual({ sent:0,failed:0 })
+    const early = await Promise.all([dispatchReminders(state.db,send,before),dispatchReminders(state.db,send,before)])
+    expect(early.reduce((sum,r)=>sum+r.sent,0)).toBe(1)
+    expect(await dispatchReminders(state.db,send,now)).toEqual({ sent:1,failed:0 })
+    expect(await dispatchReminders(state.db,send,now)).toEqual({ sent:0,failed:0 })
+    const notices=send.mock.calls.map(call=>JSON.parse(call[1]))
+    expect(notices.map(n=>n.kind)).toEqual(['advance','due'])
+    expect(notices[0].time).toBe('12:00');expect(notices[0].tag).not.toBe(notices[1].tag)
+    expect([...state.claims.keys()]).toContain('a:med:2026-11-23:before:12:00')
+    expect([...state.claims.keys()]).toContain('a:med:2026-11-23:12:00')
+  })
+  it('uses tomorrow for a midnight advance and queries the real schedule time when checking history', async () => {
+    const state=database(),send=vi.fn().mockResolvedValue({});state.schedules(['00:00'])
+    await dispatchReminders(state.db,send,new Date('2026-11-24T02:55:00Z'))
+    expect([...state.claims.keys()]).toEqual(['a:med:2026-11-24:before:00:00'])
+    expect(state.operations.find(op=>op.table==='dose_records')?.filters).toMatchObject({scheduled_date:'2026-11-24',schedule_time:'00:00'})
+    await dispatchReminders(state.db,send,new Date('2026-11-24T03:00:00Z'))
+    expect(send).toHaveBeenCalledTimes(2)
+  })
+  it('skips both notifications for confirmed doses and retries a transient advance failure', async () => {
+    const state=database(),send=vi.fn().mockRejectedValueOnce({statusCode:503}).mockResolvedValue({})
+    const before=new Date(now.getTime()-5*60000)
+    expect(await dispatchReminders(state.db,send,before)).toEqual({sent:0,failed:1})
+    expect(await dispatchReminders(state.db,send,before)).toEqual({sent:1,failed:0})
+    state.confirm()
+    expect(await dispatchReminders(state.db,send,now)).toEqual({sent:0,failed:0})
+    expect(send).toHaveBeenCalledTimes(2)
+  })
   it.each(['full','half','unknown'])('does not infer low drop stock from a numeric zero when the bottle is %s', async level => {
     const state = database(); state.confirm(); state.bottle(level)
     const send = vi.fn().mockResolvedValue({})

@@ -12,7 +12,7 @@
 - Busca local em uma cópia oficial dos **dados abertos da Anvisa**, com **10.339 registros ativos** na atualização de 23/11/2026. A seleção preenche somente o nome; dose e horários seguem a prescrição.
 - Alerta de estoque numérico para aproximadamente três dias de consumo; frascos em gotas geram alerta quando marcados como acabando ou vazios. Acesso a **farmácias próximas**.
 - Localização opcional, busca por cidade/bairro ou CEP, distâncias estimadas e acesso a mapas. Dados públicos do OpenStreetMap, Photon e ViaCEP, sem chave de mapas ou faturamento; Google Maps e Waze em destaque para abrir buscas e trajetos. A lista interna é opcional.
-- Notificações solicitadas por um botão, teste de aviso, inscrição Web Push e serviço de envio agendado no Supabase.
+- Notificações solicitadas por um botão, teste imediato e dois lembretes por dose: cinco minutos antes e no horário. Demonstração com avisos locais; contas reais com inscrição Web Push e serviço agendado no Supabase, conforme a [validação e o estado da publicação](docs/notifications.md).
 - Interface adaptada ao telefone, navegação fixa, saída da conta em Ajustes, texto ampliado, ajuda “Como usar” e alternativa manual aos recursos opcionais. Formulário mantém campos ao alternar janelas e recusa edição de estoque desatualizado.
 - Demonstração identificada, com dados fictícios separados das contas reais.
 
