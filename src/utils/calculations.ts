@@ -1,5 +1,6 @@
 import type { AppStats, DoseRecord, Medication } from '../types/medication'
 import { normalizeMedicationStock } from './stock'
+import { bottleLevel, bottleStockLabel, isDropMedication } from './bottleStock'
 import {
   formatDate,
   getAdherenceStatus,
@@ -15,7 +16,7 @@ export type StockUrgency = 'ok' | 'warning' | 'critical' | 'empty'
 
 export interface StockStatus {
   dailyConsumption: number
-  daysRemaining: number
+  daysRemaining: number | null
   replenishThreshold: number
   needsReplenish: boolean
   urgency: StockUrgency
@@ -29,6 +30,13 @@ export function getDailyConsumption(medication: Medication): number {
 
 export function getStockStatus(medication: Medication): StockStatus {
   const dailyConsumption = getDailyConsumption(medication)
+  if (isDropMedication(medication)) {
+    const level = bottleLevel(medication)
+    return { dailyConsumption, daysRemaining: null, replenishThreshold: 0,
+      needsReplenish: level === 'low' || level === 'empty',
+      urgency: level === 'empty' ? 'empty' : level === 'low' ? 'warning' : 'ok',
+      fillPercentage: { full: 100, half: 50, low: 15, empty: 0, unknown: 0 }[level] }
+  }
   const { current, total } = normalizeMedicationStock(medication)
 
   const daysRemaining =
@@ -63,6 +71,7 @@ export function getStockPercentage(medication: Medication): number {
 
 export function formatStockAlertMessage(medication: Medication): string {
   const status = getStockStatus(medication)
+  if (isDropMedication(medication)) return `${medication.name}: ${bottleStockLabel(medication).toLocaleLowerCase('pt-BR')}. Confira o frasco e planeje a reposição.`
   const unitLabel = status.daysRemaining === 1 ? 'dia' : 'dias'
 
   if (status.urgency === 'empty') {
@@ -72,7 +81,8 @@ export function formatStockAlertMessage(medication: Medication): string {
   return `${medication.name}: restam ${medication.current} unidades (${status.daysRemaining} ${unitLabel}). Hora de repor!`
 }
 
-export function formatDaysRemainingLabel(days: number): string {
+export function formatDaysRemainingLabel(days: number | null): string {
+  if (days === null) return 'Atualize o nível do frasco'
   if (days === 0) return 'acaba hoje'
   if (days === 1) return 'acaba em 1 dia'
   return `dura cerca de ${days} dias`

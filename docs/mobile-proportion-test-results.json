@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "environment": "Local Chrome CDP, disposable demo context; no real accounts",
   "rows": [
     {
@@ -11,8 +11,8 @@
       "documentWidth": 320,
       "cuts": [],
       "primary": {
-        "top": 581.1875,
-        "bottom": 625.1875,
+        "top": 592.4375,
+        "bottom": 636.4375,
         "visible": false
       }
     },

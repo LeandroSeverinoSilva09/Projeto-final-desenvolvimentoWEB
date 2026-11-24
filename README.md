@@ -6,11 +6,11 @@
 
 - Cadastro, entrada, confirmação de e-mail e recuperação de senha pelo **Supabase Auth**.
 - Medicamentos e registros separados por conta, com **Row Level Security** no PostgreSQL.
-- Cadastro visual em quatro perguntas (nome, quantidade por vez, horários e quantidade em casa), sem valores de uso ou horários predefinidos; figuras, escolha em cartões grandes e botão “Letras maiores”; edição; estoque por unidades, gotas ou mL, com até três casas decimais.
-- Agenda diária, confirmação de dose e desconto de estoque na mesma transação. Confirmações simultâneas não duplicam a dose.
+- Cadastro visual em quatro perguntas (nome, quantidade por vez, horários e estoque), sem valores de uso ou horários predefinidos; figuras, cartões grandes e “Letras maiores”. Unidades e mL têm estoque numérico. Para gotas, a dose segue a receita e o estoque é uma escolha visual sobre o frasco: cheio, pela metade, acabando, vazio ou não sei dizer; não exige contar gotas restantes.
+- Agenda diária e confirmação de dose sem duplicação. O estoque numérico é descontado na mesma transação; o nível dos frascos em gotas é atualizado pela pessoa, sem conversão automática ou previsão de duração.
 - Histórico preservado ao arquivar um medicamento e exportação CSV dos até 5.000 registros mais recentes carregados por paginação.
 - Busca local em uma cópia oficial dos **dados abertos da Anvisa**, com **10.339 registros ativos** na atualização de 23/11/2026. A seleção preenche somente o nome; dose e horários seguem a prescrição.
-- Alerta de estoque para aproximadamente três dias de consumo e acesso a **farmácias próximas**.
+- Alerta de estoque numérico para aproximadamente três dias de consumo; frascos em gotas geram alerta quando marcados como acabando ou vazios. Acesso a **farmácias próximas**.
 - Localização opcional, busca por cidade/bairro ou CEP, distâncias estimadas e acesso a mapas. Dados públicos do OpenStreetMap, Photon e ViaCEP, sem chave de mapas ou faturamento; Google Maps e Waze em destaque para abrir buscas e trajetos. A lista interna é opcional.
 - Notificações solicitadas por um botão, teste de aviso, inscrição Web Push e serviço de envio agendado no Supabase.
 - Interface adaptada ao telefone, navegação fixa, saída da conta em Ajustes, texto ampliado, ajuda “Como usar” e alternativa manual aos recursos opcionais. Formulário mantém campos ao alternar janelas e recusa edição de estoque desatualizado.
@@ -42,6 +42,8 @@ No desenvolvimento comum, o service worker não é instalado. Para testar Web Pu
 O projeto usado nesta implementação é `pvadfgerkkvlecwfhiuq`. Sua URL e **publishable key** podem ir no cliente. Nunca coloque chaves secretas, `service_role` ou chaves privadas de push em variáveis `VITE_*`.
 
 Para reproduzir em outro projeto, execute, **na ordem**, as migrações de `supabase/migrations/`. Elas criam medicamentos, doses, assinaturas push, controles de entrega, configuração privada do serviço e o agendamento. A migração de cron contém a referência do projeto; ajuste a URL ao reproduzir.
+
+A migração `202611240006_bottle_stock.sql` separa a dose em gotas da observação do frasco. Ela preserva saldos antigos e inicia o nível como não informado. Aplique-a antes de publicar o frontend e a versão atualizada de `dispatch-reminders`. Consulte a [revisão ECC de gotas e frascos](docs/drop-medications-review.md).
 
 Em **Authentication → URL Configuration**, defina o endereço do app como Site URL e permita seus retornos. Neste projeto foram configurados `http://127.0.0.1:5173/**` e `http://localhost:5173/**`. Antes de usar outro endereço ou publicar, adicione seu domínio HTTPS e `/recuperar-senha`. A confirmação por e-mail permanece ligada. O envio de e-mails de produção depende da configuração e dos limites de e-mail do seu projeto Supabase.
 

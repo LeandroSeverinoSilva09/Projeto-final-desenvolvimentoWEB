@@ -3,7 +3,8 @@ import { useAuth } from './AuthContext'
 import { supabase, errorMessage } from '../lib/supabase'
 import { fetchTreatment, medicationRow } from '../lib/medications'
 import { useScheduleReminders } from '../hooks/useScheduleReminders'
-import type { AppState, FilterType, Medication, ToastMessage } from '../types/medication'
+import type { AppState, BottleStockLevel, FilterType, Medication, ToastMessage } from '../types/medication'
+import { bottleLevel, hasDoseStock, isBottleStockLevel, isDropMedication, stockAfterDose } from '../utils/bottleStock'
 import { sendBrowserNotification } from '../utils/notifications'
 import { hasBackgroundNotifications } from '../lib/pushSubscriptions'
 import { isLowStock } from '../utils/calculations'
@@ -27,6 +28,7 @@ interface MedicationContextValue extends AppState {
   addMedication: (data: MedicationInput, id?: string, original?: Medication) => Promise<boolean>
   takeMedication: (id: string, scheduleTime?: string) => Promise<boolean>
   restockMedication: (id: string, quantity?: number) => Promise<boolean>
+  updateBottleLevel: (id: string, level: BottleStockLevel) => Promise<boolean>
   deleteMedication: (id: string) => Promise<boolean>
   addToast: (type: ToastMessage['type'], message: string) => void
   removeToast: (id: string) => void
@@ -94,11 +96,12 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
       const item = { ...data, id: id || generateId(), takenCount: 0, createdAt: data.createdAt || new Date().toISOString() }
       setState(s => ({ ...s, medications: id ? s.medications.map(m => m.id === id ? { ...item, takenCount: m.takenCount } : m) : [...s.medications, item] }))
     } else {
-      const result = id
-        ? await supabase!.from('medications').update(medicationRow(data)).eq('id', id)
+      let query = id
+        ? supabase!.from('medications').update(medicationRow(data)).eq('id', id)
           .eq('current', original!.current).eq('total', original!.total)
-          .eq('stock_unit', original!.stockUnit || 'unidades').is('archived_at', null).select('id').maybeSingle()
-        : await supabase!.from('medications').insert({ ...medicationRow(data), user_id: userId })
+          .eq('stock_unit', original!.stockUnit || 'unidades').is('archived_at', null) : undefined
+      if (query && original && isDropMedication(original)) query = query.eq('stock_level', bottleLevel(original))
+      const result = query ? await query.select('id').maybeSingle() : await supabase!.from('medications').insert({ ...medicationRow(data), user_id: userId })
       if (result.error) throw result.error
       if (id && !result.data) {
         await refresh()
@@ -111,20 +114,20 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
     const med = s.medications.find(m => m.id === id)
     const slot = getTodayDoseSlots(s.medications, s.history).find(x => x.medicationId === id && (!scheduleTime || x.scheduleTime === scheduleTime) && !x.taken && x.isPast)
     if (!med || !slot) throw new Error('Esta dose já foi registrada ou o horário ainda não chegou.')
-    const units = med.unitsPerDose ?? 1
-    if (med.current < units) throw new Error('Estoque insuficiente. Confira a quantidade disponível.')
+    if (!hasDoseStock(med)) throw new Error(isDropMedication(med) ? 'O frasco foi marcado como vazio. Confira e atualize o frasco em Meus remédios.' : 'Estoque insuficiente. Confira a quantidade disponível.')
     if (isDemo) {
       const now = new Date()
-      setState(prev => ({ ...prev, medications: prev.medications.map(m => m.id === id ? { ...m, current: Math.round((m.current - units) * 1000) / 1000, takenCount: m.takenCount + 1 } : m),
+      setState(prev => ({ ...prev, medications: prev.medications.map(m => m.id === id ? { ...m, current: stockAfterDose(m), takenCount: m.takenCount + 1 } : m),
         history: [...prev.history, { id: generateId(), medicationId: id, name: med.name, dose: med.dose, date: formatDate(now), time: formatTime(now), scheduleTime: slot.scheduleTime, timestamp: now.getTime() }] }))
     } else {
       const { error } = await supabase!.rpc('confirm_medication_dose', { p_medication_id: id, p_schedule_time: slot.scheduleTime, p_timezone: Intl.DateTimeFormat().resolvedOptions().timeZone })
       if (error) throw error
     }
-  }, 'Dose registrada. O estoque foi atualizado.')
+  }, 'Dose registrada na sua agenda.')
   const restockMedication = (id: string, quantity?: number) => mutate(async () => {
     const med = stateRef.current.medications.find(m => m.id === id)
     if (!med) return
+    if (isDropMedication(med)) throw new Error('Para gotas, atualize como está o frasco em Meus remédios.')
     const amount = quantity ?? med.total
     if (!Number.isFinite(amount) || Math.abs(amount * 1000 - Math.round(amount * 1000)) > 1e-7 || amount < 0.001 || amount > 100000) throw new Error('Informe uma quantidade válida para reposição.')
     if (med.current + amount > 100000) throw new Error('A quantidade excede o limite de estoque.')
@@ -134,6 +137,17 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
       if (error) throw error
     }
   }, 'Reposição adicionada ao estoque.')
+  const updateBottleLevel = (id: string, level: BottleStockLevel) => mutate(async () => {
+    const med = stateRef.current.medications.find(m => m.id === id)
+    if (!med || !isDropMedication(med) || !isBottleStockLevel(level)) throw new Error('Escolha uma situação válida para o frasco.')
+    if (isDemo) setState(s => ({ ...s, medications: s.medications.map(m => m.id === id ? { ...m, stockLevel: level } : m) }))
+    else {
+      const { data, error } = await supabase!.from('medications').update({ stock_level: level }).eq('id', id)
+        .eq('stock_unit', 'gotas').eq('stock_level', bottleLevel(med)).is('archived_at', null).select('id').maybeSingle()
+      if (error) throw error
+      if (!data) { await refresh(); throw new Error('O frasco foi atualizado em outro acesso. Confira a situação atual e tente novamente.') }
+    }
+  }, 'Situação do frasco atualizada.')
   const deleteMedication = (id: string) => mutate(async () => {
     if (isDemo) setState(s => ({ ...s, medications: s.medications.filter(m => m.id !== id) }))
     else { const { error } = await supabase!.from('medications').update({ archived_at: new Date().toISOString() }).eq('id', id); if (error) throw error }
@@ -155,7 +169,7 @@ export function MedicationProvider({ children }: { children: ReactNode }) {
   }, [state.medications, userId, isDemo, loading, dataOwner])
   const filteredMedications = useMemo(() => state.medications.filter(m => filter === 'all' || (filter === 'alert' ? isLowStock(m) : !isLowStock(m))), [state.medications, filter])
   return <MedicationContext.Provider value={{ ...(dataOwner === userId ? state : defaultState), user, stats: { ...state.stats, totalDoses: state.history.length }, loading, dataError, actionError, busy, filter, toasts, filteredMedications: dataOwner === userId ? filteredMedications : [],
-    lowStockCount: dataOwner === userId ? state.medications.filter(isLowStock).length : 0, logout, setFilter, refresh, addMedication, takeMedication, restockMedication, deleteMedication, addToast,
+    lowStockCount: dataOwner === userId ? state.medications.filter(isLowStock).length : 0, logout, setFilter, refresh, addMedication, takeMedication, restockMedication, updateBottleLevel, deleteMedication, addToast,
     removeToast: id => setToasts(t => t.filter(x => x.id !== id)),
   }}>{children}</MedicationContext.Provider>
 }

@@ -1,9 +1,10 @@
-import type { Medication } from '../types/medication'
+import type { BottleStockLevel, Medication } from '../types/medication'
+import { isBottleStockLevel } from './bottleStock'
 
 export type MedicationFormat = 'solid' | 'liquid' | 'drops' | 'other'
 export type MedicationFormStep = 1 | 2 | 3 | 4
-export interface MedicationDraft { name: string; format: MedicationFormat | ''; units: string; quantity: string; doseText: string; times: string[]; needsDoseReview?: boolean }
-export interface MedicationFormError { step: MedicationFormStep; field: 'name' | 'format' | 'units' | 'doseText' | 'times' | 'quantity'; message: string }
+export interface MedicationDraft { name: string; format: MedicationFormat | ''; units: string; quantity: string; doseText: string; times: string[]; needsDoseReview?: boolean; stockLevel?: BottleStockLevel | '' }
+export interface MedicationFormError { step: MedicationFormStep; field: 'name' | 'format' | 'units' | 'doseText' | 'times' | 'quantity' | 'stockLevel'; message: string }
 
 export const stockUnitFor = (format: MedicationFormat | ''): NonNullable<Medication['stockUnit']> => format === 'liquid' ? 'mL' : format === 'drops' ? 'gotas' : 'unidades'
 export function initialMedicationFormat(medication?: Medication): MedicationFormat | '' {
@@ -44,6 +45,7 @@ export function medicationFormError(draft: MedicationDraft, step: MedicationForm
     if (new Set(draft.times).size !== draft.times.length) return { step, field: 'times', message: 'Há dois horários iguais. Altere um deles ou remova o que se repete.' }
   }
   if (step === 4) {
+    if (draft.format === 'drops') return isBottleStockLevel(draft.stockLevel) ? null : { step, field: 'stockLevel', message: 'Escolha como está o frasco. Se não conseguir ver, toque em “Não sei dizer”.' }
     const quantity = parseMedicationQuantity(draft.quantity)
     if (quantity === null) return { step, field: 'quantity', message: 'Escreva só o número, sem pontos. Se for uma parte, use vírgula, como 0,5. Se acabou, toque em “Não tenho mais esse remédio”.' }
     if (quantity < 0 || quantity > 100000) return { step, field: 'quantity', message: 'Confira a quantidade em casa: informe um número entre 0 e 100000.' }

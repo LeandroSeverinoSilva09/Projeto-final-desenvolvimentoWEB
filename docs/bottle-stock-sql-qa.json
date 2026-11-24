@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-11-24T17:32:57.615Z",
+  "environment": "PGlite disposable in-memory PostgreSQL; no remote project mutations",
+  "cases": [
+    {
+      "name": "migration_preserves_legacy_balance_and_does_not_guess_bottle_level",
+      "result": "passed"
+    },
+    {
+      "name": "anonymous_cannot_execute_dose_rpc",
+      "result": "passed"
+    },
+    {
+      "name": "rls_and_rpc_ownership_remain_enforced",
+      "result": "passed"
+    },
+    {
+      "name": "drop_dose_records_once_without_subtracting_or_changing_observation",
+      "result": "passed"
+    },
+    {
+      "name": "unknown_legacy_bottle_allows_explicit_confirmation_without_numeric_inference",
+      "result": "passed"
+    },
+    {
+      "name": "empty_bottle_blocks_dose_and_numeric_refill_is_rejected",
+      "result": "passed"
+    },
+    {
+      "name": "user_can_report_new_bottle_and_invalid_levels_are_rejected",
+      "result": "passed"
+    },
+    {
+      "name": "measured_liquid_still_subtracts_and_replenishes_exact_decimals",
+      "result": "passed"
+    },
+    {
+      "name": "migration_keeps_rpc_permissions",
+      "result": "passed"
+    }
+  ],
+  "limitations": [
+    "No hosted Supabase Auth or PostgREST exercised",
+    "Single in-memory engine does not reproduce multi-process concurrency"
+  ]
+}

@@ -1,6 +1,7 @@
 export type AdherenceStatus = 'complete' | 'partial' | 'none'
 
 export type FilterType = 'all' | 'alert' | 'ok'
+export type BottleStockLevel = 'full' | 'half' | 'low' | 'empty' | 'unknown'
 
 export interface User {
   id?: string
@@ -10,6 +11,7 @@ export interface User {
 }
 
 export interface Medication {
+  stockLevel?: BottleStockLevel
   stockUnit?: 'unidades' | 'mL' | 'gotas'
   unitsPerDose?: number
   createdAt?: string

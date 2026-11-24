@@ -1,9 +1,11 @@
 import { supabase } from './supabase'
-import type { DoseRecord, Medication } from '../types/medication'
+import type { BottleStockLevel, DoseRecord, Medication } from '../types/medication'
+import { bottleLevel } from '../utils/bottleStock'
 
 interface MedicationRow {
   id: string; name: string; dose: string; current: number; total: number
   schedules: string[]; units_per_dose: number; stock_unit: Medication['stockUnit']
+  stock_level?: BottleStockLevel
   created_at: string; instructions: string; color: Medication['color']
 }
 interface DoseRow {
@@ -45,6 +47,7 @@ async function fetchRows<T extends { id: string }>(
 export function medicationRow(med: Omit<Medication, 'id' | 'takenCount'>) {
   return { name: med.name, dose: med.dose, current: med.current, total: med.total,
     schedules: med.schedules.split(',').map(t => t.trim()), units_per_dose: med.unitsPerDose ?? 1,
+    ...(med.stockUnit === 'gotas' ? { stock_level: bottleLevel(med) } : {}),
     stock_unit: med.stockUnit || 'unidades', instructions: med.instructions || '', color: med.color || 'teal' }
 }
 export async function fetchTreatment(): Promise<{ medications: Medication[]; history: DoseRecord[] }> {
@@ -56,7 +59,7 @@ export async function fetchTreatment(): Promise<{ medications: Medication[]; his
   return {
     medications: meds.map(m => ({ id: m.id, name: m.name, dose: m.dose, current: m.current, total: m.total,
       frequency: 24 / m.schedules.length, schedules: m.schedules.join(', '), takenCount: 0,
-      unitsPerDose: m.units_per_dose, stockUnit: m.stock_unit, createdAt: m.created_at, instructions: m.instructions, color: m.color })),
+      unitsPerDose: m.units_per_dose, stockUnit: m.stock_unit, stockLevel: m.stock_level, createdAt: m.created_at, instructions: m.instructions, color: m.color })),
     history: records.map(r => { const d = new Date(r.taken_at); const [year, month, day] = r.scheduled_date.split('-'); return {
       id: r.id, medicationId: r.medication_id, name: r.name, dose: r.dose,
       date: `${day}/${month}/${year}`, time: d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),

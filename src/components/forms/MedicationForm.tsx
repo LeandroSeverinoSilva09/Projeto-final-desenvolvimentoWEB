@@ -2,7 +2,10 @@ import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Check, Clock3, Droplets, HelpCircle, Package, PackageOpen, Pencil, Pill, Plus, Save, Search, Type, X } from 'lucide-react'
 import { useMedications } from '../../contexts/MedicationContext'
-import type { Medication } from '../../types/medication'
+import type { BottleStockLevel, Medication } from '../../types/medication'
+import { bottleLevel, bottleStockLabel } from '../../utils/bottleStock'
+import { BottleLevelPicker } from './BottleLevelPicker'
+import { MedicationSymbol } from '../medication/MedicationSymbol'
 import { formatMedicationQuantity, initialMedicationFormat, medicationAmountLabel, medicationFormError, parseMedicationQuantity, stockUnitFor, type MedicationDraft, type MedicationFormat, type MedicationFormError, type MedicationFormStep } from '../../utils/medicationForm'
 import { Input } from '../common/Input'
 import { MedicationSearch } from '../medication/MedicationSearch'
@@ -16,7 +19,7 @@ const steps = [
 const formats: { value: MedicationFormat; label: string; hint: string }[] = [
   { value: 'solid', label: 'Comprimido ou cápsula', hint: 'Conte um por um' },
   { value: 'liquid', label: 'Líquido', hint: 'Medido em mL no copinho ou na seringa' },
-  { value: 'drops', label: 'Gotas', hint: 'Conte as gotas' },
+  { value: 'drops', label: 'Gotas', hint: 'A dose da receita é em gotas' },
   { value: 'other', label: 'Outro tipo', hint: 'Itens que você conta um por um' },
 ]
 
@@ -29,6 +32,7 @@ export function MedicationForm({ medication }: { medication?: Medication }) {
   const [format, setFormat] = useState<MedicationFormat | ''>(() => initialMedicationFormat(medication))
   const [units, setUnits] = useState(medication ? formatMedicationQuantity(medication.unitsPerDose ?? 1) : '')
   const [quantity, setQuantity] = useState(medication ? formatMedicationQuantity(medication.current) : '')
+  const [stockLevel, setStockLevel] = useState<BottleStockLevel | ''>(medication?.stockUnit === 'gotas' ? bottleLevel(medication) : '')
   const [doseText, setDoseText] = useState(medication?.dose || '')
   const [times, setTimes] = useState(medication?.schedules.split(',').map(time => time.trim()) || [''])
   const [instructions, setInstructions] = useState(medication?.instructions || '')
@@ -58,12 +62,13 @@ export function MedicationForm({ medication }: { medication?: Medication }) {
   const numericQuantity = parseMedicationQuantity(quantity)
   const amount = numericUnits === null ? 'Quantidade ainda não informada' : medicationAmountLabel(numericUnits, format)
   const dose = doseText.trim() || amount
-  const draft: MedicationDraft = { name, format, units, quantity, doseText, times, needsDoseReview }
+  const draft: MedicationDraft = { name, format, units, quantity, doseText, times, needsDoseReview, stockLevel }
   const unitHint = format === 'solid' ? 'Conte comprimidos ou cápsulas.' : format === 'liquid' ? 'Use a medida em mL da sua receita.' : format === 'drops' ? 'Use a quantidade de gotas da sua receita.' : 'Conte os itens, e não as caixas. Use a mesma forma de contar aqui e no que ainda tem em casa.'
   const unitsQuestion = format === 'liquid' ? 'Quantos mL você usa de cada vez?' : format === 'drops' ? 'Quantas gotas você usa de cada vez?' : format === 'solid' ? 'Quantos comprimidos ou cápsulas você usa de cada vez?' : 'Quantos itens você usa de cada vez?'
-  const quantityQuestion = format === 'liquid' ? 'Quantos mL ainda tem em casa?' : format === 'drops' ? 'Quantas gotas ainda tem em casa?' : format === 'solid' ? 'Quantos comprimidos ou cápsulas ainda tem?' : 'Quantos desses itens ainda tem em casa?'
-  const questions = ['Qual é o nome do remédio?', 'Como é o seu remédio?', 'Que horas você usa o remédio?', 'Quanto remédio ainda tem em casa?']
+  const quantityQuestion = format === 'liquid' ? 'Quantos mL ainda tem em casa?' : format === 'solid' ? 'Quantos comprimidos ou cápsulas ainda tem?' : 'Quantos desses itens ainda tem em casa?'
+  const questions = ['Qual é o nome do remédio?', 'Como é o seu remédio?', 'Que horas você usa o remédio?', format === 'drops' ? 'Vamos conferir o seu frasco?' : 'Quanto remédio ainda tem em casa?']
   const chooseFormat = (next: MedicationFormat) => {
+    if (next !== format) setStockLevel('')
     if (next !== format && doseText.trim()) { setNeedsDoseReview(true); setDoseReviewRequested(true); setRecipeOpen(true) }
     if (next === 'other') setRecipeOpen(true)
     if (stockUnitFor(next) !== stockUnit && (units || quantity)) {
@@ -89,13 +94,13 @@ export function MedicationForm({ medication }: { medication?: Medication }) {
       const failure = medicationFormError(draft, currentStep)
       if (failure) return showError(failure)
     }
-    const current = numericQuantity!, unitsPerDose = numericUnits!
-    const saved = await addMedication({ name: name.trim(), dose, current, total: Math.max(original && (original.stockUnit || 'unidades') === stockUnit ? original.total : 0.001, current), schedules: [...times].sort().join(', '), frequency: 24 / times.length, unitsPerDose, stockUnit, instructions: instructions.trim(), color, createdAt: original?.createdAt }, original?.id, original)
+    const current = format === 'drops' ? original?.stockUnit === 'gotas' ? original.current : 0 : numericQuantity!, unitsPerDose = numericUnits!
+    const saved = await addMedication({ name: name.trim(), dose, current, total: Math.max(original && (original.stockUnit || 'unidades') === stockUnit ? original.total : 0.001, current), stockLevel: format === 'drops' ? stockLevel as BottleStockLevel : undefined, schedules: [...times].sort().join(', '), frequency: 24 / times.length, unitsPerDose, stockUnit, instructions: instructions.trim(), color, createdAt: original?.createdAt }, original?.id, original)
     if (saved) navigate('/medicamentos')
   }
   return <form ref={form} onSubmit={submit} noValidate className="panel medication-form visual-medication-form" data-step={step} aria-busy={busy}><fieldset disabled={busy} className="med-form-content">
     <div className="med-form-progress"><div className="med-form-tools"><p>Passo <strong>{step}</strong> de 4</p><button type="button" className="med-text-size" aria-pressed={largeText} onClick={changeTextSize}><Type size={22} aria-hidden="true"/>Letras maiores{largeText && <Check size={20} aria-hidden="true"/>}</button></div><ol aria-label="Etapas do cadastro">{steps.map(({ number, label, icon: Icon }) => <li key={number} aria-current={number === step ? 'step' : undefined} className={number < step ? 'complete' : ''}><span>{number < step ? <Check size={19} aria-hidden="true"/> : <Icon size={19} aria-hidden="true"/>}</span><span>{label}</span></li>)}</ol></div>
-    <header className="med-form-question"><h2 ref={heading} tabIndex={-1}>{questions[step - 1]}</h2><p>{step === 1 ? 'Tenha a embalagem por perto para copiar o nome.' : step === 2 ? 'Toque na figura que combina com o seu remédio. Depois, informe quanto usa.' : step === 3 ? 'Coloque os horários que estão na sua receita.' : 'Conte o que ainda tem. Assim, podemos lembrar você de comprar mais.'}</p></header>
+    <header className="med-form-question"><h2 ref={heading} tabIndex={-1}>{questions[step - 1]}</h2><p>{step === 1 ? 'Tenha a embalagem por perto para copiar o nome.' : step === 2 ? 'Toque na figura que combina com o seu remédio. Depois, informe quanto usa.' : step === 3 ? 'Coloque os horários que estão na sua receita.' : format === 'drops' ? 'Você pode acompanhar o frasco olhando como ele está.' : 'Conte o que ainda tem. Assim, podemos lembrar você de comprar mais.'}</p></header>
     {step === 1 && <section aria-label="Nome do remédio" className="med-form-step">
       <Input id="med-name" aria-describedby={`med-name-hint${error?.field === 'name' ? ' med-name-error' : ''}`} label="Nome na embalagem" placeholder="Nome e número" autoComplete="off" required maxLength={100} value={name} error={error?.field === 'name' ? error.message : undefined} onChange={event => { setName(event.target.value); setError(null) }}/>
       <details className="med-name-search med-name-help"><summary><Search size={18} aria-hidden="true"/>Ajuda com o nome</summary><MedicationPackageGuide/><MedicationSearch currentValue={name} onSelect={value => { setName(value); setError(null); requestAnimationFrame(() => document.getElementById('med-name')?.focus()) }}/></details>
@@ -120,13 +125,15 @@ export function MedicationForm({ medication }: { medication?: Medication }) {
       <button type="button" className="btn secondary med-add-time" disabled={times.length >= 24} onClick={() => setTimes([...times, ''])}><Plus size={19} aria-hidden="true"/>Adicionar outro horário</button><p className="field-help">Use os horários combinados com o profissional que acompanha você.</p>
     </section>}
     {step === 4 && <section aria-label="Quantidade em casa e conferência" className="med-form-step">
+      {format === 'drops' ? <BottleLevelPicker value={stockLevel} onChange={value => { setStockLevel(value); setError(null) }} error={error?.field === 'stockLevel' ? error.message : undefined}/> : <>
       <div className="med-stock-guide"><Package size={30} aria-hidden="true"/><p>{unitHint} Conte o que ainda tem disponível.</p></div>
       <Input id="med-quantity" aria-describedby={`med-quantity-help${error?.field === 'quantity' ? ' med-quantity-error' : ''}`} label={quantityQuestion} type="text" inputMode="decimal" autoComplete="off" required value={quantity} onBlur={() => { if (numericQuantity !== null) setQuantity(formatMedicationQuantity(numericQuantity)) }} placeholder="Digite quanto ainda tem" error={error?.field === 'quantity' ? error.message : undefined} onChange={event => { setQuantity(event.target.value); setError(null) }}/><p id="med-quantity-help" className="field-help">Se acabou, toque no botão abaixo. Para escrever uma parte, use vírgula, como 0,5.</p><button type="button" className="med-empty-stock" aria-pressed={numericQuantity === 0} onClick={() => { setQuantity('0'); setError(null) }}><PackageOpen size={25} aria-hidden="true"/><span>Não tenho mais esse remédio</span>{numericQuantity === 0 && <Check size={22} aria-hidden="true"/>}</button>
+      </>}
       <section className="med-check-summary" aria-labelledby="med-check-title"><h3 id="med-check-title"><Check size={20} aria-hidden="true"/>Está tudo certo?</h3><div className="med-check-rows">
-        <div><Pill size={21} aria-hidden="true"/><dl><dt>Nome na embalagem</dt><dd>{name}</dd></dl><button type="button" onClick={() => goTo(1)} aria-label="Corrigir nome do remédio"><Pencil size={16} aria-hidden="true"/>Corrigir</button></div>
+        <div><MedicationSymbol medication={{ stockUnit }} size={21}/><dl><dt>Nome na embalagem</dt><dd>{name}</dd></dl><button type="button" onClick={() => goTo(1)} aria-label="Corrigir nome do remédio"><Pencil size={16} aria-hidden="true"/>Corrigir</button></div>
         <div><Droplets size={21} aria-hidden="true"/><dl><dt>Quanto uso de cada vez</dt><dd>{amount}{doseText.trim() && <span className="med-recipe-text">Receita: {doseText.trim()}</span>}</dd></dl><button type="button" onClick={() => goTo(2)} aria-label="Corrigir quantidade por vez"><Pencil size={16} aria-hidden="true"/>Corrigir</button></div>
         <div><Clock3 size={21} aria-hidden="true"/><dl><dt>Horas de usar</dt><dd>{[...times].sort().join(' · ')}</dd></dl><button type="button" onClick={() => goTo(3)} aria-label="Corrigir horários"><Pencil size={16} aria-hidden="true"/>Corrigir</button></div>
-        <div><Package size={21} aria-hidden="true"/><dl><dt>Quanto ainda tenho</dt><dd>{numericQuantity === null ? 'Informe a quantidade acima' : medicationAmountLabel(numericQuantity, format)}</dd></dl></div>
+        <div>{format === 'drops' ? <MedicationSymbol medication={{ stockUnit }} size={21}/> : <Package size={21} aria-hidden="true"/>}<dl><dt>{format === 'drops' ? 'Situação do frasco' : 'Quanto ainda tenho'}</dt><dd>{format === 'drops' ? stockLevel ? bottleStockLabel({ stockLevel }) : 'Escolha como está o frasco' : numericQuantity === null ? 'Informe a quantidade acima' : medicationAmountLabel(numericQuantity, format)}</dd></dl></div>
       </div></section>
       <details className="med-optional"><summary>Quer anotar mais alguma coisa? (opcional)</summary><label className="field-label" htmlFor="med-instructions">Alguma orientação para lembrar?</label><textarea id="med-instructions" rows={3} maxLength={500} placeholder="Copie uma orientação recebida." value={instructions} onChange={event => setInstructions(event.target.value)}/><fieldset className="color-field"><legend>Escolha uma cor para ajudar a reconhecer</legend>{([['teal', 'Verde'], ['blue', 'Azul'], ['amber', 'Amarela'], ['violet', 'Violeta']] as const).map(([value, label]) => <button type="button" className={`color-option ${value}`} key={value} aria-pressed={value === color} onClick={() => setColor(value)}>{value === color && <Check size={15} aria-hidden="true"/>}{label}</button>)}</fieldset></details>
     </section>}

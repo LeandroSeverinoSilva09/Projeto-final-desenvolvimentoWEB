@@ -1,0 +1,134 @@
+{
+  "checkedAt": "2026-11-24T17:45:48.996Z",
+  "environment": "Local Chrome CDP, disposable demo; no real medicines/accounts",
+  "browser": "Chrome/158.0.8127.37",
+  "cases": [
+    {
+      "name": "drops_stock_uses_five_visual_choices_without_numeric_question_or_default",
+      "result": "passed"
+    },
+    {
+      "name": "drop_dose_and_observation_saved_separately_with_distinct_icon",
+      "result": "passed"
+    },
+    {
+      "name": "mobile_agenda_icon_visible_and_double_confirmation_preserves_observation",
+      "result": "passed"
+    },
+    {
+      "name": "changing_from_drops_requires_new_measure_without_any_conversion",
+      "result": "passed"
+    },
+    {
+      "name": "editing_preserves_dose_count_and_bottle_observation",
+      "result": "passed"
+    },
+    {
+      "name": "manual_low_level_drives_filter_and_pharmacy_list_without_drop_counts",
+      "result": "passed"
+    },
+    {
+      "name": "empty_bottle_blocks_confirmation",
+      "result": "passed"
+    },
+    {
+      "name": "reporting_new_full_bottle_allows_confirmation_without_automatic_level_change",
+      "result": "passed"
+    },
+    {
+      "name": "legacy_drops_show_unknown_and_icons_follow_saved_format",
+      "result": "passed"
+    },
+    {
+      "name": "responsive_bottle_choices_375_normal_and_large",
+      "result": "passed"
+    },
+    {
+      "name": "responsive_bottle_choices_768_normal_and_large",
+      "result": "passed"
+    },
+    {
+      "name": "responsive_bottle_choices_1440_normal_and_large",
+      "result": "passed"
+    }
+  ],
+  "accessibility": [
+    {
+      "name": "drops-form-half-mobile",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "drops-card-mobile",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "name": "drops-agenda-after-confirmation",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "name": "bottle-update-dialog-mobile",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "drops-form-375-large-false",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "drops-form-375-large-true",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "drops-form-768-large-false",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "drops-form-768-large-true",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "drops-form-1440-large-false",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "drops-form-1440-large-true",
+      "version": "4.14.1",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "uncaughtErrors": [],
+  "visualRegression": "INCONCLUSIVE: no previous equivalent bottle-level baseline",
+  "limitations": [
+    "No participant usability study or physical device test",
+    "Legacy/icon regression fixtures are identified in the script",
+    "Backend RPC and policy behavior tested separately in PostgreSQL"
+  ]
+}

@@ -10,6 +10,7 @@ function database(ids = ['a']) {
   let sequence = 0
   let confirmed = false
   let stock = false
+  let bottle: { stock_unit: string; stock_level: string; current: number } | undefined
   let failClaims = false
   let failRelease = false
   const db = {
@@ -38,7 +39,7 @@ function database(ids = ['a']) {
           let data: unknown = null, error: unknown = null
           if (table === 'push_subscriptions' && action === 'select') data = devices.filter(row => row.id > cursor).slice(0, limit)
           if (table === 'push_subscriptions' && action === 'delete') devices.splice(devices.findIndex(row => row.id === filters.id), 1)
-          if (table === 'medications') data = [{ id: 'med', schedules: ['12:00'], current: stock ? 1 : 99, units_per_dose: 1 }]
+          if (table === 'medications') data = [{ id: 'med', schedules: ['12:00'], current: stock ? 1 : 99, units_per_dose: 1, ...bottle }]
           if (table === 'dose_records') data = confirmed ? { id: 'dose' } : null
           if (table === 'notification_deliveries' && ['delete', 'update'].includes(action)) {
             const key = [filters.subscription_id, filters.medication_id, filters.scheduled_date, filters.schedule_time].join(':')
@@ -57,10 +58,23 @@ function database(ids = ['a']) {
   }
   return { db: db as unknown as Parameters<typeof dispatchReminders>[0], devices, claims, operations,
     confirm: () => { confirmed = true }, lowStock: () => { stock = true },
+    bottle: (level: string, current = 0) => { bottle = { stock_unit: 'gotas', stock_level: level, current } },
     failClaims: () => { failClaims = true }, failRelease: () => { failRelease = true } }
 }
 
 describe('server dispatcher', () => {
+  it.each(['full','half','unknown'])('does not infer low drop stock from a numeric zero when the bottle is %s', async level => {
+    const state = database(); state.confirm(); state.bottle(level)
+    const send = vi.fn().mockResolvedValue({})
+    expect(await dispatchReminders(state.db, send, now)).toEqual({ sent: 0, failed: 0 })
+    expect(send).not.toHaveBeenCalled()
+  })
+  it.each(['low','empty'])('alerts for a %s bottle regardless of legacy drop balances', async level => {
+    const state = database(); state.confirm(); state.bottle(level, 10000)
+    const send = vi.fn().mockResolvedValue({})
+    expect(await dispatchReminders(state.db, send, now)).toEqual({ sent: 1, failed: 0 })
+    expect(JSON.parse(send.mock.calls[0][1]).kind).toBe('stock')
+  })
   it('does not send the same dose from concurrent workers or repeated runs', async () => {
     const { db, claims } = database()
     const send = vi.fn().mockResolvedValue({})

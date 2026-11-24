@@ -109,7 +109,7 @@ try {
     const screenshot = await page('Page.captureScreenshot', { format: 'png' })
     await writeFile(`docs/screenshots/mobile-proportion-${name}-375.png`, Buffer.from(screenshot.data,'base64'))
   }
-  const report = { date: '2026-11-23', environment: 'Local Chrome CDP, disposable demo context; no real accounts', rows, layoutIssues: rows.filter(row=>row.cuts.length), visualRegression: 'INCONCLUSIVE: no baseline for this version', limitations: ['No physical iOS/Android device or real virtual keyboard', 'No participant usability sessions'] }
+  const report = { date: new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo' }).format(new Date()), environment: 'Local Chrome CDP, disposable demo context; no real accounts', rows, layoutIssues: rows.filter(row=>row.cuts.length), visualRegression: 'INCONCLUSIVE: no baseline for this version', limitations: ['No physical iOS/Android device or real virtual keyboard', 'No participant usability sessions'] }
   await writeFile('docs/mobile-proportion-test-results.json', JSON.stringify(report,null,2)+'\n')
   assert.equal(report.layoutIssues.length, 0, 'Conteudo fora da largura da tela; consulte o relatorio.')
   console.log(JSON.stringify({ result:'passed', screens:rows.length, layoutIssues:report.layoutIssues.length }))

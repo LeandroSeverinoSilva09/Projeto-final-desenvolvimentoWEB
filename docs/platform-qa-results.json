@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-23T20:15:41.855Z",
+  "checkedAt": "2026-11-24T17:36:51.061Z",
   "origin": "http://127.0.0.1:5173",
-  "browser": "Chrome/158.0.8127.36",
+  "browser": "Chrome/158.0.8127.37",
   "scope": "Disposable local demo; auth/permission failure fixtures explicitly identified",
   "cases": [
     {

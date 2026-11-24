@@ -27,7 +27,7 @@ export async function dispatchReminders(db: SupabaseClient, send: Send, now = ne
       if (!allowedEndpoint(sub.endpoint) || sub.subscription?.endpoint !== sub.endpoint) { failed++; continue }
       let candidates: { day: string; time: string }[]
       try { candidates = [0, 1, 2].map(minutes => localParts(new Date(now.getTime() - minutes * 60000), sub.timezone)) } catch { failed++; continue }
-      const { data: meds, error: medError } = await db.from('medications').select('id,schedules,current,units_per_dose').eq('user_id', sub.user_id).is('archived_at', null)
+      const { data: meds, error: medError } = await db.from('medications').select('id,schedules,current,units_per_dose,stock_unit,stock_level').eq('user_id', sub.user_id).is('archived_at', null)
       if (medError) { failed++; continue }
       let expired = false
       const deliver = async (claim: Claim, stock = false) => {
@@ -68,7 +68,8 @@ export async function dispatchReminders(db: SupabaseClient, send: Send, now = ne
           if (dose) continue
           await deliver({ subscription_id: sub.id, medication_id: med.id, scheduled_date: candidate.day, schedule_time: candidate.time })
         }
-        if (!expired && med.current <= med.schedules.length * med.units_per_dose * 3) {
+        const needsStock = med.stock_unit === 'gotas' ? med.stock_level === 'low' || med.stock_level === 'empty' : med.current <= med.schedules.length * med.units_per_dose * 3
+        if (!expired && needsStock) {
           await deliver({ subscription_id: sub.id, medication_id: med.id, scheduled_date: candidates[0].day, schedule_time: 'stock' }, true)
         }
       }

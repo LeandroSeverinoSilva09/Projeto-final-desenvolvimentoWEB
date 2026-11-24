@@ -6,6 +6,7 @@ import { DeviceLocationError, getDeviceLocation, radiusForDeviceLocation } from 
 import { Header } from '../components/layout/Header'
 import { useMedications } from '../contexts/MedicationContext'
 import { getStockStatus } from '../utils/calculations'
+import { stockSummary } from '../utils/bottleStock'
 import { clearPharmacyCache, externalSearchUrls, formatDistance, googleDirectionsUrl, normalizeLocationQuery, PharmacyError, searchPharmacies, searchPlaces, wazeDirectionsUrl, type Coordinates, type Pharmacy, type PharmacyRadius, type PlaceOption } from '../lib/pharmacies'
 import '../styles/pharmacies.css'
 
@@ -124,7 +125,7 @@ function PharmacySearch() {
       {location && <p className="pharmacy-map-region">Região da busca: <strong>{location.label}</strong></p>}
     </section>
 
-    {lowStock.length > 0 && <details className="pharmacy-restock-list"><summary><Package size={21} aria-hidden="true" /><span>O que preciso repor?</span><span className="count-badge">{lowStock.length}</span><ChevronDown size={19} aria-hidden="true" /></summary><div><p>Confira sua lista antes de sair. A disponibilidade deve ser confirmada com a farmácia.</p><ul>{lowStock.map(medication => <li key={medication.id}><strong>{medication.name}</strong><span>{medication.current.toLocaleString('pt-BR')} {medication.stockUnit || 'unidades'} no estoque</span></li>)}</ul><Link className="text-link" to="/medicamentos">Ver meus medicamentos <ArrowRight size={17} aria-hidden="true" /></Link></div></details>}
+    {lowStock.length > 0 && <details className="pharmacy-restock-list"><summary><Package size={21} aria-hidden="true" /><span>O que preciso repor?</span><span className="count-badge">{lowStock.length}</span><ChevronDown size={19} aria-hidden="true" /></summary><div><p>Confira sua lista antes de sair. A disponibilidade deve ser confirmada com a farmácia.</p><ul>{lowStock.map(medication => <li key={medication.id}><strong>{medication.name}</strong><span>{stockSummary(medication)}</span></li>)}</ul><Link className="text-link" to="/medicamentos">Ver meus medicamentos <ArrowRight size={17} aria-hidden="true" /></Link></div></details>}
 
     <details className="pharmacy-in-app" onToggle={event => { if (event.target === event.currentTarget && !event.currentTarget.open) removeLocation() }}>
       <summary><Search size={22} aria-hidden="true" /><span><strong>Ver farmácias nesta página</strong><small>Busque uma região e consulte a lista aqui.</small></span><ChevronDown size={20} aria-hidden="true" /></summary>

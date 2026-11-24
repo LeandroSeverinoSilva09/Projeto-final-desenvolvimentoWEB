@@ -1,5 +1,7 @@
 /* Shared reflow rules: allow content to wrap instead of clipping inside panels. */
 .demo-mobile-label { display: none; }
+.dose-format-inline { display: none; }
+.app-footer .text-link { color: #146b61; }
 .auth-team { align-items: flex-start; font-size: 13px; line-height: 1.6; color: #526b76; }
 .auth-team > svg { flex-shrink: 0; margin-top: 3px; }
 .auth-team > div { min-width: 0; }
@@ -313,6 +315,7 @@
   .large-text .metrics.three .metric { flex-direction: row; align-items: center; }
   .large-text .dose-row { grid-template-columns: 52px minmax(0, 1fr); }
   .large-text .dose-row .med-symbol { display: none; }
+  .large-text .dose-format-inline { display: inline-flex; vertical-align: middle; margin-right: 6px; }
   .large-text .dose-info { grid-column: 2; }
   .large-text .dose-row > .btn, .large-text .dose-done { grid-column: 2; width: 100%; }
   .large-text .stock-line { grid-template-columns: 32px minmax(0, 1fr) 84px; }
@@ -320,6 +323,7 @@
 }
 
 @media (max-width: 600px) {
+  .dose-format-inline { display: inline-flex; vertical-align: middle; margin-right: 6px; }
   .welcome-illustration { display: none; }
   .mobile-next-care { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; width: 100%; max-width: none; }
   .mobile-next-care > span { grid-column: 1 / -1; }

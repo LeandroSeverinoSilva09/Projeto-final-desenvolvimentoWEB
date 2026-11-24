@@ -64,3 +64,7 @@ Os resultados estruturados ficam em [daily-usability-test-results.json](daily-us
 Observar representantes do público cadastrando um exemplo de sua rotina sem instrução prévia: localizar nome/número na embalagem, escolher a figura, informar a quantidade por vez, definir horários e distinguir quantidade em casa. Registrar ajuda necessária, erros e conclusão; não orientar respostas durante a tentativa. Avaliar também leitura com texto ampliado e retorno para corrigir uma informação. As metas sugeridas na pesquisa anterior continuam sendo metas, sem resultados de participantes atribuídos a esta revisão.
 
 A abertura dos aplicativos nativos Google Maps/Waze em aparelhos reais e a identificação por foto não foram testadas nesta etapa.
+
+## Ajuste para gotas — 24/11/2026
+
+O estoque em gotas descrito nas rodadas anteriores foi substituído por uma observação visual do frasco. A quantidade por dose continua em gotas conforme a receita; não se pergunta quantas gotas restam, não há conversão gotas/mL nem previsão de dias. A pessoa escolhe cheio, pela metade, acabando, vazio ou não sei dizer e pode atualizar em Meus remédios. Os ícones passam a usar a forma cadastrada, inclusive na agenda móvel. Consulte a [revisão específica](drop-medications-review.md).
